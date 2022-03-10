@@ -1,0 +1,148 @@
+<div class="modal-create">
+  <form id="form" [formGroup]="formData" (ngSubmit)="Register()" novalidate>
+    <!-- <div class="modal-complete"> -->
+
+      <div class="row" style="margin: 0;">
+        <div class="form-group col-12 col-md-3">
+          <div class="personal-image" style="padding-left: 3.5rem;">
+            <label class="label" >
+              <input type="file" class="file-upload" accept="image/png, image/jpeg" (change)="cambiarImg($event)"
+                formControlName="avatar" />
+              <figure class="personal-figure">
+                <img [src]="viewImage? viewImage : avatarUser " class="personal-avatar" alt="avatar">
+                <figcaption class="personal-figcaption">
+                  <img
+                    src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png">
+                </figcaption>
+              </figure>
+            </label>
+          </div>
+          <label style="padding-left: 2.4rem;">Subir imagen</label>
+        </div>
+        <div class="form-group col-12 col-md-3" *ngIf="dataProfile.user.role === 'pyme'">
+          <label class="label-basic" for="input-economicSector"> SECTOR ECONÓMICO <span
+              class="text-danger">*</span></label>
+          <div>
+            <nb-select placeholder="Select Showcase" formControlName="economicSector" size="medium" style="width: 220px;">
+              <nb-option value="">Seleccione una opción</nb-option>
+              <nb-option *ngFor="let item of sectorEconomic" [value]="item.name">{{ item.name }}
+              </nb-option>
+            </nb-select>
+          </div>
+          <div *ngIf="formData.controls['economicSector'].invalid && (formData.controls['economicSector'].dirty ||
+                              formData.controls['economicSector'].touched)" class="text-danger">
+            <div *ngIf="formData.controls['economicSector'].errors.required">
+              Sector económico es obligatorio.
+            </div>
+            <div *ngIf="formData.controls['economicSector'].errors.maxlength">
+              Maximo de caracteres
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-12 col-md-3">
+          <div class="form-control-group">
+            <label class="label-basic" for="input-country">PAÍS <span class="text-danger">*</span></label>
+            <div>
+              <nb-select placeholder="Select Showcase" formControlName="country" style="width: 220px;" size="medium">
+                <nb-option value="">Seleccione un país</nb-option>
+                <nb-option *ngFor="let item of pais" [value]="item.name"> <img src="{{item.flag }} " alt="" width="24px"
+                    height="16px" style="padding-right: 5px;">
+                  {{item.name}}
+                </nb-option>
+              </nb-select>
+            </div>
+            <div *ngIf="formData.controls['country'].invalid && (formData.controls['country'].dirty ||
+                            formData.controls['country'].touched)" class="text-danger">
+              <div *ngIf="formData.controls['country'].errors.required">
+                País es obligatorio.
+              </div>
+              <div *ngIf="formData.controls['country'].errors.maxlength">
+                Maximo de caracteres
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-12 col-md-3">
+          <div class="form-control-group">
+            <label class="label-basic" for="input-city">CIUDAD/DIRECCIÓN<span class="text-danger">*</span></label>
+            <input nbInput fullWidth formControlName="city" placeholder="Ingrese su ciudad" id="input-city">
+            <div *ngIf="formData.controls['city'].invalid && (formData.controls['city'].dirty ||
+                            formData.controls['city'].touched)" class="text-danger">
+              <div *ngIf="formData.controls['city'].errors.required">
+                Ciudad es obligatorio.
+              </div>
+              <div *ngIf="formData.controls['city'].errors.maxlength">
+                Maximo de caracteres
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin: 0;">
+        <div class="form-group col-12 col-md-3">
+          <label class="label-basic" for="input-telephone">TELÉFONO <span class="text-danger">*</span></label>
+          <input nbInput fullWidth formControlName="telephone" placeholder="Teléfono" id="input-city">
+        </div>
+        <div class="form-group col-12 col-md-3">
+          <div class="form-control-group">
+            <label class="label-basic" for="input-linkedin">LINKEDIN </label>
+            <input nbInput fullWidth formControlName="linkedin" placeholder="Ingrese su linkedin" id="input-linkedin">
+          </div>
+        </div>
+        <div class="form-group col-12 col-md-3">
+          <div class="form-control-group">
+            <label class="label-basic" for="input-instagram">INSTAGRAM</label>
+            <input nbInput fullWidth formControlName="instagram" placeholder="Ingrese su instagram" id="input-instagram">
+          </div>
+        </div>
+        <div class="form-group col-12 col-md-3">
+          <div class="form-control-group">
+            <label class="label-basic" for="input-website">SITIO WEB</label>
+            <input nbInput fullWidth formControlName="website" placeholder="Ingrese su dirección web" id="input-website">
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row" style="margin: 0;">
+        <div class="form-group col-12">
+          <div class="form-control-group">
+            <label class="label-basic" for="input-summary">RESUMEN PERFIL <span class="text-danger">*</span></label>
+            <textarea nbInput fullWidth formControlName="summary"
+              placeholder="Ingrese un resumen detallado de su perfil"></textarea>
+            <div *ngIf="formData.controls['summary'].invalid && (formData.controls['summary'].dirty ||
+                            formData.controls['summary'].touched)" class="text-danger">
+              <div *ngIf="formData.controls['summary'].errors.required">
+                Resumen es obligatorio.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: right; margin: 1rem;" *ngIf="dataProfile.user.role === 'pyme'">
+        <button nbButton size="small" class="p-mr-2" style="right: 0; background-color: #807ee8; color: #f7f6fd;"
+          [disabled]="!formData.valid || loading " form="form" type="submit" outline>
+          <nb-icon icon="save" pack="font-awesome-solid" class="icon-size"></nb-icon>
+          Actualizar
+        </button>
+        <button nbButton size="small" class="p-mr-2 button-outline"  type="button" style="right: 0; background-color: #f7f6fd; color: #807ee8;"
+        [disabled]="loading" (click)="onClose()" form="form"  outline>
+          <nb-icon icon="save" pack="font-awesome-solid" class="icon-size"></nb-icon>
+          Cancelar
+        </button>
+      </div>
+      <div style="text-align: right; margin: 1rem;" *ngIf="dataProfile.user.role === 'users'">
+        <button nbButton size="small" class="p-mr-2" style="right: 0; background-color: #9fffd5; color: #807ee8;"
+          [disabled]="!formData.valid || loading " form="form" type="submit" outline>
+          <nb-icon icon="save" pack="font-awesome-solid" class="icon-size"></nb-icon>
+          Actualizar
+        </button>
+        <button nbButton size="small" class="p-mr-2 button-outline"  type="button" style="right: 0; background-color: #807ee8; color: #9fffd5;"
+        [disabled]="loading" (click)="onClose()" form="form"  outline>
+          <nb-icon icon="save" pack="font-awesome-solid" class="icon-size"></nb-icon>
+          Cancelar
+        </button>
+      </div>
+
+
+  </form>
+</div>

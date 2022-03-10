@@ -1,0 +1,36 @@
+<div style="margin-top: 2rem;">
+  <nb-tabset (changeTab)="onChangeTab($event)">
+    <!-- ACTIVA -->
+    <nb-tab responsive tabTitle="ACTIVAS" [tabId]="opportunityStatus.ACTIVE" tabIcon="clock-outline">
+      <div *ngIf="opportunities?.length >=0">
+        <ngx-opportunity-list-status [opportunities]="opportunities" [sortOptions]="sortOptions" [sortField]="sortField"
+          [sortOrder]="sortOrder" [totalRecords]="totalRecords" [limitTable]="limitTable" [status]="status"
+          [rolTalent]="rolTalent" (onSortChange)="onSortChange($event)" (onSearch)="onSearch($event)"
+          (onPaginate)="onPaginate($event)" (onConfirmDelete)="onConfirmDelete($event)" (onApply)="onApply()">
+        </ngx-opportunity-list-status>
+      </div>
+    </nb-tab>
+    <!-- APLICADAS -->
+    <nb-tab responsive tabTitle="APLICADAS" [tabId]="opportunityStatus.ACTIVE" tabIcon="clock-outline">
+      <div *ngIf="opportunities?.length >=0">
+        <ngx-opportunity-list-status [opportunities]="opportunities" [sortOptions]="sortOptions" [sortField]="sortField"
+          [sortOrder]="sortOrder" [totalRecords]="totalRecords" [limitTable]="limitTable" 
+          [rolTalent]="rolTalent" (onSortChange)="onSortChange($event)" (onSearch)="onSearch($event)"
+          (onPaginate)="onPaginate($event)" (onConfirmDelete)="onConfirmDelete($event)" [status2]="status2" (onApply)="onApply()">
+        </ngx-opportunity-list-status>
+      </div>
+    </nb-tab>
+
+    <!-- ASIGNADAS -->
+    <nb-tab responsive tabTitle="ASIGNADAS" [tabId]="opportunityStatus.COMPLETED" tabIcon="close-circle-outline">
+      <ngx-opportunity-list-completed *ngIf="tabActive===opportunityStatus.COMPLETED">
+      </ngx-opportunity-list-completed>
+    </nb-tab>
+    <!-- COMPLETADA -->
+    <nb-tab responsive tabTitle="COMPLETADAS" [tabId]="opportunityStatus.COMPLETED" tabIcon="checkmark-circle-outline">
+      <ngx-opportunity-list-completed *ngIf="tabActive===opportunityStatus.COMPLETED" >
+      </ngx-opportunity-list-completed>
+    </nb-tab>
+    
+  </nb-tabset>
+</div>

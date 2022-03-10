@@ -1,0 +1,33 @@
+<div   >
+  <div>
+
+    <h1 style="padding-left: 2%; color: #807ee8; margin: 0 0 5% 0;"> MARKETPLACE
+      <button nbButton size="small" [routerLink]="['new']" shape="round"
+      style=" float:right;  background-color: #9fffd5; color:#000000;">
+      <nb-icon icon="plus-outline" class="icon"></nb-icon>Nueva oportunidad
+    </button></h1>
+
+  </div>
+
+  <!--Lista-->
+  <div style="margin-top: 2rem;">
+    <nb-tabset (changeTab)="onChangeTab($event)" class="tab-pyme">
+      <nb-tab  responsive tabTitle="ACTIVAS" [tabId]="opportunityStatus.ACTIVE" tabIcon="clock-outline">
+        <ngx-opportunity-list-active *ngIf="tabActive===opportunityStatus.ACTIVE"></ngx-opportunity-list-active>
+      </nb-tab>
+      <nb-tab responsive tabTitle="ASIGNADAS" [tabId]="opportunityStatus.ASSIGNED" tabIcon="person-done-outline">
+        <ngx-opportunity-list-assigned *ngIf="tabActive===opportunityStatus.ASSIGNED">
+        </ngx-opportunity-list-assigned>
+      </nb-tab>
+      <nb-tab responsive tabTitle="COMPLETADAS" [tabId]="opportunityStatus.COMPLETED"
+        tabIcon="checkmark-circle-outline">
+        <ngx-opportunity-list-completed *ngIf="tabActive===opportunityStatus.COMPLETED">
+        </ngx-opportunity-list-completed>
+      </nb-tab>
+      <nb-tab responsive tabTitle="VENCIDAS" [tabId]="opportunityStatus.EXPIRED" tabIcon="close-circle-outline">
+        <ngx-opportunity-list-expired *ngIf="tabActive===opportunityStatus.EXPIRED">
+        </ngx-opportunity-list-expired>
+      </nb-tab>
+    </nb-tabset>
+  </div>
+</div>

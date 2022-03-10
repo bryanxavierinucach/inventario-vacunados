@@ -1,0 +1,66 @@
+<button nbButton outline size="small" class="p-mr-2" (click)="onBack()">
+    <nb-icon icon="arrow-back-outline" class="icon"></nb-icon>Volver
+</button>
+<nb-card style="margin-top: 2rem;">
+    <nb-card-body>
+        <div class="p-grid p-jc-md-between" style="margin-top: 0.5rem;">
+            <div>
+                <div *ngIf="questionary.directed===questionaryDirected.TALENT">
+                    Dirigido: {{DIRECTED_TALENT_SHOW}}
+                </div>
+                <div *ngIf="questionary.directed===questionaryDirected.PYME">
+                    Dirigido: {{DIRECTED_PYME_SHOW}}
+                </div>
+            </div>
+            <div>
+                <span class="badge badge-primary date-complete">
+                    <div *ngIf="questionary.type===questionaryType.DIAGNOSIS">
+                        {{TYPE_DIAGNOSIS_SHOW}}
+                    </div>
+                    <div *ngIf="questionary.type===questionaryType.OPPORTUNITY">
+                        {{TYPE_OPPORTUNITY_SHOW}}
+                    </div>
+                </span>
+            </div>
+        </div>
+        <div>
+            <div class="objective">
+                <div [innerHTML]="getWithEnterDisplay(questionary.objective)"></div>
+            </div>
+        </div>
+        <h5 style="margin-top: 2rem;">Secciones</h5>
+        <ng-container *ngFor="let section of questionary.sections">
+            <li><strong>{{section.sectionName}}</strong></li>
+            <ng-container *ngFor="let question of section.questions; let i = index" [attr.data-index]="i"
+                style="margin-top: 1rem;">
+                <div style="margin-top: 2rem;">
+                    <strong>{{i+1}}. {{question.question}}</strong>
+                    <ng-container *ngFor="let option of question.options; let i = index" [attr.data-index]="i"
+                        style="margin-top: 1rem;">
+                        <div class="row" style="margin-top: 1rem;">
+                            <div class="col-12 col-md-6">
+                                {{option.answer}}
+                            </div>
+                            <div class="col-12 col-md-6">
+                                {{option.score}}
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+            <div *ngIf="questionary.type===questionaryType.DIAGNOSIS" style="margin-top: 2rem;">
+                <strong>Retroalimentaciones</strong>
+                <ng-container *ngFor="let feedback of section.feedbacks;">
+                    <div style="margin-top: 1rem;">
+                        <li><strong>{{feedback.level}}: {{feedback.rangeMin+' - '+feedback.rangeMax}}</strong></li>
+                    </div>
+                    <div class="objective">
+                        <div [innerHTML]="getWithEnterDisplay(feedback.recommendation)"></div>
+                    </div>
+                </ng-container>
+            </div>
+            <hr>
+        </ng-container>
+
+    </nb-card-body>
+</nb-card>

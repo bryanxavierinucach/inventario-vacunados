@@ -1,0 +1,27 @@
+@import './../../styles/themes.scss';
+
+.content {
+    padding-top: 3rem;
+    padding-left: 5rem;
+}
+
+.presenting {
+    color: white;
+    font-size: 1.313vw;
+    font-weight: nb-theme(font-weight-semi-bold);
+    margin-top: 5rem;
+}
+
+.wallet {
+    color: nb-theme(color-secondary-300);
+    font-weight: nb-theme(font-weight-bold);
+    margin-right: 20rem;
+    font-size: 5vw;
+}
+
+.divergenti {
+    color: white;
+    font-size: 1.313vw;
+    font-weight: nb-theme(font-weight-semi-bold);
+    margin-top: 3rem;
+}

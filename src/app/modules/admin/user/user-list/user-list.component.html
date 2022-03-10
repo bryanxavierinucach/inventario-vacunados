@@ -1,0 +1,102 @@
+<p-dataView #dv [loading]="!isLoaded" [value]="users" filterBy="user" [sortField]="sortField" [sortOrder]="sortOrder"
+  layout="list">
+
+
+  <ng-template pTemplate="header" class="header-data">
+    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+      <nb-select placeholder="Ordenar por usuario" (selectedChange)="onSortChange($event)">
+        <nb-option *ngFor="let item of sortOptions" [value]="item.value">{{ item.label }}</nb-option>
+      </nb-select>
+      <!--Buscador-->
+      <div class="search">
+        <nb-form-field>
+          <nb-icon nbPrefix icon="search-outline" pack="eva" class="icon-basic-900"></nb-icon>
+          <input type="text" nbInput placeholder="Buscar por usuario" nbTooltip="Presione enter para buscar"
+            (keydown.enter)="onSearch($event)">
+        </nb-form-field>
+      </div>
+      <!--End buscador-->
+      <!-- <p-dataViewLayoutOptions class="test"></p-dataViewLayoutOptions> -->
+    </div>
+  </ng-template>
+
+
+  <ng-template let-item pTemplate="listItem">
+    <div class="p-col-12">
+      <div class="item-list-item list">
+        <div class="item-list-detail">
+          <div class="p-grid row">
+            <div class="avatar">
+              <nb-user size="large" picture="data:image/jpg;base64,{{item.avatar}}" onlyPicture>
+              </nb-user>
+            </div>
+            <div class="usuario">
+              <div class="header-title">Usuario</div>
+              <div class="item-list-title">
+                {{item.user}}
+              </div>
+            </div>
+            <div class="wallet">
+              <div class="header-title">Wallet</div>
+              <div class="item-list-title" nbTooltip="{{item.walletAddress}}">
+                {{item.walletAddress}}
+              </div>
+            </div>
+            <div class="correo">
+              <div class="header-title">Email</div>
+              <div class="item-list-title" nbTooltip="{{item.email}}">
+                {{item.email}}
+              </div>
+            </div>
+            <div class="tipo-rol">
+              <div class="header-title">Rol</div>
+              <div class="item-list-title">
+                <div *ngIf="item.role===ROLE_ADMIN">
+                  {{ROLE_ADMIN_SHOW}}
+                </div>
+                <div *ngIf="item.role===ROLE_PYME">
+                  {{ROLE_PYME_SHOW}}
+                </div>
+                <div *ngIf="item.role===ROLE_USER">
+                  {{ROLE_USERS_SHOW}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item-list-action">
+          <div class="p-col">
+            <button type="button" nbButton nbTooltip="Editar" nbTooltipPlacement="top" size="small" status="success"
+              (click)="onUpdate(item)" class="p-button p-mr-2">
+              <nb-icon icon="edit-2-outline" class="icon"></nb-icon>
+            </button>
+            <button type="button" nbButton nbTooltip="Eliminar" nbTooltipPlacement="top" size="small" status="danger"
+              (click)="onConfirmDelete(item)" class="p-button p-mr-2">
+              <nb-icon icon="trash-outline" class="icon"></nb-icon>
+            </button>
+            <button type="button" nbButton nbTooltip="Logros" nbTooltipPlacement="top" size="small" status="info"
+              routerLink="/app/admin/user/{{item.id}}/achievement" class="p-button p-mr-2">
+              <nb-icon icon="list-outline" class="icon"></nb-icon>
+            </button>
+            <button type="button" nbButton nbTooltip="Diagnósticos" nbTooltipPlacement="top" size="small"
+              [routerLink]="[item.id,'diagnosis']" class="p-button p-mr-2"
+              [disabled]="!(item.role===ROLE_USER || item.role===ROLE_PYME)">
+              <nb-icon icon="book-open-outline" class="icon"></nb-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-dataView>
+
+<p-paginator [rows]="limitTable" [totalRecords]="totalRecords" (onPageChange)="onPaginate($event)"></p-paginator>
+
+<p-confirmDialog #cddelete key="cddelete" [baseZIndex]="10000" [closable]="false">
+  <p-footer>
+    <button nbButton outline class="p-button  p-mr-2 p-mb-2 button-outline" (click)="cddelete.reject()">Cancelar
+    </button>
+    <button nbButton status="danger" class="p-button  p-mr-2 p-mb-2" (click)="cddelete.accept()">Eliminar
+    </button>
+  </p-footer>
+</p-confirmDialog>

@@ -1,0 +1,41 @@
+@import '../../../../@theme/styles/themes.scss';
+
+.card {
+    background-color: #1c1920;
+    padding: 2rem;
+    border-radius: 1rem;
+    border: solid 1px;
+    border-color: #827fec;
+}
+.card-pago {
+    background-color: #1c1920;
+    padding: 2rem;
+    border-radius: 1rem;
+    border: solid 1px;
+    border-color: #827fec;
+    max-width: 80%;
+}
+
+.alert-success {
+    background-color: nb-theme(color-secondary-100) !important;
+}
+
+.alert-warning {
+    margin-top: 2rem;
+    background-color: nb-theme(color-secondary-100) !important;
+}
+
+select {
+  word-wrap: normal;
+  background-color: transparent !important;
+  padding: 0.7rem 2.2rem 0.4375rem 0 !important;
+  border-width: 0 0 0.06rem !important;
+  border-color: #adacaf !important;
+  color: #adacaf !important;
+}
+
+.info-pay {
+  color: white;
+  border-color: #827fec;
+  margin-right: 15px;
+}

@@ -1,0 +1,86 @@
+/* Imagen avatar style*/
+@import '~@nebular/theme/styles/global/breakpoints';
+@import '../../../../@theme/styles/themes.scss';
+
+
+.modal-create {
+  width: 60vw;
+}
+
+@include media-breakpoint-down(sm) {
+  .modal-create {
+    width: 80vw;
+  }
+}
+
+.personal-image {
+  text-align: left;
+}
+
+.personal-image input[type='file'] {
+  display: none;
+}
+
+.personal-figure {
+  position: relative;
+  width: 70px;
+  height: 70px;
+}
+
+.personal-avatar {
+  cursor: pointer;
+  width: 70px;
+  height: 70px;
+  box-sizing: border-box;
+  border-radius: 10%;
+  border: 0 solid transparent;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  transition: all ease-in-out 0.3s;
+}
+
+.personal-avatar:hover {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.personal-figcaption {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  width: inherit;
+  height: inherit;
+  border-radius: 10%;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0);
+  transition: all ease-in-out 0.3s;
+}
+
+.personal-figcaption:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.personal-figcaption > img {
+  margin-top: 31px;
+  width: 50px;
+  height: 50px;
+}
+
+.achievement-item {
+  .achievement-item-content {
+    margin: 0.3rem;
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  .achievement-item-select {
+    border: 3px solid var(--surface-d);
+    border-color: nb-theme(color-secondary-300);
+    border-radius: 8px;
+    background-color: nb-theme(color-secondary-100);
+  }
+
+  .achievement-image {
+    width: 50%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+}

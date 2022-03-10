@@ -1,0 +1,81 @@
+@import './../../../../@theme/styles/data-view-content.scss';
+
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+.imagen {
+  float: left;
+  width: 10%;
+  padding: 0 10px;
+}
+
+.usuario {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+.correo {
+  float: left;
+  width: 35%;
+  padding: 0 10px;
+}
+
+.fecha-inicio {
+  float: left;
+  width: 30%;
+  padding: 0 10px;
+}
+
+@include media-breakpoint-down(lg) {
+  .imagen {
+    width: 50%;
+  }
+
+  .usuario {
+    width: 50%;
+  }
+
+  .correo {
+    margin-top: 1rem;
+    width: 50%;
+  }
+
+  .fecha-inicio {
+    margin-top: 1rem;
+    width: 50%;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .imagen {
+    width: 100%;
+  }
+
+  .usuario {
+    margin-top: 1rem;
+    width: 250px;
+    word-wrap: break-word;
+  }
+
+  .correo {
+    float: left;
+    margin-top: 1rem;
+    width: 250px;
+    word-wrap: break-word;
+  }
+
+  .fecha-inicio {
+    margin-top: 1rem;
+    width: 100%;
+  }
+}
+
+.modal-match {
+  width: 40vw;
+}
+@include media-breakpoint-down(sm) {
+  .modal-match {
+    width: 80vw;
+  }
+}

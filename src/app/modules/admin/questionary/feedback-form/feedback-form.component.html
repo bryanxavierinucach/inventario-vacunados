@@ -1,0 +1,54 @@
+<form [formGroup]="formFeedback" aria-labelledby="title">
+    <div class="row">
+        <div class="form-group col-12 col-md-6">
+            <label class="label-basic" for="input-rangeMin">Rango mínimo<span class="text-danger">*</span></label>
+            <input nbInput fullWidth formControlName="rangeMin" type="number" min="1"
+                placeholder="Ingrese valor del rango mínimo" id="input-rangeMin" (ngModelChange)="onSetValidator($event)">
+            <div *ngIf="formFeedback.controls['rangeMin'].invalid && (formFeedback.controls['rangeMin'].dirty ||
+formFeedback.controls['rangeMin'].touched)" class="text-danger">
+                <div *ngIf="formFeedback.controls['rangeMin'].errors.required">
+                    Rango es obligatorio.
+                </div>
+                <div *ngIf="formFeedback.controls['rangeMin'].errors.min">
+                    Rango debe ser mayor a {{formFeedback.controls['rangeMin'].errors.min.min}}
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-12 col-md-6">
+            <label class="label-basic" for="input-rangeMax">Rango máximo<span class="text-danger">*</span></label>
+            <input nbInput fullWidth formControlName="rangeMax" type="number" [min]="formFeedback.value.rangeMin + 1"
+                placeholder="Ingrese valor del rango máximo" id="input-rangeMax">
+            <div *ngIf="formFeedback.controls['rangeMax'].invalid && (formFeedback.controls['rangeMax'].dirty ||
+formFeedback.controls['rangeMax'].touched)" class="text-danger">
+                <div *ngIf="formFeedback.controls['rangeMax'].errors.required">
+                    Rango es obligatorio.
+                </div>
+                <div *ngIf="formFeedback.controls['rangeMax'].errors.min">
+                    Rango debe ser mayor a {{formFeedback.value['rangeMin']+1}}
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-12">
+            <label class="label-basic" for="input-level">Nivel<span class="text-danger">*</span></label>
+            <input nbInput fullWidth formControlName="level" placeholder="Ingrese nivel" id="input-level">
+            <div *ngIf="formFeedback.controls['level'].invalid && (formFeedback.controls['level'].dirty ||
+formFeedback.controls['level'].touched)" class="text-danger">
+                <div *ngIf="formFeedback.controls['level'].errors.required">
+                    Nivel es obligatorio.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-12">
+            <label class="label-basic" for="input-recommendation">Recomendación<span class="text-danger">*</span></label>
+            <textarea nbInput fullWidth formControlName="recommendation" placeholder="Ingrese recomendaciones" id="input-recommendation"
+            [rows]="3"></textarea>
+            <div *ngIf="formFeedback.controls['recommendation'].invalid && (formFeedback.controls['recommendation'].dirty ||
+formFeedback.controls['recommendation'].touched)" class="text-danger">
+                <div *ngIf="formFeedback.controls['recommendation'].errors.required">
+                    Recomendación es obligatorio.
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

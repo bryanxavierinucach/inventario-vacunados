@@ -1,0 +1,81 @@
+<p-dataView #dv [loading]="!isLoaded" [value]="achievements" filterBy="description" [sortField]="sortField"
+  [sortOrder]="sortOrder" layout="list">
+
+  <ng-template pTemplate="header" class="header-data">
+    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+      <nb-select placeholder="Ordenar por descripción" (selectedChange)="onSortChange($event)">
+        <nb-option *ngFor="let item of sortOptions" [value]="item.value">{{ item.label }}</nb-option>
+      </nb-select>
+      <!--Buscador-->
+
+      <div class="search">
+        <nb-form-field>
+          <nb-icon nbPrefix icon="search-outline" pack="eva" class="icon-basic-900"></nb-icon>
+          <input type="text" nbInput placeholder="Buscar por descripción" nbTooltip="Presione enter para buscar"
+            (keydown.enter)="onSearch($event)">
+        </nb-form-field>
+      </div>
+      <!--End buscador-->
+      <!-- <p-dataViewLayoutOptions class="test"></p-dataViewLayoutOptions> -->
+    </div>
+  </ng-template>
+
+
+  <ng-template let-item pTemplate="listItem">
+    <div class="p-col-12">
+      <div class="item-list-item list">
+        <div class="item-list-detail">
+          <div class="p-grid row">
+            <div class="description">
+              <div class="header-title">Descripción</div>
+              <div class="item-list-title">
+                {{item.description}}
+              </div>
+            </div>
+            <div class="create-date">
+              <div class="header-title">Fecha creación</div>
+              <div class="item-list-title">
+                {{item.creation_time | date: "dd/MM/yyyy"}}
+              </div>
+            </div>
+            <div class="imagen">
+              <div class="header-title">Imagen</div>
+
+              <nb-user shape="rectangle" size="giant" [picture]="item.picture" onlyPicture>
+              </nb-user>
+
+            </div>
+            <div class="icono">
+              <div class="header-title">Icono</div>
+              <div class="item-list-title">
+                <i [class]="item.icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item-list-action">
+          <div class="p-col">
+            <button type="button" nbButton nbTooltip="Editar" nbTooltipPlacement="top" size="small" status="success"
+              (click)="onUpdate(item)" class="p-button p-mr-2">
+              <nb-icon icon="edit-2-outline" class="icon"></nb-icon>
+            </button>
+            <button type="button" nbButton nbTooltip="Eliminar" nbTooltipPlacement="top" size="small" status="danger"
+              (click)="onConfirmDelete(item)" class="p-button p-mr-2">
+              <nb-icon icon="trash-outline" class="icon"></nb-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-dataView>
+<p-paginator [rows]="limitTable" [totalRecords]="totalRecords" (onPageChange)="onPaginate($event)"></p-paginator>
+
+<p-confirmDialog #cddelete key="cddelete" [baseZIndex]="10000" [closable]="false">
+  <p-footer>
+    <button nbButton outline class="p-button  p-mr-2 p-mb-2 button-outline" (click)="cddelete.reject()">Cancelar
+    </button>
+    <button nbButton status="danger" class="p-button  p-mr-2 p-mb-2" (click)="cddelete.accept()">Eliminar
+    </button>
+  </p-footer>
+</p-confirmDialog>

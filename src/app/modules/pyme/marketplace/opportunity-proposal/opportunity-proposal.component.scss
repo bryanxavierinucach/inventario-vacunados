@@ -1,0 +1,66 @@
+@import '../../../../@theme/styles/themes.scss';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+nb-card-body {
+    color: black;
+    padding-top: 1rem;
+}
+
+nb-card-footer {
+    color: black;
+}
+
+.title {
+    color: nb-theme(color-secondary-300);
+    font-weight: bold;
+}
+
+.category {
+    color: nb-theme(color-secondary-300);
+    font-weight: bold;
+}
+
+.payment {
+    color: nb-theme(color-secondary-300);
+}
+
+.expiration {
+    color: nb-theme(color-secondary-300);
+}
+
+.expiration-danger {
+    color: #ff3d71;
+    padding-left: 1rem;
+}
+
+.mode {
+    padding: 0.4rem;
+}
+
+.proposal:hover {
+    background-color: nb-theme(color-basic-100);
+}
+
+.email {
+    font-weight: 500;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+.modal-user {
+    width: 40vw;
+}
+@include media-breakpoint-down(sm) {
+
+    .modal-user {
+        width: 80vw;
+    }
+}

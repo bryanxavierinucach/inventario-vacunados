@@ -1,0 +1,79 @@
+@import './../../../../@theme/styles/data-view-content.scss';
+
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+.path {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+.description {
+  float: left;
+  width: 30%;
+  padding: 0 10px;
+}
+
+.amount {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+.active {
+  float: left;
+  width: 20%;
+  padding: 0 10px;
+}
+
+.modal-reward {
+  width: 40vw;
+}
+
+@include media-breakpoint-down(lg) {
+  .path {
+    width: 50%;
+  }
+
+  .description {
+    width: 50%;
+  }
+
+  .amount {
+    margin-top: 1rem;
+    width: 50%;
+  }
+
+  .active {
+    margin-top: 1rem;
+    width: 50%;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .path {
+    width: 100%;
+  }
+
+  .description {
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .amount {
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .active {
+    margin-top: 1rem;
+    width: 100%;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .modal-reward {
+    width: 80vw;
+  }
+}

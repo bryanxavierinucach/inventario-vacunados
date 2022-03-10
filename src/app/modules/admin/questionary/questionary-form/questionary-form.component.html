@@ -1,0 +1,85 @@
+<button nbButton outline size="small" class="p-mr-2" (click)="onBack()">
+    <nb-icon icon="arrow-back-outline" class="icon"></nb-icon>Volver
+</button>
+<nb-card style="margin-top: 2rem;">
+    <nb-card-body>
+        <form [formGroup]="formQuestionary" aria-labelledby="title">
+            <h5>Información básica</h5>
+            <div class="row">
+                <div class="form-group col-12">
+                    <label class="label-basic" for="input-questionaryTitle">Título<span
+                            class="text-danger">*</span></label>
+                    <input nbInput fullWidth formControlName="questionaryTitle"
+                        placeholder="Ingrese título de la encuesta" id="input-questionaryTitle">
+                    <div *ngIf="formQuestionary.controls['questionaryTitle'].invalid && (formQuestionary.controls['questionaryTitle'].dirty ||
+formQuestionary.controls['questionaryTitle'].touched)" class="text-danger">
+                        <div *ngIf="formQuestionary.controls['questionaryTitle'].errors.required">
+                            Título es obligatorio.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-12">
+                    <label class="label-basic" for="input-objective">Objectivo<span class="text-danger">*</span></label>
+                    <textarea nbInput fullWidth formControlName="objective"
+                        placeholder="Ingrese objectivo de la encuesta" id="input-objective"></textarea>
+                    <div *ngIf="formQuestionary.controls['objective'].invalid && (formQuestionary.controls['objective'].dirty ||
+formQuestionary.controls['objective'].touched)" class="text-danger">
+                        <div *ngIf="formQuestionary.controls['objective'].errors.required">
+                            Objectivo es obligatorio.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-12 col-md-6">
+                    <span class="label-with-link">
+                        <label class="label-basic" for="input-directed">Dirigido a <span
+                                class="text-danger">*</span></label>
+                    </span>
+                    <nb-radio-group name="directed" formControlName="directed">
+                        <nb-radio [value]="questionaryDirected.PYME">Pyme</nb-radio>
+                        <nb-radio [value]="questionaryDirected.TALENT">Talento</nb-radio>
+                    </nb-radio-group>
+                    <div *ngIf="formQuestionary.controls['directed'].invalid && (formQuestionary.controls['directed'].dirty || formQuestionary.controls['directed'].touched)"
+                        class="text-danger">
+                        <div *ngIf="formQuestionary.controls['directed'].errors.required">
+                            Dirigido es obligatorio.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <span class="label-with-link">
+                        <label class="label-basic" for="input-type">Tipo <span class="text-danger">*</span></label>
+                    </span>
+                    <nb-radio-group name="type" formControlName="type" (ngModelChange)="onChangeType($event)">
+                        <nb-radio [value]="questionaryType.DIAGNOSIS">Diagnóstico</nb-radio>
+                        <nb-radio [value]="questionaryType.OPPORTUNITY">Clasificación</nb-radio>
+                    </nb-radio-group>
+                    <div *ngIf="formQuestionary.controls['type'].invalid && (formQuestionary.controls['type'].dirty || formQuestionary.controls['type'].touched)"
+                        class="text-danger">
+                        <div *ngIf="formQuestionary.controls['type'].errors.required">
+                            Tipo es obligatorio.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div *ngIf="sectionsBuild.length>0">
+            <h5 style="margin-top: 2rem;">Secciones</h5>
+            <ngx-section-form [sectionsBuild]="sectionsBuild"
+                [type]="formQuestionary.value['type']"></ngx-section-form>
+        </div>
+    </nb-card-body>
+    <nb-card-footer>
+        <div class="detail-action p-grid p-jc-end">
+            <button nbButton outline type="button" class=" p-mr-2 p-mb-2 button-outline" [disabled]="loading"
+                (click)="onClose()">
+                Cancelar
+            </button>
+            <button nbButton (click)="save()" status="primary" class=" p-mr-2 p-mb-2 button-outline"
+                [disabled]="loading || formQuestionary.invalid || invalidForm()">
+                {{questionary?(loading?'Actualizando':'Actualizar'):(loading?'Guardando':'Guardar')}}
+            </button>
+        </div>
+    </nb-card-footer>
+</nb-card>

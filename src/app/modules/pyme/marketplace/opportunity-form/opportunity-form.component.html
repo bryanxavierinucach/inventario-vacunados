@@ -1,0 +1,295 @@
+<button nbButton outline size="small" class="p-mr-2" (click)="onBack()" status="primary" shape="round">
+  <nb-icon icon="arrow-back-outline" class="icon"></nb-icon>Volver
+</button>
+<br>
+<br>
+<h2 style="padding-left: 2rem; color: #807ee8;">NUEVA OPORTUNIDAD</h2>
+<div style="margin-top: 2rem;">
+  <div style="margin-top: 1rem;">
+    <div class="card">
+      <form [formGroup]="formOpportunity" aria-labelledby="title">
+        <h5 style="color: #9fffd5;">Información básica</h5>
+        <div class="row">
+          <div class="form-group col-12 col-md-6">
+            <select [style]="{'width':'100%' }" formControlName="categoryId" styleClass="p-mb-2 p-mb-md-0"
+              [disabled]="loadingData">
+              <option [value]="null" disabled hidden>Seleccione una opción</option>
+              <option *ngFor="let item of categories" [value]="item.id">{{ item.name }}</option>
+            </select>
+            <div
+              *ngIf="formOpportunity.controls['categoryId'].invalid && (formOpportunity.controls['categoryId'].dirty || formOpportunity.controls['categoryId'].touched)"
+              class="text-danger">
+              <div *ngIf="formQuestion.controls['categoryId'].errors.required">
+                Categoría es obligatorio.
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-12 col-md-6">
+            <input nbInput fullWidth class="inputOportunityPyme" formControlName="title" placeholder="Ingrese título"
+              id="input-title">
+            <div *ngIf="formOpportunity.controls['title'].invalid && (formOpportunity.controls['title'].dirty ||
+formOpportunity.controls['title'].touched)" class="text-danger">
+              <div *ngIf="formOpportunity.controls['title'].errors.required">
+                Título es obligatorio.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group  col-12 ">
+            <textarea nbInput fullWidth formControlName="description" placeholder="Ingrese descripción"
+              id="input-description" rows="=3" class="inputOportunityPyme"></textarea>
+            <div *ngIf="formOpportunity.controls['description'].invalid && (formOpportunity.controls['description'].dirty ||
+formOpportunity.controls['description'].touched)" class="text-danger">
+              <div *ngIf="formOpportunity.controls['description'].errors.required">
+                Descripción es obligatorio.
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-12 col-md-6">
+            <span class="label-with-link">
+            </span>
+            <select [style]="{'width':'100%' }" formControlName="mode" styleClass="p-mb-2 p-mb-md-0"
+              [disabled]="loadingData">
+              <option [value]="null" disabled hidden>Seleccione un modo</option>
+              <option [value]="REMOTE">Remoto</option>
+              <option [value]="PRESENTIAL">Presencial</option>
+            </select>
+            <div
+              *ngIf="formOpportunity.controls['mode'].invalid && (formOpportunity.controls['mode'].dirty || formOpportunity.controls['mode'].touched)"
+              class="text-danger">
+              <div *ngIf="formOpportunity.controls['mode'].errors.required">
+                Modo es obligatorio.
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-12 col-md-6">
+            <input nbInput fullWidth class="inputOportunityPyme" formControlName="dateExpiration"
+              placeholder="Vencimiento publicación" datetime="MM/dd/yyyy" id="input-dateExpiration"
+              [nbDatepicker]="dateExpiration" readonly>
+            <nb-datepicker #dateExpiration format="MM/dd/yyyy" [min]="today"></nb-datepicker>
+            <div *ngIf="formOpportunity.controls['dateExpiration'].invalid && (formOpportunity.controls['dateExpiration'].dirty ||
+formOpportunity.controls['dateExpiration'].touched)" class="text-danger">
+              <div *ngIf="formOpportunity.controls['dateExpiration'].errors.required">
+                Fecha de vencimiento es obligatoria
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+          <br>
+          <br>
+          <div class="form-group col-12 col-md-6">
+            <input nbInput fullWidth class="inputOportunityPyme" formControlName="dateStart"
+              placeholder="Inicio Actividades" datetime="MM/dd/yyyy" id="input-dateStart" [nbDatepicker]="dateStart"
+              readonly>
+            <nb-datepicker #dateStart format="MM/dd/yyyy" [min]="formOpportunity.value.dateExpiration"
+              (dateChange)="onChangeDate($event)"></nb-datepicker>
+            <div *ngIf="formOpportunity.controls['dateStart'].invalid && (formOpportunity.controls['dateStart'].dirty ||
+formOpportunity.controls['dateStart'].touched)" class="text-danger">
+              <div *ngIf="formOpportunity.controls['dateStart'].errors.required">
+                Fecha inicio es obligatoria
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-12 col-md-6">
+            <input nbInput fullWidth class="inputOportunityPyme" formControlName="dateEnd" placeholder="Fin Actividades"
+              datetime="MM/dd/yyyy" id="input-dateEnd" [nbDatepicker]="dateEnd" readonly>
+            <nb-datepicker #dateEnd format="MM/dd/yyyy" [min]="formOpportunity.value.dateStart"></nb-datepicker>
+            <div *ngIf="formOpportunity.controls['dateEnd'].invalid && (formOpportunity.controls['dateEnd'].dirty ||
+formOpportunity.controls['dateEnd'].touched)" class="text-danger">
+              <div *ngIf="formOpportunity.controls['dateEnd'].errors.required">
+                Fecha final es obligatoria
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+    <div class="row" style="margin-top: 4rem;padding-left: 2rem; ">
+      <div class="col-12 col-md-6">
+        <div class="row">
+          <div class="col-12 col-md-3">
+            <img src="../../../../../assets/images/diverlogo.png" width="100vw" style="margin-right: 1.5rem;" />
+          </div>
+          <div class="col-12 col-md-9" style="text-align: left;">
+            <label for="" style="color: white; font-weight: 700; font-size: 1.2rem;">
+              ¿Sabías que puedes pagar <br> una parte con <label style="color: #a2ffd8;">DIVER</label> para <br>
+              incentivar la comunidad <br>
+              colaborativa?</label>
+          </div>
+        </div>
+        <div style="padding-top: 2rem;">
+          <h2 style="padding-left: 0rem; color: #807ee8;"> MÉTODOS DE PAGO</h2>
+          <label for="" style="font-size: 1.2rem; font-weight: 700; color: white;"> En Divergenti puedes pagar a<br> los
+            talentos directamente. </label>
+          <br>
+          <label for="" style="font-size: 1.2rem; font-weight: 700; color: #a2ffd8;"> ¡Nosotros solo somos <br>
+            intermediarios!</label>
+          <br>
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <button nbButton outline size="small" shape="round"
+                style="color: white; border-color: #827fec; margin-right: 15px;" disabled>CLP
+              </button>
+              <button nbButton outline size="small" shape="round"
+                style="color: white; border-color: #827fec; margin-right: 15px;" disabled>Dolar
+              </button>
+              <button nbButton outline size="small" shape="round"
+                style="color: white; border-color: #827fec; margin-right: 15px;" disabled>Paypal
+              </button>
+              <button nbButton outline size="small" shape="round" style="color: white; border-color: #827fec;"
+                disabled>Diver
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+
+        <div style="margin-bottom: 0%;">
+          <img src="../../../../../assets/images/flechapagos.png" width="4%"
+            style="margin-right: 1rem; margin-top: 0;" />
+          <label style="color: white; margin: 0%;">PAGAR CON DIVER <br>
+            <p style="font-size: 12px; color: white; margin: 0%;">Es un token de nuestra comunidad Divergenti y representa tiempo</p>
+          </label>
+        </div>
+        <div>
+          <img src="../../../../../assets/images/flechapagos.png" width="4%" style="margin-right: 1rem;" />
+          <label style="color: white;">ESTE TOKEN/TIEMPO <br>
+            <p style="font-size: 12px; color: white;">Es equivalente a hora de trabajo</p>
+          </label>
+        </div>
+        <div>
+          <img src="../../../../../assets/images/flechapagos.png" width="4%" style="margin-right: 1rem;" />
+          <label style="color: white;">1 HORA DE TRABAJO PROMEDIO <br>
+            <p style="font-size: 12px; color: white;">Es equivalente a 500 DIVER(1 hora P. = 500 DIVER)</p>
+          </label>
+        </div>
+        <div>
+          <img src="../../../../../assets/images/flechapagos.png" width="4%" style="margin-right: 1rem;" />
+          <label style="color: white;">1 HORA DE TRABAJO AVANZADA <br>
+            <p style="font-size: 12px; color: white;">Es equivalente a 1500 DIVER (1 hora A. = 1500 DIVER)</p>
+          </label>
+        </div>
+        <br>
+        <div class="card-pago">
+          <p style="color: #8e8c90;">Ofrece pagar un % con <label
+              style="color: #a2ffd8; padding: 0; margin: 0;">DIVER</label> a Talentos Digitales de la comunidad y así
+            incentivas a
+            una economía descentralizada de una comunidad prospera basada en el internet de valor.
+            Cuando seleccionas pagar con DIVER puedes elejir otro metodo de pago para completar el 100%</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h5 style="margin-top: 2rem; color: #a2ffd8;">Forma de pago</h5>
+    <label for="" style="color:white;"> Recuerda que puedes pagar en Pesos, Dolares, Paypal, o también puedes combinar
+      uno de los anteriores con un porcentaje en <label style="color: #a2ffd8; padding: 0; margin: 0;">DIVER.</label>
+    </label>
+
+    <form [formGroup]="formPayment" (ngSubmit)="onAddPayment()" aria-labelledby="title" style="margin-top: 2rem;">
+      <div *ngIf="loadingData">Cargando métodos de pago...</div>
+      <div *ngIf="!loadingData">
+        <div class="row">
+          <div class="form-group col-12">
+            <nb-radio-group name="paymentDiver" formControlName="paymentDiver"
+              (ngModelChange)="onChangePayment($event)">
+              <nb-radio [value]="false">Pago Único</nb-radio>
+              <nb-radio [value]="true">Pago Combinado</nb-radio>
+            </nb-radio-group>
+          </div>
+        </div>
+        <div *ngIf="formPayment.value.paymentDiver!==null">
+          <div class="row">
+            <div class="form-group col-12 col-md-6">
+              <span class="label-with-link">
+                <label for="input-paymentMethodId" style="color: #807ee8;">Método <span
+                    class="text-danger">*</span></label>
+              </span>
+              <select [style]="{'width':'100%' }" formControlName="paymentMethodId" styleClass="p-mb-2 p-mb-md-0"
+                [disabled]="loadingData">
+                <option [value]="null" disabled hidden>Seleccione una opción</option>
+                <ng-container *ngFor="let item of paymentMethods">
+                  <ng-container *ngIf="paymentDiver">
+                    <option *ngIf="item.name===PAYMENT_DIVER" [value]="item.id">{{ item.name }}
+                    </option>
+                  </ng-container>
+                  <ng-container *ngIf="!paymentDiver">
+                    <option *ngIf="item.name!==PAYMENT_DIVER" [value]="item.id">{{ item.name }}
+                    </option>
+                  </ng-container>
+                </ng-container>
+
+
+              </select>
+              <div
+                *ngIf="formPayment.controls['paymentMethodId'].invalid && (formPayment.controls['paymentMethodId'].dirty || formPayment.controls['paymentMethodId'].touched)"
+                class="text-danger">
+                <div *ngIf="formQuestion.controls['paymentMethodId'].errors.required">
+                  Método es obligatorio.
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-12 col-md-6">
+              <label for="input-percentage" style="color: #807ee8;">Porcentaje<span class="text-danger">*</span></label>
+              <input *ngIf="addDiver" nbInput fullWidth formControlName="percentage" type="number" min="1" max="100"
+                placeholder="Ingrese Porcentaje" id="input-percentage" class="inputOportunityPyme">
+              <input *ngIf="!addDiver" nbInput fullWidth formControlName="percentage" type="number" min="1" max="100"
+                placeholder="Ingrese Porcentaje" id="input-percentage" disabled>
+              <div *ngIf="formPayment.controls['percentage'].invalid && (formPayment.controls['percentage'].dirty ||
+            formPayment.controls['percentage'].touched)" class="text-danger">
+                <div *ngIf="formPayment.controls['percentage'].errors.required">
+                  Porcentaje es obligatorio.
+                </div>
+                <div *ngIf="formPayment.controls['percentage'].errors.min">
+                  Porcentaje debe ser mayor a 0
+                </div>
+                <div *ngIf="formPayment.controls['percentage'].errors.max">
+                  Porcentaje no debe ser mayor a {{100-value}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="detail-action p-grid p-jc-end" style="padding-top: 1rem;">
+            <button nbButton size="small" status="success" class="add" type="submit"
+              [disabled]="formPayment.invalid || value>=100">
+              Agregar método
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div>
+      <div style="margin-top: 1rem;" *ngIf="paymentPercentages.length>0">
+        <ngx-opportunity-percentage-list [paymentPercentage]="paymentPercentages" (deleteItem)="onDeleteItem($event)"
+          (deleteDiver)="onDeleteDiver()">
+        </ngx-opportunity-percentage-list>
+      </div>
+    </div>
+    <br>
+
+    <div class="card" style="text-align: center;">
+      <h5 style="color:white;">Desgargo de responsabilidad</h5>
+      <p style="color:white;">Divergenti no recarga los pagos del intercambio. El acuerdo del pago será
+        privado entre Pyme y Talento Digital. Divergenti no recibirá ningún pago de los servicios
+        producidos en esta plataforma.
+      </p>
+      <a href="https://www.divergenti.cl/" target="_blank">Quiero saber más sobre el Token en Diver Escuela</a>
+
+    </div>
+
+    <div class="detail-action p-grid p-jc-end" style="padding-top: 3rem;">
+      <button nbButton outline type="button" size="tiny" class=" p-mr-2 p-mb-2 button-outline" [disabled]="loading"
+        (click)="onBack()" shape="round" style="background-color: transparent; color: turquoise; border-color: #827fec;">
+        Cancelar
+      </button>
+      <button nbButton status="primary" class=" p-mr-2 p-mb-2 button-outline"
+        [disabled]="loading || formOpportunity.invalid || value<100" (click)="onSave()" shape="round">
+        {{opportunity?(loading?'Actualizando':'Actualizar'):(loading?'Guardando':'Guardar')}}
+      </button>
+    </div>
+  </div>
+</div>

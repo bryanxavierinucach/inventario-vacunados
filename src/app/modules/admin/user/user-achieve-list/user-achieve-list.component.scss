@@ -1,0 +1,53 @@
+@import './../../../../@theme/styles/data-view-content.scss';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+.description {
+  float: left;
+  width: 50%;
+  padding: 0 10px;
+}
+
+.dateCreation {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+.porcent {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+
+@include media-breakpoint-down(lg) {
+  .description {
+    width: 50%;
+  }
+
+  .dateCreation {
+    margin-top: 1rem;
+    width: 50%;
+  }
+  .porcent {
+    margin-top: 1rem;
+    width: 50%;
+  }
+
+}
+
+@include media-breakpoint-down(md) {
+  .description {
+    width: 100%;
+  }
+
+  .dateCreation {
+    margin-top: 1rem;
+    width: 100%;
+  }
+  .porcent {
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+}

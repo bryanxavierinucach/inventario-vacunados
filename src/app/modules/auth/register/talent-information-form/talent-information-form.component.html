@@ -1,0 +1,166 @@
+<nb-layout>
+  <nb-layout-column class="fondo">
+    <div class="row content">
+      <div class="col-12 col-lg-6">
+        <div class="row ">
+          <div class="logo">
+            <a>
+              <img src="../../../../assets/images/logo-app.png" alt="App" height="60px" /></a>
+          </div>
+        </div>
+        <div class="col">
+          <p class="divergenti">
+            En Divergenti queremos acompañarte y verte crecer
+          </p>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div>
+          <form id="form" [formGroup]="formData" (ngSubmit)="Register()" novalidate style="height:100%; overflow: auto">
+
+            <div class="row">
+              <div class="col-12 col-lg-6">
+                <div class="form-control-group">
+                  <label class="label" for="input-talent">MI TALENTO ESTA RELACIONADO CON <span
+                      class="text-danger">*</span></label>
+                  <div>
+                    <div *ngFor="let item of talents">
+                      <nb-checkbox status="secondary" (change)="onChange($event.target.checked, item.id)"
+                        [checked]="checked(item.id)"> {{item.name}}</nb-checkbox>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-6">
+                <label class="label" for="input-country">TELÉFONO <span class="text-danger">*</span></label>
+                <ngx-intl-tel-input [cssClass]="'custom'" [preferredCountries]="preferredCountries"
+                  [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                  [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
+                  [selectedCountryISO]="CountryISO.Ecuador" [maxLength]="15" [phoneValidation]="true"
+                  [separateDialCode]="separateDialCode" [numberFormat]="PhoneNumberFormat.National" name="phone"
+                  formControlName="telephone">
+                </ngx-intl-tel-input>
+                <div *ngIf="formData.controls['telephone'].invalid && (formData.controls['telephone'].dirty ||
+                              formData.controls['telephone'].touched)" class="text-danger">
+                  <div *ngIf="formData.controls['telephone'].errors.required">
+                    Teléfono es obligatorio.
+                  </div>
+                  <div *ngIf="formData.controls['telephone'].errors.maxlength">
+                    Maximo de caracteres
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-xs-12 col-md-6">
+                <div class="form-control-group">
+                  <label class="label" for="input-country">PAÍS <span class="text-danger">*</span></label>
+                  <div>
+                    <nb-select placeholder="Select Showcase" formControlName="country" style="width: 200px;"
+                      status="primary" size="medium">
+                      <nb-option value="">Seleccione un país</nb-option>
+                      <nb-option *ngFor="let item of pais" [value]="item.name"> <img src="{{item.flag }} " alt=""
+                          width="24px" height="16px" style="padding-right: 5px;">
+                        {{item.name}}
+                      </nb-option>
+                    </nb-select>
+                  </div>
+                  <div *ngIf="formData.controls['country'].invalid && (formData.controls['country'].dirty ||
+                            formData.controls['country'].touched)" class="text-danger">
+                    <div *ngIf="formData.controls['country'].errors.required">
+                      País es obligatorio.
+                    </div>
+                    <div *ngIf="formData.controls['country'].errors.maxlength">
+                      Maximo de caracteres
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-6">
+                <div class="form-control-group">
+                  <label class="label" for="input-city">CIUDAD <span class="text-danger">*</span></label>
+                  <input nbInput fullWidth formControlName="city" placeholder="Ingrese su ciudad" id="input-city"
+                    class="input-third" status="primary">
+                  <div *ngIf="formData.controls['city'].invalid && (formData.controls['city'].dirty ||
+                            formData.controls['city'].touched)" class="text-danger">
+                    <div *ngIf="formData.controls['city'].errors.required">
+                      Ciudad es obligatorio.
+                    </div>
+                    <div *ngIf="formData.controls['city'].errors.maxlength">
+                      Maximo de caracteres
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-xs-12 col-md-6">
+                <div class="form-control-group">
+                  <label class="label" for="input-linkedin">LINKEDIN </label>
+                  <input nbInput fullWidth formControlName="linkedin" placeholder="Ingrese url de linkedin"
+                    id="input-linkedin" class="input-third" status="primary">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-6">
+                <div class="form-control-group">
+                  <label class="label" for="input-instagram">INSTAGRAM</label>
+                  <input nbInput fullWidth formControlName="instagram" placeholder="Ingrese url instagram"
+                    id="input-instagram" class="input-third" status="primary">
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-xs-12 col-md-6">
+                <div class="form-control-group">
+                  <label class="label" for="input-website">WEBSITE</label>
+                  <input nbInput fullWidth formControlName="website" placeholder="Ingrese url de website"
+                    id="input-website" class="input-third" status="primary">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-6">
+                <div class="form-control-group">
+                  <label class="label" for="input-github">GITHUB</label>
+                  <input nbInput fullWidth formControlName="github" placeholder="Ingrese url de github"
+                    id="input-github" class="input-third" status="primary">
+                </div>
+              </div>
+            </div>
+            <br>
+            <br>
+            <div class="row">
+              <div class="col-xs-12 col-md-12">
+                <div class="form-control-group">
+                  <label class="label" for="input-summary">RESUMEN PERFIL <span class="text-danger">*</span></label>
+                  <textarea nbInput fullWidth formControlName="summary" class="input-third" status="primary"
+                    placeholder="Ingrese un resumen detallado de su perfil"></textarea>
+                  <div *ngIf="formData.controls['summary'].invalid && (formData.controls['summary'].dirty ||
+                            formData.controls['summary'].touched)" class="text-danger">
+                    <div *ngIf="formData.controls['summary'].errors.required">
+                      Resumen es obligatorio.
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <br>
+            <div style="width:80%;  text-align:center; margin:1rem; ">
+              <button nbButton type="submit" nbTooltip="{{'Registrar información del talento'}}"
+                nbTooltipPlacement="top" [disabled]="!formData.valid || loading" shape="round" form="form" size="small"
+                class="p-mr-2" class="input-third" status="primary">
+                <nb-icon icon="save" pack="font-awesome-solid" class="icon-size"></nb-icon>
+                {{(loading)? 'Registrando...' : 'Registrar' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+  </nb-layout-column>
+</nb-layout>

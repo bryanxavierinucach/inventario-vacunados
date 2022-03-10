@@ -1,0 +1,88 @@
+<p-dataView #dv [loading]="!isLoaded" [value]="questionaries" filterBy="name" [sortField]="sortField"
+  [sortOrder]="sortOrder" layout="grid" *ngIf="rol === 'pyme'">
+  <ng-template pTemplate="header" class="header-data">
+    <div class="p-grid p-jc-end">
+      <nb-select class="sort select-pyme-market" placeholder=" &nbsp;&nbsp; Ordenar por fecha"
+        (selectedChange)="onSortChange($event)">
+        <nb-option *ngFor="let item of sortOptions" [value]="item.value"> {{ item.label }}</nb-option>
+      </nb-select>
+    </div>
+  </ng-template>
+  <ng-template let-item pTemplate="gridItem">
+    <div [class]="questionaries.length===1?'col-12':'col-12 col-lg-6'">
+      <nb-card size="tiny" class="colorCardPyme">
+        <nb-card-body><strong style="color: #9fffd5;">{{item.questionary.questionaryTitle}}</strong>
+          <br>
+          <div [nbTooltip]="item.questionary.objective">
+            <label style="color: white;"> {{item.questionary.objective}}</label>
+          </div>
+        </nb-card-body>
+        <nb-card-footer>
+          <div class="p-d-flex p-jc-between">
+            <div>
+              <div class="date">
+
+                <strong style="color: #9fffd5;">
+                  <nb-icon icon="calendar-outline" style="color: #9fffd5; padding-right: 3px;"></nb-icon>
+                  {{item.dateCreation | date:'short':'UTC'}}
+                </strong>
+              </div>
+            </div>
+
+            <div>
+              <button nbButton status="primary" size="tiny" class="p-mr-2" [routerLink]="[item.id, 'report']"
+                shape="round">
+                Ver Reporte
+                <nb-icon icon="arrow-forward-outline" class="icon"></nb-icon>
+              </button>
+            </div>
+          </div>
+        </nb-card-footer>
+      </nb-card>
+    </div>
+  </ng-template>
+</p-dataView>
+<p-dataView #dv [loading]="!isLoaded" [value]="questionaries" filterBy="name" [sortField]="sortField"
+  [sortOrder]="sortOrder" layout="grid" *ngIf="rol === 'users'">
+  <ng-template pTemplate="header" class="header-data">
+    <div class="p-grid p-jc-end">
+      <nb-select class="sort select-talent-market" placeholder=" &nbsp;&nbsp; Ordenar por fecha"
+        (selectedChange)="onSortChange($event)">
+        <nb-option *ngFor="let item of sortOptions" [value]="item.value"> {{ item.label }}</nb-option>
+      </nb-select>
+    </div>
+  </ng-template>
+  <ng-template let-item pTemplate="gridItem">
+    <div [class]="questionaries.length===1?'col-12':'col-12 col-lg-6'">
+      <nb-card size="tiny" class="colorCard">
+        <nb-card-body><strong style="color: #9fffd5;">{{item.questionary.questionaryTitle}}</strong>
+          <br>
+          <div [nbTooltip]="item.questionary.objective">
+            <label style="color: white"> {{item.questionary.objective}}</label>
+          </div>
+        </nb-card-body>
+        <nb-card-footer>
+          <div class="p-d-flex p-jc-between">
+            <div>
+              <div class="date">
+                <nb-icon icon="calendar-outline" style="color: #9fffd5; padding-right: 3px;"></nb-icon>
+                <strong style="color: #9fffd5">{{item.dateCreation | date:'short':'UTC'}}</strong>
+              </div>
+            </div>
+
+            <div>
+              <button nbButton status="primary" size="small" class="p-mr-2" [routerLink]="[item.id, 'report']">
+                Reporte
+                <nb-icon icon="arrow-forward-outline" class="icon"></nb-icon>
+              </button>
+            </div>
+          </div>
+        </nb-card-footer>
+      </nb-card>
+    </div>
+  </ng-template>
+</p-dataView>
+
+<div *ngIf="totalRecords>limitTable">
+  <p-paginator [rows]="limitTable" [totalRecords]="totalRecords" (onPageChange)="onPaginate($event)"></p-paginator>
+</div>

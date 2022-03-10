@@ -1,0 +1,189 @@
+<nb-layout>
+  <nb-layout-header style="background-color: black;">
+    <div class="logo-black col-12 ">
+      <a href="/">
+        <img  src="../../../../assets/images/logo-app.png" alt="App" height="40px" /></a>
+    </div>
+  </nb-layout-header>
+  <nb-layout-column class="fondo">
+    <div class="row content">
+      <div class="title-black col-12 col-sm-12 col-md-4 col-xl-6">
+        <div class="col-12">
+          <div class="row">
+            <div class="col">
+              <p class="divergenti">
+                <span class="color">CREA <br> OPORTUNIDADES</span><br> SI ERES PYME.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-primary col-12 col-sm-12 col-md-8 col-xl-6">
+        <div class="arrow-up">
+          <img src="../../../../assets/images/Arrow.png">
+        </div>
+        <div class="col-12">
+          <div class="center">
+            <div class="container">
+              <div class="logo-login">
+                <a href="#">
+                  <img src="../../../../assets/images/logo-app.png" alt="App" height="60px" /></a>
+              </div>
+              <h1 id="title" class="title col-12">¡TE ESTABAMOS <br /> ESPERANDO!</h1>
+              <div *ngIf="!noRole">
+                <p class="text-color"><b> Acceder con</b></p>
+                <div class="container-sm">
+                  <div class="row">
+                    <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4" nbTooltip="Linkedin">
+                      <button type="button" shape="round" nbButton [disabled]="loading" class="lin"
+                        (click)="onOpenLinkedin()">
+                        <i class="fab fa-linkedin-in mr-2"></i> <span class="d-xs-none ">LinkedIn</span></button>
+                    </div>
+                    <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4" nbTooltip="Google">
+                      <button type="button" shape="round" nbButton [disabled]="loading" class="goo"
+                        (click)="onOpenGoogle()">
+                        <i class="fab fa-google mr-2"></i> <span class="d-xs-none ">Google</span></button>
+                    </div>
+                    <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 " nbTooltip="Apple">
+                      <button type="button" shape="round" nbButton [disabled]="loading" class="app"
+                        (click)="onOpenApple()" style="background-color:  #828285;">
+                        <i class="fab fa-apple mr-2"></i> <span class="d-xs-none ">Apple</span></button>
+
+                    </div>
+                  </div>
+                </div>
+                <p class="text-color mt-3"><b> Acceder con tu nombre de usuario o con tu correo electrónico</b></p>
+                <div class="">
+                  <form [formGroup]="formData" (ngSubmit)="login()" aria-labelledby="title">
+                    <div class="row">
+                      <div class="col-12 col-md-12 col-lg-6 ">
+                        <div class="form-group">
+                          <!-- <label class="label" for="input-username">Username o correo electrónico<span
+                          class="text-danger">*</span></label> -->
+                          <input nbInput fullWidth formControlName="username" placeholder="Ingrese el nombre de usuario"
+                            id="input-username" class="input-fourth">
+                          <div *ngIf="formData.controls['username'].invalid && (formData.controls['username'].dirty ||
+      formData.controls['username'].touched)" class="text-danger">
+                            <div *ngIf="formData.controls['username'].errors.required">
+                              Usuario o correo electrónico es obligatorio.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-12 col-lg-6 ">
+                        <div class="form-group">
+                          <!-- <span class="label-with-link">
+                        <label class="label" for="input-password">Contraseña <span class="text-danger">*</span></label>
+                      </span> -->
+                          <nb-form-field>
+                            <input nbInput fullWidth formControlName="password" placeholder="Ingrese su Contraseña"
+                              [type]="showPassword?'text':'password'" id="input-password" class="input-fourth">
+                            <button nbSuffix nbButton ghost type="button" (click)="toggleShowPassword()"
+                              class="button-icon">
+                              <nb-icon class="color-icon" [icon]="showPassword ? 'eye-off-outline' : 'eye-outline'"
+                                pack="eva" [attr.aria-label]="showPassword ? 'hide password' : 'show password'">
+                              </nb-icon>
+                            </button>
+                          </nb-form-field>
+                          <div
+                            *ngIf="formData.controls['password'].invalid && (formData.controls['password'].dirty || formData.controls['password'].touched)"
+                            class="text-danger">
+                            <div *ngIf="formData.controls['password'].errors.required">
+                              Contraseña es obligatorio.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12 col-md-6 col-lg-6 p-mb-2">
+                        <button class="btn-ingresar" shape="round" type="submit" nbButton status="primary" [disabled]="loading"
+                          style="width: 100%;">
+                          {{loading?'Ingresando':'Ingresar'}}</button>
+                      </div>
+                      <div class="col-12 col-md-6 col-lg-6 p-mb-2">
+                        <button shape="round" class="btn-registrar" type="button" nbButton routerLink="/auth/register"
+                          style="width: 100%;">Registrarse</button>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="form-group col-12 col-md-12">
+                    <div class="row" style="padding-top: 1rem;">
+                      <!-- <span class="label-with-link ml-auto mr-3"> -->
+                      <a class="forgot-password caption-2 text-color" style="margin: auto; width:100%;"
+                        routerLink="./reset-password">¿Olvidaste tu
+                        contraseña?</a>
+                      <!-- </span> -->
+                    </div>
+                  </div>
+                  <div class="logo-black col-12 mt-2">
+                    <a href="#">
+                      <img class="img-style" src="../../../../assets/images/dg-Logo.png" alt="App" /></a>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="noRole">
+                <strong>Un paso más, necesitamos que nos digas si eres:</strong>
+                <form [formGroup]="formRole" (ngSubmit)="updateRole()" aria-labelledby="title">
+                  <div class="form-group">
+                    <nb-radio-group formControlName="role" status="primary">
+                      <nb-radio value="pyme">Pyme</nb-radio>
+                      <nb-radio value="users">Talento</nb-radio>
+                    </nb-radio-group>
+                  </div>
+                  <button type="submit" nbButton status="primary" [disabled]="formRole.invalid || loading"
+                    style="width: 100%;">
+                    {{loading?'Guardando...':'Continuar'}}</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Enviar email para verfiicar-->
+    <p-dialog header="Usuario no verificado" [(visible)]="validatedUser" [modal]="false" [closable]="false"
+      [draggable]="false" [resizable]="false">
+      <div class="modal-email">
+        Reenviar correo de verificación
+        <form [formGroup]="formEmail" (ngSubmit)="onSendEmail()" aria-labelledby="title" style="padding-top: 2rem;">
+          <div *ngIf="!sendEmail">
+            <div class="form-group">
+              <label class="label-basic" for="input-email">Correo electrónico <span class="text-danger">*</span></label>
+              <input nbInput fullWidth formControlName="email" placeholder="Ingrese el correo electrónico"
+                id="input-email">
+              <div *ngIf="formEmail.controls['email'].invalid && (formEmail.controls['email'].dirty ||
+formEmail.controls['email'].touched)" class="text-danger">
+                <div *ngIf="formEmail.controls['email'].errors.required">
+                  Correo electrónico es obligatorio.
+                </div>
+                <div *ngIf="formEmail.controls['email'].errors.email">
+                  Ingrese correo válido
+                </div>
+              </div>
+            </div>
+          </div>
+          <h6 *ngIf="sendEmail" style="padding-top: 2rem;">Si el correo existe, recibirá un enlace para la verificación.
+          </h6>
+        </form>
+      </div>
+      <p-footer>
+        <div class="detail-action p-grid p-jc-end">
+          <button nbButton outline type="button" class=" p-mr-2 p-mb-2 button-outline" [disabled]="loadingSend"
+            (click)="onClose()">
+            {{sendEmail?'Aceptar':'Cancelar'}}
+          </button>
+          <button *ngIf="!sendEmail" nbButton (click)="onSendEmail()" status="primary"
+            class=" p-mr-2 p-mb-2 button-outline" [disabled]="loadingSend || formEmail.invalid">
+            {{loading?'Enviando':'Enviar'}}
+          </button>
+        </div>
+      </p-footer>
+    </p-dialog>
+
+    <!--Wallet-->
+    <!-- [style]="this.isLessThanSm?MODAL_SM:MODAL_2"> -->
+    <!-- <ngx-wallet-form (closeModal)="onCloseWallet()" (success)="onSuccessWallet()" [displayWallet]="displayWallet">
+    </ngx-wallet-form> -->
+  </nb-layout-column>
+</nb-layout>

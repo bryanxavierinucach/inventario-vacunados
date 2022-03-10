@@ -1,0 +1,55 @@
+<p-dialog [header]="(userAchievement?'Actualizar ':'Asignar nuevo') +' logro'" [(visible)]="displayCreate"
+  [modal]="true" [closable]="false" [draggable]="false" [resizable]="false">
+  <div class="modal-create">
+    <form [formGroup]="formAchievement" (ngSubmit)="save()" aria-labelledby="title">
+      <div class="row">
+        <div class="form-group col-12">
+          <label class="label-basic" for="input-value">Logro <span class="text-danger">*</span></label>
+          <div>
+            <nb-select placeholder="Seleccione el logro" formControlName="achievementId" status="primary" size="medium"
+              class="input-fourth" style="width: 100%;">
+              <nb-option value="">Seleccione una opción</nb-option>
+              <nb-option *ngFor="let item of achievements" [value]="item.id">{{ item.description }}
+              </nb-option>
+            </nb-select>
+          </div>
+          <div *ngIf="formAchievement.controls['achievementId'].invalid && (formAchievement.controls['achievementId'].dirty ||
+formAchievement.controls['achievementId'].touched)" class="text-danger">
+            <div *ngIf="formAchievement.controls['achievementId'].errors.required">
+              Descripción es obligatorio.
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-12">
+          <label class="label-basic" for="input-score">Calificación <span class="text-danger">*</span></label>
+          <div>
+            <nb-select placeholder="Seleccione la puntuación" formControlName="score" status="primary" size="medium"
+              class="input-fourth" style="width: 100%;">
+              <nb-option value="3">Buena</nb-option>
+              <nb-option value="6">Muy Buena</nb-option>
+              <nb-option value="9">Excelente</nb-option>
+            </nb-select>
+          </div>
+          <div *ngIf="formAchievement.controls['score'].invalid && (formAchievement.controls['score'].dirty ||
+formAchievement.controls['score'].touched)" class="text-danger">
+            <div *ngIf="formAchievement.controls['score'].errors.required">
+              Porcentaje es obligatorio.
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <p-footer>
+    <div class="detail-action p-grid p-jc-end">
+      <button nbButton outline type="button" class=" p-mr-2 p-mb-2 button-outline" [disabled]="loading"
+        (click)="onClose()">
+        Cancelar
+      </button>
+      <button nbButton (click)="save()" status="primary" class=" p-mr-2 p-mb-2 button-outline"
+        [disabled]="loading || formAchievement.invalid">
+        {{userAchievement?(loading?'Actualizando':'Actualizar'):(loading?'Guardando':'Guardar')}}
+      </button>
+    </div>
+  </p-footer>
+</p-dialog>

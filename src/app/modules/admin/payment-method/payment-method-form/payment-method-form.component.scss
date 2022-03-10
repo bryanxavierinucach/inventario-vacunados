@@ -1,0 +1,12 @@
+@import './../../../../@theme/styles/data-view-content.scss';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+.modal-create {
+  width: 60vw;
+}
+
+@include media-breakpoint-down(sm) {
+  .modal-create {
+    width: 80vw;
+  }
+}

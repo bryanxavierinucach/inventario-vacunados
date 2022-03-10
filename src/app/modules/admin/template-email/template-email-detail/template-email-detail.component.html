@@ -1,0 +1,17 @@
+<button nbButton outline size="small" class="p-mr-2" (click)="onBack()">
+    <nb-icon icon="arrow-back-outline" class="icon"></nb-icon>Volver
+</button>
+<nb-card style="margin-top: 2rem;">
+    <nb-card-body>
+        <div class="row">
+            <div class="col-12">
+                <h6>Descripción</h6>
+                <p>{{templateEmail.description}}</p>
+            </div>
+            <div class="col-12 preview-html">
+                <h6>Template</h6>
+                <div [innerHTML]="templateEmail.templateHtml | safeHtml"></div>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

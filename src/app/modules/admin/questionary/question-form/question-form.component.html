@@ -1,0 +1,29 @@
+<form [formGroup]="formQuestion" aria-labelledby="title">
+    <div class="row">
+        <div class="form-group col-12">
+            <label class="label-basic" for="input-question">Pregunta<span class="text-danger">*</span></label>
+            <input nbInput fullWidth formControlName="question" placeholder="Ingrese pregunta" id="input-question">
+            <div *ngIf="formQuestion.controls['question'].invalid && (formQuestion.controls['question'].dirty ||
+    formQuestion.controls['question'].touched)" class="text-danger">
+                <div *ngIf="formQuestion.controls['question'].errors.required">
+                    Pregunta es obligatorio.
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-container *ngFor="let formOption of formQuestion.controls['options']['controls']; let i = index">
+        <ngx-option-form [formOption]="formOption"></ngx-option-form>
+        <div class="detail-action p-grid p-jc-end" style="padding-top: 1rem;"
+            *ngIf="formQuestion.controls['options'].length>1">
+            <button nbButton size="small" status="danger" class="add"
+                (click)="onDeleteOption(formQuestion.controls['options'], i)">
+                Eliminar respuesta
+            </button>
+        </div>
+    </ng-container>
+    <div class="detail-action p-grid p-jc-end" style="padding-top: 1rem;">
+        <button nbButton size="small" status="success" class="add" (click)="onAdd(formQuestion.controls.options)">
+            Agregar respuesta
+        </button>
+    </div>
+</form>

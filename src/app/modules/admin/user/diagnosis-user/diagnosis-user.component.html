@@ -1,0 +1,8 @@
+<button nbButton outline size="small" class="p-mr-2" (click)="onBack()">
+    <nb-icon icon="arrow-back-outline" class="icon"></nb-icon>Volver
+</button>
+
+<!--Lista cuestionarios-->
+<div style="margin-top: 1rem;">
+    <ngx-diagnosis-done-list [userId]="user.id"></ngx-diagnosis-done-list>
+</div>

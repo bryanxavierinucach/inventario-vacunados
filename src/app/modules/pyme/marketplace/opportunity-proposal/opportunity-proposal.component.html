@@ -1,0 +1,86 @@
+<button nbButton outline size="small" class="p-mr-2" (click)="onBack()" shape="round" status="primary">
+    <nb-icon icon="arrow-back-outline" class="icon"></nb-icon>Volver
+</button>
+<nb-card style="background-color: white; margin-top: 2rem;">
+    <nb-card-body>
+        <div>
+            <div class="p-grid p-jc-md-between" style="margin-top: 1rem;">
+                <strong class="category">{{opportunity.title| uppercase}}</strong>
+                <span class="badge badge-primary mode" *ngIf="opportunity.mode===REMOTE">REMOTO</span>
+                <span class="badge badge-primary mode" *ngIf="opportunity.mode===PRESENTIAL">PRESENCIAL</span>
+            </div>
+            <div style="margin-top: 1rem;" class="row">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <strong style="padding-right: 0.7rem;">Inicio:</strong> {{opportunity.dateStart | date:
+                    'MM-dd-yyyy'}}
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <strong style="padding-right: 0.7rem;">Fin:</strong> {{opportunity.dateEnd | date:
+                    'MM-dd-yyyy'}}
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <strong style="padding-right: 0.7rem;">Pago:</strong>
+                    <ng-container *ngFor="let payment of opportunity.paymentPercentages" class="payment">
+                        {{payment.percentage}}%
+                        <i [class]="payment.paymentMethod.icon +' payment'" [nbTooltip]="payment.paymentMethod.name"
+                            style="margin-right: 1rem;"></i>
+                    </ng-container>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3" [nbTooltip]="opportunity.dateExpiration | date: 'MM-dd-yyyy'">
+                    <div class="expiration" *ngIf="dateExpirationService.getDiff(opportunity.dateExpiration)">
+                        <strong style="padding-right: 0.7rem;">Vence
+                            en:</strong>{{dateExpirationService.getDiff(opportunity.dateExpiration)}}
+                    </div>
+                    <div class="expiration-danger" *ngIf="!dateExpirationService.getDiff(opportunity.dateExpiration)">
+                        <strong style="padding-right: 0.7rem;">Vencido</strong>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 2rem;" [innerHTML]="getWithEnterDisplay(opportunity.description)"></div>
+            <!--Propuestas-->
+            <div style="margin-top: 2rem;">
+                <h6>Propuestas</h6>
+                <ng-container *ngFor="let item of proposals">
+                    <div class="row">
+                        <div class="col-12 col-md-6" style="cursor: pointer; margin-top: 1rem;">
+                            <nb-user class="proposal" [name]="item.user.user" [title]="item.user.email"
+                            [picture]="'data:image/jpg;base64,'+item.user.avatar"
+                                (click)="onSelectProposal(item)"></nb-user>
+                        </div>
+                        <hr>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+<!--Info de usuario-->
+<p-dialog *ngIf="selectedProposal" [(visible)]="displayUser" [modal]="true" [closable]="false" [draggable]="false"
+    [resizable]="true">
+    <p-header>
+        <nb-user [showTitle]="!showTitle" [name]="selectedProposal.user.user" [title]="selectedProposal.user.email"
+        [picture]="'data:image/jpg;base64,'+selectedProposal.user.avatar" size="giant"></nb-user>
+        <div *ngIf="showTitle" class="email">
+            {{selectedProposal.user.email}}
+        </div>
+    </p-header>
+    <div class="modal-user">
+    <ngx-opportunity-proposal-user [user]="selectedProposal.user"></ngx-opportunity-proposal-user>
+    </div>
+    <p-footer>
+        <button nbButton outline class="p-button  p-mr-2 p-mb-2 button-outline" (click)="onCancel()">Cancelar
+        </button>
+        <button nbButton status="primary" class="p-button  p-mr-2 p-mb-2" (click)="onAcceptProposal(selectedProposal)">Aceptar propuesta
+        </button>
+    </p-footer>
+</p-dialog>
+
+<!--Aceptar propuesta-->
+<p-confirmDialog #cdacceptp key="cdacceptp" [style]="{width: '30vw'}" [baseZIndex]="10000" [closable]="false">
+    <p-footer>
+        <button nbButton outline class="p-button  p-mr-2 p-mb-2 button-outline" (click)="cdacceptp.reject()">Cancelar
+        </button>
+        <button nbButton status="primary" class="p-button  p-mr-2 p-mb-2" (click)="cdacceptp.accept()">Aceptar
+        </button>
+    </p-footer>
+</p-confirmDialog>

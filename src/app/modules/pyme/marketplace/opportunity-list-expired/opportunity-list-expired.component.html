@@ -1,0 +1,6 @@
+<div *ngIf="opportunities.length>=0">
+    <ngx-opportunity-list-status [opportunities]="opportunities" [sortOptions]="sortOptions" [sortField]="sortField"
+        [sortOrder]="sortOrder" [totalRecords]="totalRecords" [limitTable]="limitTable" [status]="status" [statuspyme]="statuspyme"
+        (onSortChange)="onSortChange($event)" (onSearch)="onSearch($event)" (onPaginate)="onPaginate($event)">
+    </ngx-opportunity-list-status>
+</div>

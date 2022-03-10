@@ -1,0 +1,404 @@
+<p-dataView #dv [value]="opportunities" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+  <ng-template pTemplate="header" class="header-data">
+    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+      <nb-select class="sort select-talent-market" placeholder=" &nbsp;&nbsp;  Ordenar"
+        (selectedChange)="onSortChangeEmit($event)" *ngIf="rolTalent === 'users' && statuspyme !== 'STATUSPYME'">
+        <nb-option *ngFor="let item of sortOptions" [value]="  item.value">{{ item.label }}</nb-option>
+      </nb-select>
+      <nb-select class="sort select-pyme-market" placeholder=" &nbsp;&nbsp;  Ordenar"
+        (selectedChange)="onSortChangeEmit($event)" *ngIf="rolTalent !=='users' && statuspyme === 'STATUSPYME'">
+        <nb-option *ngFor="let item of sortOptions" [value]="  item.value">{{ item.label }}</nb-option>
+      </nb-select>
+      <!--Buscador-->
+      <div class="" *ngIf="rolTalent === 'users' && statuspyme !== 'STATUSPYME'">
+        <nb-form-field>
+          <nb-icon nbPrefix icon="search-outline" pack="eva" class="icon-basic-50"></nb-icon>
+          <input type="text" class="inputSearchTalent" nbInput placeholder="Buscar por título"
+            nbTooltip="Presione enter para buscar" (keydown.enter)="onSearchEmit($event)">
+        </nb-form-field>
+      </div>
+      <div class="search" *ngIf="rolTalent !=='users' && statuspyme === 'STATUSPYME'">
+        <nb-form-field>
+          <nb-icon nbPrefix icon="search-outline" pack="eva" class="icon-basic-50"></nb-icon>
+          <input type="text" class="inputSearchPyme" nbInput placeholder="Buscar por título"
+            nbTooltip="Presione enter para buscar" (keydown.enter)="onSearchEmit($event)">
+        </nb-form-field>
+      </div>
+      <!--End buscador-->
+      <!-- <p-dataViewLayoutOptions class="test"></p-dataViewLayoutOptions> -->
+    </div>
+  </ng-template>
+  <ng-template let-item pTemplate="gridItem">
+    <div class="col-12 col-xl-6">
+      <!-- CARDS PARA PYMES -->
+      <nb-card class="card-pyme colorCard" *ngIf="rolTalent !=='users' && statuspyme === 'STATUSPYME' " size="small">
+        <nb-card-body>
+          <div class="p-grid p-jc-md-between" style="margin-top: 0rem;">
+            <strong class="category">{{item.category.name | uppercase}}</strong>
+            <nb-actions size="small" class="icons-pyme"
+              *ngIf="status===opportunityStatus.ACTIVE && rolTalent != 'users' && rolPublic !='public' && statuspyme === 'STATUSPYME'">
+              <nb-action icon="people-outline" [routerLink]="[item.id,'view']" nbTooltip="Talentos"></nb-action>
+              <nb-action icon="edit-outline" [routerLink]="[item.id,'edit']" [disabled]="item.proposals.length>0"
+                *ngIf="item.proposals.length===0" nbTooltip="Editar">
+              </nb-action>
+              <nb-action icon="trash-2-outline" (click)="onConfirmDeleteEmit(item)" nbTooltip="Eliminar"></nb-action>
+              <nb-action icon="bookmark-outline">
+                <button nbButton status="primary" size="small" [routerLink]="[item.id,'view']" class="p-mr-2 p-mb-2">
+                  <nb-icon icon="people-outline" class="icon"></nb-icon>Propuestas:
+                  <strong
+                    style="padding-left:  0.7rem;">{{item.proposals.length>10?'10+':item.proposals.length}}</strong>
+                </button>
+              </nb-action>
+            </nb-actions>
+            <!--Usuario talento asignado-->
+            <div *ngIf="status===opportunityStatus.ASSIGNED || status==opportunityStatus.COMPLETED" class="user-col"
+              style="background-color: transparent; cursor: pointer; color: aquamarine;">
+              <nb-user class="assigned pyme-user" [showTitle]="false" [name]="item.talentAssinged.user"
+                style="color: turquoise;" [picture]="'data:image/jpg;base64,'+item.talentAssinged.avatar"
+                (click)="onSelectUser(item.talentAssinged)">
+              </nb-user>
+            </div>
+          </div>
+
+          <br>
+          <div class="row">
+            <div [nbTooltip]="item.title">
+              <strong class="title">{{item.title}}</strong>
+            </div>
+            <div class="description" [nbTooltip]="item.description" style="margin-bottom: 1rem; ">
+              <p style="color: white;">{{item.description}}</p>
+            </div>
+          </div>
+          <div class="row" style="padding-bottom: 1rem;">
+            <div class="date-start-col">
+              <nb-icon icon="calendar-outline" style="color: turquoise; padding-right: 3px;"></nb-icon>
+              <strong style="padding-right: 0.7rem; color: white;">Inicio:</strong>
+              <label style="color: white;">
+                {{item.dateStart | date: 'MM/dd/yyyy'}}</label>
+            </div>
+            <div class="date-end-col">
+              <strong style="padding-right: 0.7rem;  color: white;">Fin:</strong> <label for=""
+                style="color: white;">{{item.dateEnd | date: 'MM/dd/yyyy'}} </label>
+            </div>
+            <div *ngIf="status===opportunityStatus.ACTIVE || status===opportunityStatus.EXPIRED" class="user-col"
+              [nbTooltip]="item.dateExpiration | date: 'MM/dd/yyyy'">
+              <div class="expiration" *ngIf="dateExpirationService.getDiff(item.dateExpiration)">
+                <strong style="padding-right: 0.7rem;">Vence
+                  en:</strong>{{dateExpirationService.getDiff(item.dateExpiration)}}
+              </div>
+              <div class="expiration-danger" *ngIf="!dateExpirationService.getDiff(item.dateExpiration)">
+                <strong style="padding-right: 0.7rem;">Vencido</strong>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="payment-col">
+              <i class="fas fa-money-bill-alt" style="color: turquoise; padding-right: 3px;"></i>
+              <strong style="padding-right: 0.7rem; color: white;">Pago:</strong>
+              <ng-container *ngFor="let payment of item.paymentPercentages" class="payment">
+                <label for="" style="color: white;">{{payment.percentage}}% &nbsp; </label>
+                <i [class]="payment.paymentMethod.icon +' payment'" [nbTooltip]="payment.paymentMethod.name"
+                  style="margin-right: 1rem; color: white;"></i>
+              </ng-container>
+            </div>
+
+            <div class="mode-col">
+              <nb-icon icon="monitor-outline" style="color: turquoise;"></nb-icon>&nbsp;
+              <span *ngIf="item.mode===REMOTE" style="color: white;">REMOTO</span>
+              <span *ngIf="item.mode===PRESENTIAL" style="color: white;">PRESENCIAL</span>
+            </div>
+          </div>
+        </nb-card-body>
+        <nb-card-footer>
+          <!-- botones cards Activas -->
+          <div
+            *ngIf="status===opportunityStatus.ACTIVE && rolTalent != 'users' && rolPublic !='public' && statuspyme === 'STATUSPYME'">
+            <div class="button-col-pyme">
+              <button shape="round" nbButton size="tiny" (click)="goMatch(item.id)" status="primary"
+                [disabled]="item.proposals.length>0" class="p-mr-2 p-mb-2" style="background-color: turquoise; ">
+                <nb-icon icon="plus-outline" class="icon"></nb-icon>Match
+              </button>
+            </div>
+          </div>
+          <!-- botones cards Asignadas -->
+          <div *ngIf="status===opportunityStatus.ASSIGNED && statuspyme === 'STATUSPYME'">
+            <div class="button-col-pyme">
+              <button type="button" nbButton nbTooltipPlacement="top" size="tiny" status="primary" shape="round"
+                (click)="onFinishEmit(item)" class="p-button p-mr-2">
+                <nb-icon icon="checkmark-circle-outline" class="icon"></nb-icon>Finalizar
+              </button>
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <button type="button" nbButton nbTooltipPlacement="top" size="tiny" status="primary" shape="round"
+              [routerLink]="[item.id,'rate']" class="p-button p-mr-2"
+              *ngIf="status===opportunityStatus.COMPLETED && !item.pymeQuestionaryDoneId && rolTalent==='pyme' && statuspyme === 'STATUSPYME'">
+              <nb-icon icon="trending-up-outline" class="icon"></nb-icon>Calificar
+            </button>
+
+            <!-- ASIGNACIÓN DE LOGROS -->
+            <button type="button" nbButton nbTooltipPlacement="top" size="tiny" status="primary" shape="round"
+              (click)="onCreate(item)" class="p-button p-mr-2"
+              *ngIf="status===opportunityStatus.COMPLETED && !item.pymeAchievementDoneId && rolTalent==='pyme' && statuspyme === 'STATUSPYME'">
+              <nb-icon icon="trending-up-outline" class="icon"></nb-icon>Asignar Logro
+            </button>
+
+          </div>
+
+        </nb-card-footer>
+      </nb-card>
+
+      <!-- CARDS PARA ACTIVOS SIN PROPUESTAS TALENTO -->
+      <nb-card size="small" class="card-talent colorCard-talent"
+        *ngIf="item.proposals[0] === undefined && rolTalent==='users' && status === 'ACTIVE' ">
+        <nb-card-body>
+          <div class="p-grid p-jc-md-between" style="margin-top: 1rem;">
+            <strong class="category">{{item.category.name | uppercase}}</strong>
+          </div>
+          <br>
+          <div class="row">
+            <div [nbTooltip]="item.title">
+              <strong class="title">{{item.title}}</strong>
+            </div>
+            <div class="description" [nbTooltip]="item.description" style="margin-bottom: 1rem;">
+              <p style="color: white;">{{item.description}}</p>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 1rem;">
+            <div class="date-start-col">
+              <nb-icon icon="calendar-outline" style="color: turquoise; padding-right: 3px;"></nb-icon>
+              <strong style="padding-right: 0.7rem; color: white;">Inicio:</strong>
+              <label style="color: white;">
+                {{item.dateStart | date:
+                'MM/dd/yyyy'}}</label>
+            </div>
+            <div class="date-end-col">
+              <strong style="padding-right: 0.7rem;  color: white;">Fin:</strong>
+              <label for="" style="color: white;">{{item.dateEnd | date: 'MM/dd/yyyy'}} </label>
+            </div>
+            <div *ngIf="status===opportunityStatus.ACTIVE || status===opportunityStatus.EXPIRED" class="user-col"
+              [nbTooltip]="item.dateExpiration | date: 'MM/dd/yyyy'">
+              <div class="expiration-talent" *ngIf="dateExpirationService.getDiff(item.dateExpiration)">
+                <strong style="padding-right: 0.7rem;">Vence
+                  en:</strong>{{dateExpirationService.getDiff(item.dateExpiration)}}
+              </div>
+              <div class="expiration-danger" *ngIf="!dateExpirationService.getDiff(item.dateExpiration)">
+                <strong style="padding-right: 0.7rem;">Vencido</strong>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+
+            <div class="payment-col">
+              <i class="fas fa-money-bill-alt" style="color: turquoise; padding-right: 3px;"></i>
+              <strong style="padding-right: 0.7rem; color: white;">Pago:</strong>
+              <ng-container *ngFor="let payment of item.paymentPercentages" class="payment-talent">
+                <label for="" style="color: white;">{{payment.percentage}}% &nbsp; </label>
+                <i [class]="payment.paymentMethod.icon +' payment-talent'" [nbTooltip]="payment.paymentMethod.name"
+                  style="margin-right: 1rem; color: white;"></i>
+              </ng-container>
+            </div>
+            <div class="mode-col">
+              <nb-icon icon="monitor-outline" style="color: turquoise;"></nb-icon>&nbsp;
+              <span *ngIf="item.mode===REMOTE" style="color: white;">REMOTO</span>
+              <span *ngIf="item.mode===PRESENTIAL" style="color: white;">PRESENCIAL</span>
+            </div>
+
+          </div>
+        </nb-card-body>
+        <nb-card-footer>
+          <div *ngIf="status===opportunityStatus.ACTIVE && rolTalent==='users'">
+            <div style="text-align: right;">
+              <button nbButton status="primary" size="tiny" class="p-button p-mr-2" shape="round"
+                [disabled]="item.proposals[0] != undefined || btnAcept" (click)="onAcept(item)">
+                <nb-icon icon="checkmark-circle-outline" class="icon"></nb-icon>Aplicar
+              </button>
+            </div>
+          </div>
+        </nb-card-footer>
+      </nb-card>
+
+      <!-- CARDS PARA ACTIVOS CON PROPUESTAS TALENTO -->
+      <nb-card size="small" class="card-talent colorCard-talent"
+        *ngIf="item.proposals[0] !== undefined && rolTalent==='users' && status2 === 'ACTIVE2' ">
+        <nb-card-body>
+          <div class="p-grid p-jc-md-between" style="margin-top: 1rem;">
+            <strong class="category">{{item.category.name | uppercase}}</strong>
+          </div>
+          <br>
+          <div class="row">
+            <div [nbTooltip]="item.title">
+              <strong class="title">{{item.title}}</strong>
+            </div>
+            <div class="description" [nbTooltip]="item.description" style="margin-bottom: 1rem;">
+              <p style="color: white;">{{item.description}}</p>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 1rem;">
+            <div class="date-start-col">
+              <nb-icon icon="calendar-outline" style="color: turquoise; padding-right: 3px;"></nb-icon>
+              <strong style="padding-right: 0.7rem; color: white;">Inicio:</strong>
+              <label style="color: white;">
+                {{item.dateStart | date: 'MM/dd/yyyy'}}</label>
+            </div>
+            <div class="date-end-col">
+              <strong style="padding-right: 0.7rem;  color: white;">Fin:</strong>
+              <label for="" style="color: white;">{{item.dateEnd | date: 'MM/dd/yyyy'}} </label>
+            </div>
+            <div *ngIf="status===opportunityStatus.ACTIVE || status===opportunityStatus.EXPIRED" class="user-col"
+              [nbTooltip]="item.dateExpiration | date: 'MM/dd/yyyy'" style="margin-bottom: 1rem;">
+              <div class="expiration" *ngIf="dateExpirationService.getDiff(item.dateExpiration)">
+                <strong style="padding-right: 0.7rem;">Vence
+                  en:</strong>{{dateExpirationService.getDiff(item.dateExpiration)}}
+              </div>
+              <div class="expiration-danger" *ngIf="!dateExpirationService.getDiff(item.dateExpiration)">
+                <strong style="padding-right: 0.7rem;">Vencido</strong>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="payment-col">
+              <i class="fas fa-money-bill-alt" style="color: turquoise; padding-right: 3px;"></i>
+              <strong style="padding-right: 0.7rem; color: white;">Pago:</strong>
+              <ng-container *ngFor="let payment of item.paymentPercentages" class="payment-talent">
+                <label for="" style="color: white;">{{payment.percentage}}% &nbsp; </label>
+                <i [class]="payment.paymentMethod.icon +' payment-talent'" [nbTooltip]="payment.paymentMethod.name"
+                  style="margin-right: 1rem; color: white;"></i>
+              </ng-container>
+            </div>
+            <div class="mode-col">
+              <nb-icon icon="monitor-outline" style="color: turquoise;"></nb-icon>&nbsp;
+              <span *ngIf="item.mode===REMOTE" style="color: white;">REMOTO</span>
+              <span *ngIf="item.mode===PRESENTIAL" style="color: white;">PRESENCIAL</span>
+            </div>
+          </div>
+        </nb-card-body>
+        <nb-card-footer>
+          <div *ngIf="status===opportunityStatus.COMPLETED && !item.talentQuestionaryDoneId && rolTalent==='users'">
+            <div class="detail-action p-grid p-jc-md-end">
+              <div>
+                <button type="button" nbButton nbTooltipPlacement="top" size="tiny" status="primary" shape="round"
+                  [routerLink]="[item.id,'rate']" class="p-button p-mr-2">
+                  <nb-icon icon="trending-up-outline" class="icon"></nb-icon>Calificar
+                </button>
+              </div>
+            </div>
+          </div>
+        </nb-card-footer>
+      </nb-card>
+
+      <!-- CARDS PUBLICS -->
+      <nb-card size="small" class="card-talent colorCard-talent"
+        *ngIf="item.proposals[0] === undefined && rolTalent !=='users' && statuspyme !== 'STATUSPYME'">
+        <nb-card-body>
+          <div class="p-grid p-jc-md-between">
+            <strong class="category">{{item.category.name | uppercase}}</strong>
+          </div>
+          <br>
+          <div class="row">
+            <div [nbTooltip]="item.title">
+              <strong class="title">{{item.title}}</strong>
+            </div>
+            <div class="description" [nbTooltip]="item.description" style="margin-bottom: 1rem;">
+              <p style="color: white;">{{item.description}}</p>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 1rem;">
+            <div class="date-start-col">
+              <nb-icon icon="calendar-outline" style="color: turquoise; padding-right: 3px;"></nb-icon>
+              <strong style="padding-right: 0.7rem; color: white;">Inicio:</strong>
+              <label style="color: white;">
+                {{item.dateStart | date: 'MM/dd/yyyy'}}</label>
+            </div>
+            <div class="date-end-col">
+              <strong style="padding-right: 0.7rem;  color: white;">Fin:</strong>
+              <label for="" style="color: white;">{{item.dateEnd | date: 'MM/dd/yyyy'}} </label>
+            </div>
+            <div *ngIf="status===opportunityStatus.ACTIVE || status===opportunityStatus.EXPIRED" class="user-col"
+              [nbTooltip]="item.dateExpiration | date: 'MM/dd/yyyy'" style="margin-bottom: 1rem;">
+              <div class="expiration-talent" *ngIf="dateExpirationService.getDiff(item.dateExpiration)">
+                <strong style="padding-right: 0.7rem;">Vence
+                  en:</strong>{{dateExpirationService.getDiff(item.dateExpiration)}}
+              </div>
+              <div class="expiration-danger" *ngIf="!dateExpirationService.getDiff(item.dateExpiration)">
+                <strong style="padding-right: 0.7rem;">Vencido</strong>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="payment-col">
+              <i class="fas fa-money-bill-alt" style="color: turquoise; padding-right: 3px;"></i>
+              <strong style="padding-right: 0.7rem; color: white;">Pago:</strong>
+              <ng-container *ngFor="let payment of item.paymentPercentages" class="payment-talent">
+                <label for="" style="color: white;">{{payment.percentage}}% &nbsp; </label>
+                <i [class]="payment.paymentMethod.icon +' payment-talent'" [nbTooltip]="payment.paymentMethod.name"
+                  style="margin-right: 1rem; color: white;"></i>
+              </ng-container>
+            </div>
+            <div class="mode-col">
+              <nb-icon icon="monitor-outline" style="color: turquoise;"></nb-icon>&nbsp;
+              <span *ngIf="item.mode===REMOTE" style="color: white;">REMOTO</span>
+              <span *ngIf="item.mode===PRESENTIAL" style="color: white;">PRESENCIAL</span>
+            </div>
+
+            <!--Usuario talento asignado-->
+            <div *ngIf="status===opportunityStatus.ASSIGNED || status==opportunityStatus.COMPLETED" class="user-col"
+              style="cursor: pointer;" style="margin-bottom: 1rem;">
+              <nb-user class="assigned" [showTitle]="false" [name]="item.talentAssinged.user"
+                [picture]="'data:image/jpg;base64,'+item.talentAssinged.avatar"
+                (click)="onSelectUser(item.talentAssinged)">
+              </nb-user>
+            </div>
+          </div>
+        </nb-card-body>
+        <nb-card-footer>
+          <div *ngIf="status===opportunityStatus.ACTIVE && rolPublic==='public' && statuspyme !== 'STATUSPYME'">
+            <div style="text-align: right;">
+              <button nbButton status="primary" nbTooltip="Necesita Registrarse" nbTooltipPlacement="top" size="tiny"
+                shape="round" routerLink="/auth" class="p-button p-mr-2">
+                <nb-icon icon="checkmark-circle-outline" class="icon"></nb-icon>Aplicar
+              </button>
+            </div>
+          </div>
+        </nb-card-footer>
+      </nb-card>
+
+
+    </div>
+  </ng-template>
+</p-dataView>
+<div *ngIf="totalRecords>limitTable">
+  <p-paginator [rows]="limitTable" [totalRecords]="totalRecords" (onPageChange)="onPaginateEmit($event)">
+  </p-paginator>
+</div>
+
+<!--Info de usuario-->
+<p-dialog *ngIf="user" [(visible)]="displayUser" [modal]="true" [closable]="false" [draggable]="false"
+  [resizable]="true">
+  <p-header>
+    <nb-user [showTitle]="!showTitle" [name]="user.user" [title]="user.email"
+      [picture]="'data:image/jpg;base64,'+user.avatar" size="giant">
+    </nb-user>
+    <div *ngIf="showTitle" class="email">
+      {{user.email}}
+    </div>
+  </p-header>
+  <div class="modal-user">
+    <ngx-opportunity-proposal-user [user]="user"></ngx-opportunity-proposal-user>
+  </div>
+  <p-footer>
+    <button nbButton status="primary" class="p-button  p-mr-2 p-mb-2" (click)="displayUser=false">Aceptar
+    </button>
+  </p-footer>
+</p-dialog>
+
+<!-- Logros asignar form -->
+<p-dialog *ngIf="rolTalent==='pyme'" [(visible)]="displayCreate" [modal]="true" [closable]="false" [draggable]="false"
+  [resizable]="true">
+  <h6>Asignar Logro al talento</h6>
+  <ngx-achievement-form-assign *ngIf="displayCreate" (closeModal)="onClose()" (success)="onSuccess()"
+    [talento]=idTalento [oportunidad]=idOportunidad>
+  </ngx-achievement-form-assign>
+</p-dialog>

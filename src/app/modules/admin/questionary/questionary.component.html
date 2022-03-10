@@ -1,0 +1,8 @@
+<button nbButton size="small" class="p-mr-2" [routerLink]="['new']">
+    <nb-icon icon="plus-outline" class="icon"></nb-icon>Nuevo cuestionario
+</button>
+
+<!--Lista-->
+<div style="margin-top: 1rem;">
+    <ngx-questionary-list (updateEvent)="onUpdate($event)"></ngx-questionary-list>
+</div>

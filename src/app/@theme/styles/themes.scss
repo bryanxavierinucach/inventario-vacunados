@@ -1,0 +1,385 @@
+// @nebular theming framework
+@import '~@nebular/theme/styles/theming';
+// @nebular out of the box themes
+@import '~@nebular/theme/styles/themes';
+
+$nb-themes: nb-register-theme((
+  layout-padding-top: 2.25rem,
+
+  menu-item-icon-margin: 0 0.5rem 0 0,
+
+  card-height-tiny: 13.5rem,
+  card-height-small: 21.1875rem,
+  card-height-medium: 28.875rem,
+  card-height-large: 36.5625rem,
+  card-height-giant: 44.25rem,
+  card-margin-bottom: 1.875rem,
+  card-header-with-select-padding-top: 0.5rem,
+  card-header-with-select-padding-bottom: 0.5rem,
+
+  select-min-width: 6rem,
+
+  slide-out-background: #f7f9fc,
+  slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
+  slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
+), default, default);
+
+$nb-themes: nb-register-theme((
+  layout-padding-top: 2.25rem,
+
+  menu-item-icon-margin: 0 0.5rem 0 0,
+
+  card-height-tiny: 13.5rem,
+  card-height-small: 21.1875rem,
+  card-height-medium: 28.875rem,
+  card-height-large: 36.5625rem,
+  card-height-giant: 44.25rem,
+  card-margin-bottom: 1.875rem,
+  card-header-with-select-padding-top: 0.5rem,
+  card-header-with-select-padding-bottom: 0.5rem,
+
+  select-min-width: 6rem,
+
+  slide-out-background: #252547,
+  slide-out-shadow-color: 2px 0 3px #29157a,
+  slide-out-shadow-color-rtl: -2px 0 3px #29157a,
+), cosmic, cosmic);
+
+$nb-themes: nb-register-theme((
+  layout-padding-top: 2.25rem,
+
+  menu-item-icon-margin: 0 0.5rem 0 0,
+
+  card-height-tiny: 13.5rem,
+  card-height-small: 21.1875rem,
+  card-height-medium: 28.875rem,
+  card-height-large: 36.5625rem,
+  card-height-giant: 44.25rem,
+  card-margin-bottom: 1.875rem,
+  card-header-with-select-padding-top: 0.5rem,
+  card-header-with-select-padding-bottom: 0.5rem,
+
+  select-min-width: 6rem,
+
+  slide-out-background: linear-gradient(270deg, #edf1f7 0%, #e4e9f2 100%),
+  slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
+  slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
+), corporate, corporate);
+
+$nb-themes: nb-register-theme((
+  layout-padding-top: 2.25rem,
+
+  menu-item-icon-margin: 0 0.5rem 0 0,
+
+  card-height-tiny: 13.5rem,
+  card-height-small: 21.1875rem,
+  card-height-medium: 28.875rem,
+  card-height-large: 36.5625rem,
+  card-height-giant: 44.25rem,
+  card-margin-bottom: 1.875rem,
+  card-header-with-select-padding-top: 0.5rem,
+  card-header-with-select-padding-bottom: 0.5rem,
+
+  select-min-width: 6rem,
+
+  slide-out-background: linear-gradient(270deg, #222b45 0%, #151a30 100%),
+  slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
+  slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
+), dark, dark);
+
+$nb-themes: nb-register-theme((
+  layout-padding-top: 2.25rem,
+
+  menu-item-icon-margin: 0 0.5rem 0 0,
+
+  card-height-tiny: 13.5rem,
+  card-height-small: 21.1875rem,
+  card-height-medium: 28.875rem,
+  card-height-large: 36.5625rem,
+  card-height-giant: 44.25rem,
+  card-margin-bottom: 1.875rem,
+  card-header-with-select-padding-top: 0.5rem,
+  card-header-with-select-padding-bottom: 0.5rem,
+
+  select-min-width: 6rem,
+
+  color-primary-100: #defee9,
+  color-primary-200: #befddb,
+  color-primary-300: #9dfad0,
+  color-primary-320: #9cfad2,
+  color-primary-350: #9fffd5,
+  color-primary-400: #83f6cd,
+  color-primary-500: #5bf0ca, // <- Select
+  color-primary-600: #42ceb8,
+  color-primary-700: #2daca4,
+  color-primary-800: #1d878b,
+  color-primary-900: #116673,
+
+  color-basic-50: #ffffff,
+  color-basic-100: #f1edf8,
+  color-basic-200: #ededed,
+  color-basic-220: #f7f6fd,
+  color-basic-250: #e8e8e8, // User sidebar
+  color-basic-300: #d3cfda,
+  color-basic-400: #aeabb5,
+  color-basic-500: #8d8a94,
+  color-basic-600: #66636c,
+  color-basic-700: #535059,
+  color-basic-800: #35323a,
+  color-basic-900: #15121a,
+  color-basic-1000: #0d0b10,
+
+  color-secondary-100: #f1edf8,
+  color-secondary-200: #e5e1ec,
+  color-secondary-230: #807ee8,
+  color-secondary-240: #827fec,
+  color-secondary-300: #8282e9, // <- Select
+  color-secondary-400: #6764e3,
+  color-secondary-450: #457ab3,
+  color-secondary-460: #504e8f,
+  color-secondary-500: #5247d5,
+  color-secondary-600: #4d3eca,
+  color-secondary-700: #4433bd,
+  color-secondary-800: #3e27b0,
+  color-secondary-900: #330d99,
+
+  color-tertiary-800: #be463a,
+
+  font-weight-medium: 500,
+  font-weight-regular: 400,
+  font-weight-semi-bold: 600,
+  font-weight-bold: 900,
+  font-size-14: 0.875rem,
+  font-size-15: 0.938rem,
+  font-size-17: 1.063rem,
+  font-size-21: 1.313rem,
+  font-size-28: 1.75em,
+  font-size-45: 2.813rem,
+
+  background-basic-color-1: color-secondary-300, // ContextMenu
+  background-basic-color-2: color-basic-900,
+  background-basic-color-3: color-basic-200, // Body
+  background-basic-color-4: color-basic-900,
+
+  border-basic-color-1: color-basic-700,
+  border-basic-color-2: color-basic-800,
+  border-basic-color-3: none,
+
+  shadow: 0 0.5rem 1rem 0 rgba(25, 30, 51, 0.24),
+
+  color-primary-hover: color-primary-600,
+  color-primary-focus-border: color-primary-600,
+  color-primary-active: color-primary-700,
+  color-primary-active-border: color-primary-800,
+  color-primary-disabled-border: transparent,
+  color-basic-transparent-focus-border: olor-basic-50,
+  color-basic-default: color-basic-900,
+  color-basic-default-border: color-basic-900,
+  color-basic-focus: color-basic-900,
+  color-basic-focus-border: color-basic-900,
+  color-basic-hover: color-basic-800,
+  color-basic-hover-border: color-basic-800,
+  color-basic-active: color-basic-1000,
+  color-basic-active-border: color-basic-1000,
+  color-basic-transparent-default-border: color-basic-50,
+  color-basic-transparent-disabled-border: color-basic-300, // radio
+  color-basic-disabled: color-basic-700, //button
+  color-success-default: color-secondary-300, //button
+  color-success-default-border:  color-secondary-300,
+  color-success-focus: color-secondary-500,
+  color-success-focus-border: color-secondary-500,
+  color-success-hover: color-secondary-400,
+  color-success-hover-border: color-secondary-400,
+  color-success-active: color-secondary-500,
+  color-success-active-hover: color-secondary-500,
+  outline-color: transparent,
+
+  text-disabled-color: color-basic-400,
+  text-basic-color: color-basic-900, // toast basic
+  text-control-color: color-basic-900, // button primary,
+  text-hint-color: color-basic-100,
+  calendar-weekday-text-color: color-basic-900,
+
+  font-family-primary: Montserrat,
+  text-heading-1-font-weight: font-weight-bold,
+  text-button-font-weight: font-weight-medium,
+  text-label-font-weight: font-weight-regular,
+  text-subtitle-2-font-weight: font-weight-regular, //Radio
+  text-subtitle-font-weight: font-weight-regular, // Calendar
+  text-primary-color: color-primary-900, // Ouline button primary,
+
+  border-radius: 0.813rem,
+  border-basic-color-4: color-primary-600,
+
+  sidebar-width: 18rem,
+  sidebar-shadow: none,
+  header-background-color: color-basic-200,
+  header-shadow: none,
+  layout-padding: 2rem 3rem 2rem,
+
+  user-title-text-font-weight: 500,
+  user-name-text-font-weight: 600,
+
+  actions-divider-width: none,
+  actions-small-padding: 0.5rem,
+  actions-icon-color: color-primary-320,
+
+  icon-basic-color: color-basic-50,
+
+  button-filled-basic-text-color: color-basic-50,
+  button-outline-basic-text-color: color-basic-900,
+  button-outline-basic-hover-text-color: color-basic-900,
+  button-outline-basic-focus-text-color:color-basic-1000,
+  button-filled-danger-text-color: color-basic-50,
+  button-filled-success-text-color: color-basic-50,
+
+  menu-text-color: color-basic-50,
+  menu-item-icon-color: color-basic-50,
+  menu-item-padding: 0.8rem,
+  menu-item-active-background-color: color-basic-1000,
+  menu-item-border-radius: border-radius,
+  menu-submenu-active-text-color: color-primary-500, // submenu
+  menu-submenu-icon-active-color: color-primary-500, //submenu
+  menu-submenu-active-background-color: color-basic-1000,
+
+
+  card-border-radius: 2.75rem,
+  card-border-color: transparent,
+  card-text-color: color-basic-50,
+  card-text-font-weight: font-weight-medium,
+  card-text-font-size: font-size-14,
+  card-scrollbar-color: transparent,
+  card-scrollbar-background-color: transparent,
+
+  scrollbar-background-color:  color-basic-100,
+  scrollbar-color: color-basic-100,
+
+  input-primary-background-color: transparent,
+  input-primary-focus-background-color: transparent,
+  input-primary-hover-background-color: transparent,
+  input-primary-border-color: color-basic-50,
+//input-primary-hover-border-color: color-basic-400,
+  input-primary-text-color: color-basic-50,
+  input-primary-disabled-background-color: transparent,
+  input-primary-disabled-border-color: color-basic-400,
+  input-basic-background-color: transparent,
+  input-basic-focus-background-color: transparent,
+  input-basic-hover-background-color: transparent,
+  input-basic-border-color: color-basic-900,
+  input-basic-hover-border-color: color-basic-400,
+  input-basic-text-color: color-basic-900,
+  input-basic-disabled-background-color: transparent,
+  input-basic-disabled-border-color: color-basic-400,
+  input-basic-placeholder-text-color: color-basic-500,
+  input-border-width: 0 0 0.06rem,
+  input-rectangle-border-radius: none,
+  input-medium-padding:  0.4375rem 2.2rem 0.4375rem 0,
+  input-medium-text-font-size: font-size-17,
+  input-medium-text-font-weight: font-weight-regular,
+
+  checkbox-outline-color: transparent,
+  checkbox-basic-border-color: color-basic-900,
+  checkbox-border-radius: 0.438rem,
+  checkbox-text-font-size: font-size-15,
+  checkbox-text-font-weight: font-weight-regular,
+  checkbox-basic-text-color: color-basic-900,
+  checkbox-basic-checked-background-color: color-basic-800,
+  checkbox-basic-checked-border-color: color-basic-900,
+  checkbox-basic-checked-checkmark-color: color-basic-50,
+  checkbox-basic-focus-background-color: color-basic-200,
+  checkbox-basic-hover-background-color: color-basic-400,
+  checkbox-basic-hover-border-color: color-basic-400,
+  checkbox-basic-hover-checked-background-color: color-basic-1000,
+  checkbox-basic-hover-checked-border-color: color-basic-1000,
+  checkbox-basic-active-background-color: color-basic-700,
+  radio-basic-disabled-text-color: color-basic-500,
+  radio-basic-text-color: color-basic-900,
+  radio-basic-border-color: color-basic-900,
+  radio-basic-inner-circle-color: color-basic-900,
+  radio-basic-checked-border-color: color-basic-900,
+  radio-basic-focus-inner-circle-color: color-basic-900,
+  radio-basic-focus-border-color: color-basic-900,
+  radio-basic-hover-border-color: color-basic-1000,
+  radio-basic-hover-inner-circle-color: color-basic-900,
+  radio-basic-active-border-color: color-basic-900,
+  radio-basic-active-inner-circle-color: color-basic-900,
+  radio-primary-disabled-text-color: color-basic-300,
+  radio-primary-text-color: color-basic-50,
+
+
+  select-outline-primary-background-color: transparent,
+  select-outline-primary-focus-background-color: transparent,
+  select-outline-primary-hover-background-color: transparent,
+  select-outline-primary-border-color: color-basic-50,
+  //select-outline-primary-hover-border-color: color-basic-400,
+  select-outline-primary-text-color: color-basic-900,
+  select-outline-primary-disabled-background-color: transparent,
+  select-outline-primary-disabled-border-color: color-basic-400,
+
+  select-outline-basic-background-color: transparent,
+  select-outline-basic-focus-background-color: transparent,
+  select-outline-basic-hover-background-color: transparent,
+  select-outline-basic-border-color: color-basic-900,
+  //select-outline-basic-hover-border-color: color-basic-400,
+  select-outline-basic-text-color: color-basic-900,
+  select-outline-basic-disabled-background-color: transparent,
+  select-outline-basic-disabled-border-color: color-basic-400,
+  select-outline-basic-placeholder-text-color: color-basic-500,
+  select-outline-basic-icon-color: color-basic-900,
+
+  select-outline-border-width: 0 0 0.06rem,
+  select-rectangle-border-radius: none,
+  select-medium-text-font-weight: font-weight-regular,
+  select-outline-basic-adjacent-border-color: color-primary-600,
+
+  option-list-background-color: color-secondary-400,
+  option-list-border-style: none,
+
+  toggle-basic-border-color: color-basic-400,
+  toggle-basic-checked-background-color: color-basic-100,
+  toggle-basic-checked-border-color: color-basic-600,
+  toggle-basic-checked-switcher-background-color:  color-basic-900,
+  toggle-basic-checked-switcher-checkmark-color: color-basic-50,
+  toggle-basic-focus-background-color: color-basic-200,
+  toggle-basic-focus-border-color: color-basic-300,
+  toggle-basic-hover-background-color: transparent,
+  toggle-basic-hover-border-color: color-basic-400,
+  toggle-basic-hover-checked-background-color: transparent,
+  toggle-basic-hover-checked-border-color: color-basic-400,
+  toggle-basic-active-background-color: color-basic-600,
+  toggle-basic-active-border-color: color-basic-700,
+  toggle-basic-active-checked-border-color: color-basic-50,
+
+  datepicker-border-color: color-secondary-200,
+  calendar-text-color: color-basic-50,
+  calendar-cell-inactive-text-color: color-basic-500,
+  calendar-cell-hover-background-color: color-secondary-400,
+
+  toastr-danger-text-color: color-basic-50,
+  toastr-info-text-color: color-basic-50,
+  toastr-warning-text-color: color-basic-50,
+  toastr-basic-text-color: color-basic-50,
+  toastr-success-text-color: color-basic-50,
+  toastr-icon-danger-background-color: color-basic-50,
+  toastr-icon-info-background-color: color-basic-50,
+  toastr-icon-warning-background-color: color-basic-50,
+  toastr-icon-basic-background-color: color-basic-50,
+  toastr-icon-success-background-color: color-basic-50,
+
+  progress-bar-success-text-color: color-basic-50,
+  progress-bar-warning-text-color: color-basic-50,
+  progress-bar-danger-text-color: color-basic-50,
+  progress-bar-success-background-color: color-secondary-200,
+  progress-bar-warning-background-color: color-secondary-200,
+  progress-bar-danger-background-color: color-secondary-200,
+
+  tabset-divider-color: color-basic-200,
+  tabset-tab-underline-color: color-basic-400,
+  tabset-tab-text-color: color-basic-500,
+  tabset-tab-hover-text-color: color-basic-500,
+  tabset-tab-hover-underline-color: color-basic-500,
+  tabset-tab-active-text-color: color-basic-900,
+  tabset-tab-active-underline-color: color-basic-1000,
+  tabset-tab-text-font-weight: 700,
+
+), divergenti, dark);

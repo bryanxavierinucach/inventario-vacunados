@@ -1,0 +1,41 @@
+<button nbButton outline size="small" class="p-mr-2" [routerLink]="['../../../done']">
+    <nb-icon icon="arrow-back-outline" class="icon"></nb-icon>Volver
+</button>
+<nb-card size="lage" style="background-color: white; margin-top: 2rem;">
+    <nb-card-body style="color: black;">
+        <div>
+            <div *ngFor="let sectionAnswer of sectionAnswerReport" style="margin-top: 1rem; margin-bottom: 2rem;">
+                <h3 class="title">{{sectionAnswer.section.sectionName}}
+                    <span class="badge badge-primary">Score {{sectionAnswer.totalScore}}</span>
+                </h3>
+
+                <div style="padding-left: 2rem; padding-right: 2rem;">
+                    <h4 class="level">
+                        Nivel {{sectionAnswer.feedback.level}}
+                    </h4>
+                    <div>
+                        <nb-progress-bar *ngIf="sectionAnswer.targePercentage>=60" status="success"
+                            [value]="sectionAnswer.targePercentage" size="giant">
+                            <strong>{{sectionAnswer.targePercentage | number :
+                                '1.0-0'}}%</strong>
+                        </nb-progress-bar>
+                        <nb-progress-bar *ngIf="sectionAnswer.targePercentage>=30 && sectionAnswer.targePercentage<60"
+                            status="warning" [value]="sectionAnswer.targePercentage" size="giant">
+                            <strong>{{sectionAnswer.targePercentage | number :
+                                '1.0-0'}}%</strong>
+                        </nb-progress-bar>
+                        <nb-progress-bar *ngIf="sectionAnswer.targePercentage<30" status="danger"
+                            [value]="sectionAnswer.targePercentage" size="giant">
+                            <strong>{{sectionAnswer.targePercentage | number :
+                                '1.0-0'}}%</strong>
+                        </nb-progress-bar>
+                        <br>
+                        <h4 class="feed">Recomendaciones:</h4>
+                        <div [innerHTML]="getWithEnterDisplay(sectionAnswer.feedback.recommendation)"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

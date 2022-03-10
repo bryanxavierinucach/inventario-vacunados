@@ -1,0 +1,20 @@
+<button nbButton size="small" class="p-mr-2" (click)="onBack()">
+  <nb-icon icon="arrow-back-outline" class="icon"></nb-icon>Volver
+</button>
+<button nbButton size="small" class="p-mr-2" (click)="onCreate()">
+  <nb-icon icon="plus-outline" class="icon"></nb-icon>Asignar logro
+</button>
+<!--Crear-->
+<!-- <p-dialog [header]="(userAchievement?'Actualizar ':'Nuevo') +' logro'" [(visible)]="displayCreate" [modal]="true"
+  [closable]="false" [draggable]="false" [resizable]="false" [style]="MODAL_3"> -->
+
+  <ngx-user-achieve-form *ngIf="userAchievement && displayCreate" (closeModal)="onClose()" (success)="onSuccess()" [displayCreate]="displayCreate" [userAchievement]="userAchievement"></ngx-user-achieve-form>
+
+  <ngx-user-achieve-form *ngIf="!userAchievement && displayCreate" (closeModal)="onClose()" (success)="onSuccess()" [displayCreate]="displayCreate">
+  </ngx-user-achieve-form>
+
+<!--Lista-->
+<div style="margin-top: 1rem;">
+  <ngx-user-achieve-list (updateEvent)="onUpdate($event)">
+  </ngx-user-achieve-list>
+</div>

@@ -1,0 +1,7 @@
+<div *ngFor="let item of paymentPercentage; let i = index" [attr.data-index]="i" class="row">
+    <div class="col-6 col-md-6 item-center" style="color: white;">{{item.paymentMethod.name}}</div>
+    <div class="col-4 col-md-4 item-center" style="color: white;">{{item.percentage}}%</div>
+    <button nbButton ghost status="danger" class="col-2 col-md-2" (click)="onDelete(i, item.percentage, item.paymentMethod.name)">
+        <nb-icon icon="trash-outline" class="icon"></nb-icon>
+    </button>
+</div>

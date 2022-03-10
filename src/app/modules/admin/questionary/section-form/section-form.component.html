@@ -1,0 +1,66 @@
+<ng-container *ngFor="let section of sectionsBuild; let i = index">
+    <h6>Sección</h6>
+    <form [formGroup]="section.form" aria-labelledby="title">
+        <div class="form-group">
+            <label class="label-basic" for="input-sectionName">Nombre<span class="text-danger">*</span></label>
+            <input nbInput fullWidth formControlName="sectionName" placeholder="Ingrese nombre de la sección"
+                id="input-sectionName">
+            <div *ngIf="section.form.controls['sectionName'].invalid && (section.form.controls['sectionName'].dirty ||
+section.form.controls['sectionName'].touched)" class="text-danger">
+                <div *ngIf="section.form.controls['sectionName'].errors.required">
+                    Sección es obligatorio.
+                </div>
+            </div>
+        </div>
+        <h6 style="margin-top: 2rem;">Preguntas</h6>
+        <ng-container *ngFor="let form of section.form.controls['questions']['controls']; let i = index">
+            <div style="margin-top: 2rem;">
+                <ngx-question-form [formQuestion]="form"></ngx-question-form>
+                <div class="detail-action p-grid p-jc-end" style="padding-top: 1rem;"
+                    *ngIf="section.form.controls['questions']['controls'].length>1">
+                    <button nbButton size="small" status="danger" class="add"
+                        (click)="onDeleteQuestion(section.form.controls['questions'],i )">
+                        Eliminar pregunta
+                    </button>
+                </div>
+            </div>
+        </ng-container>
+        <div class="detail-action p-grid p-jc-end" style="padding-top: 1rem;">
+            <button nbButton size="small" status="success" class="add"
+                (click)="onAddQuestion(section.form.controls['questions'])">
+                Agregar pregunta
+            </button>
+        </div>
+        <div *ngIf="type===questionaryType.DIAGNOSIS">
+            <h6 style="margin-top: 2rem;">Retroalimentación</h6>
+            <ng-container *ngFor="let form of section.form.controls['feedbacks']['controls']; let i = index">
+                <div style="margin-top: 2rem;">
+                    <ngx-feedback-form [formFeedback]="form"></ngx-feedback-form>
+                    <div class="detail-action p-grid p-jc-end" style="padding-top: 1rem;"
+                        *ngIf="section.form.controls['feedbacks'].length>1">
+                        <button nbButton size="small" status="danger" class="add"
+                            (click)="onDeleteFeed(section.form.controls['feedbacks'], i)">
+                            Eliminar retroalimentación
+                        </button>
+                    </div>
+                </div>
+            </ng-container>
+            <div class="detail-action p-grid p-jc-end" style="padding-top: 1rem;">
+                <button nbButton size="small" status="success" class="add"
+                    (click)="onAddFeedback(section.form.controls['feedbacks'])">
+                    Agregar retroalimentación
+                </button>
+            </div>
+        </div>
+    </form>
+    <div class="detail-action p-grid p-jc-end" style="padding-top: 1rem;" *ngIf="sectionsBuild.length>1">
+        <button nbButton size="small" status="danger" class="add" (click)="onDeleteSection(sectionsBuild, i)">
+            Eliminar sección
+        </button>
+    </div>
+</ng-container>
+<div class="detail-action p-grid p-jc-end" style="padding-top: 1rem;">
+    <button nbButton size="small" status="success" class="add" type="submit" (click)="add()">
+        Agregar sección
+    </button>
+</div>

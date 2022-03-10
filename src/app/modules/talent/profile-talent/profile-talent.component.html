@@ -1,0 +1,369 @@
+<div class="profile-talent">
+
+  <h1 style="padding-left: 2%; color: #9fffd5; margin: 0 0 5% 0;">PERFIL TALENTO</h1>
+  <p-dialog *ngIf="displayProfileUser" header="Actualizar el perfil" [(visible)]="displayProfileUser" [modal]="true"
+    [closable]="false" [draggable]="false" [resizable]="false">
+    <ngx-profile-form-pyme [dataProfile]=profile (closeModal)="onClose()" (success)="onSuccess()">
+    </ngx-profile-form-pyme>
+  </p-dialog>
+
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <!-- 5b5aa7 -->
+      <nb-card size="medium" style="background-color:#5b5aa7;" class="c-card-pr">
+        <nb-card-body class="card-body-user">
+          <div class="card-row">
+            <div class="col-5 userDiv" >
+              <nb-user size="giant" [name]="user" [title]="email" [picture]="base64imagen" onlyPicture>
+              </nb-user>
+              <br>
+              <div class="social">
+                <a href={{profile.linkedin}} class="fa fa-linkedin"></a>
+                <a href={{profile.instagram}} class="fa fa-instagram"></a>
+                <a href={{profile.github}} class="fa fa-github"></a>
+                <a href={{profile.website}} class="fa fa-globe"></a>
+              </div>
+            </div>
+            <div class="col-7" >
+              <button nbButton size="small" class="p-mr-2" (click)="onUpdate(profile)"
+                style="right: 0; background-color: #9fffd5; color: #5b5aa7;">
+                <nb-icon icon="edit-2-outline" class="icon"></nb-icon>Editar Perfil
+              </button>
+              <div class="info-user">
+                <div class="mb-2">
+
+                  <nb-icon class="mr-2" icon="person-outline"> </nb-icon> {{user}}
+                </div>
+              </div>
+              <div class="info-user">
+                <div class="mb-2">
+                  <nb-icon class="mr-2" icon="email-outline"> </nb-icon> {{email}}
+                </div>
+              </div>
+              <div class="info-user">
+                <div class="mb-2">
+                  <nb-icon class="mr-2" icon="phone-outline"> </nb-icon> {{profile?.telephone?.internationalNumber ||
+                  profile.telephone}}
+                </div>
+              </div>
+              <div class="info-user">
+                <div class="mb-2">
+                  <nb-icon class="mr-2" icon="flag-outline"> </nb-icon> {{profile.country}}
+                </div>
+              </div>
+              <div class="info-user">
+                <div class="mb-2">
+                  <nb-icon class="mr-2" icon="pin-outline"> </nb-icon> {{profile.city}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="card-row">
+            <div class="col-12 col-lg-12">
+              <nb-card size="tiny" class="colorCard" style="max-height: 8rem;">
+                <nb-card-body>
+                  <p class="walletValue"> 725 DIVER <nb-icon
+                      icon="question-mark-circle-outline"></nb-icon>
+                  </p>
+
+                  <p style="color: #9fffd5;">DIRECCIÓN DE MI WALLET <nb-icon icon="question-mark-circle-outline">
+                    </nb-icon>
+                  </p>
+                  <p style="color: white; margin-top: -1.5vh;">DIVERASCSACKMASCMASOCMACMSACAO</p>
+
+                </nb-card-body>
+              </nb-card>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+    <div class="col-12 col-lg-6">
+      <nb-card size="medium" class="colorCard">
+        <nb-card-header style="max-height: 2vh; display: flex;
+          align-items: center;">
+          <!-- nuevo-->
+          <span class="text-header-top">
+            Paso Actual
+          </span>
+        </nb-card-header>
+        <nb-card-body style="margin-top: 0%; padding-top: 0;">
+          <!-- nuevo-->
+
+          <div class="container">
+            <div class="mb-2 wrapper">
+              <div class="item">
+                <div class="custom-container">
+                  <img src="../../../../assets/images/paso1.png" alt="" width="100%">
+                </div>
+              </div>
+              <div class="item">
+                <div class="custom-container">
+                  <img src="../../../../assets/images/paso2.png" alt="" width="100%">
+
+                </div>
+              </div>
+              <div class="item">
+                <div class="custom-container">
+                  <img src="../../../../assets/images/paso3.png" alt="" width="100%">
+
+                </div>
+              </div>
+              <div class="item">
+                <div class="custom-container">
+                  <img src="../../../../assets/images/paso4.png" alt="" width="100%">
+
+                </div>
+              </div>
+              <div class="item">
+                <div class="custom-container">
+                  <img src="../../../../assets/images/paso5.png" alt="" width="100%">
+
+                </div>
+              </div>
+              <div class="item">
+                <div class="custom-container">
+                  <img src="../../../../assets/images/paso6.png" alt="" width="100%">
+
+                </div>
+              </div>
+              <div class="item">
+                <div class="custom-container">
+                  <img src="../../../../assets/images/paso7.png" alt="" width="100%">
+
+                </div>
+              </div>
+            </div>
+            <div class="h-divider mb-1">
+            </div>
+            <div class="row mb-1">
+              <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 ">
+                <div class="container">
+                  <p class="pos-frente text-color ml-4">50</p>
+                  <svg class="pos-fondo" width="85" height="90" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                      <path id="svg_7" d="m342.6456,111.94034" opacity="NaN" stroke="#9131f7" fill="none" />
+                      <path stroke="#54bcab" stroke-width="4" id="svg_10"
+                        d="m3.71635,31.35728c0,0 -1.46027,27.87046 -0.56661,27.95983c0.10395,0 2.07758,8.25659 7.36597,12.57254c5.28839,4.31595 24.20037,13.79977 24.81787,13.9801c5.13712,1.99209 7.87143,0.6966 8.04567,0.84424c0.17424,0.14764 29.46386,-15.57494 29.46386,-15.57494c0,0 5.855,-2.81475 6.23274,-10.32074c0.37774,-7.50599 0,-30.21163 0,-30.21163c0,0 -0.18887,-7.50599 -6.98822,-11.63429c-6.79935,-4.1283 -24.17548,-13.88609 -24.17548,-13.88609c0,0 -6.04387,-2.06415 -11.33225,-0.56295c-5.28839,1.5012 -23.79773,13.51079 -23.79773,13.51079c0,0 -8.79392,5.0984 -9.0658,13.32314l-0.00002,0z"
+                        opacity="NaN" fill="none" />
+                      <path id="svg_11"
+                        d="m9.3549,33.63944c0,0 -0.47378,23.88409 -0.47378,23.88409c0,0 1.7372,7.05303 6.15918,10.73983c4.42198,3.6868 20.84646,12.0222 20.75189,11.9422c-0.27145,-0.2718 2.30555,1.84325 6.72753,0.72117c4.42198,-1.12207 24.63672,-13.30456 24.63672,-13.30456c0,0 4.89576,-2.40444 5.21161,-8.81628c0.31586,-6.41184 0,-25.80765 0,-25.80765c0,0 -0.15793,-6.41184 -5.84332,-9.93834c-5.6854,-3.52651 -20.21474,-11.8619 -20.21474,-11.8619c0,0 -5.05369,-1.76325 -9.47566,-0.48088c-4.42198,1.28237 -19.89889,11.5413 -19.89889,11.5413c0,0 -6.94882,5.93095 -7.58053,11.38101l0,0.00001l-0.00001,0z"
+                        opacity="NaN" fill="#6a6472" stroke="null" />
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 ">
+                <p class="text-header ">LOGROS COMPLETADOS</p>
+              </div>
+              <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 ">
+                <div class="container">
+                  <p class="pos-frente text-color ml-4">50</p>
+                  <svg class="pos-fondo" width="85" height="90" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                      <path id="svg_7" d="m342.6456,111.94034" opacity="NaN" stroke="#9131f7" fill="none" />
+                      <path stroke="#54bcab" stroke-width="4" id="svg_10"
+                        d="m3.71635,31.35728c0,0 -1.46027,27.87046 -0.56661,27.95983c0.10395,0 2.07758,8.25659 7.36597,12.57254c5.28839,4.31595 24.20037,13.79977 24.81787,13.9801c5.13712,1.99209 7.87143,0.6966 8.04567,0.84424c0.17424,0.14764 29.46386,-15.57494 29.46386,-15.57494c0,0 5.855,-2.81475 6.23274,-10.32074c0.37774,-7.50599 0,-30.21163 0,-30.21163c0,0 -0.18887,-7.50599 -6.98822,-11.63429c-6.79935,-4.1283 -24.17548,-13.88609 -24.17548,-13.88609c0,0 -6.04387,-2.06415 -11.33225,-0.56295c-5.28839,1.5012 -23.79773,13.51079 -23.79773,13.51079c0,0 -8.79392,5.0984 -9.0658,13.32314l-0.00002,0z"
+                        opacity="NaN" fill="none" />
+                      <path id="svg_11"
+                        d="m9.3549,33.63944c0,0 -0.47378,23.88409 -0.47378,23.88409c0,0 1.7372,7.05303 6.15918,10.73983c4.42198,3.6868 20.84646,12.0222 20.75189,11.9422c-0.27145,-0.2718 2.30555,1.84325 6.72753,0.72117c4.42198,-1.12207 24.63672,-13.30456 24.63672,-13.30456c0,0 4.89576,-2.40444 5.21161,-8.81628c0.31586,-6.41184 0,-25.80765 0,-25.80765c0,0 -0.15793,-6.41184 -5.84332,-9.93834c-5.6854,-3.52651 -20.21474,-11.8619 -20.21474,-11.8619c0,0 -5.05369,-1.76325 -9.47566,-0.48088c-4.42198,1.28237 -19.89889,11.5413 -19.89889,11.5413c0,0 -6.94882,5.93095 -7.58053,11.38101l0,0.00001l-0.00001,0z"
+                        opacity="NaN" fill="#6a6472" stroke="null" />
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-6 ">
+                <p class="text-header ">RECOMPENZAS OTORGADAS</p>
+              </div>
+            </div>
+            <div class="h-divider mb-1">
+            </div>
+            <span class="text-header-top">
+              Nivel Actual
+            </span>
+            <br>
+            <!--
+              <nb-progress-bar class="" [value]="60" status="primary" >
+              </nb-progress-bar> -->
+            <br>
+            <div>
+              <div
+                style="border: solid 1px #9efed4; width:105%; height: 65px; padding-top: 10px; padding-left: 2px; margin-bottom: 3px; ">
+                <div class="arrow-steps">
+                  <div class="step current" *ngIf="valorProgress === 10">c </div>
+                  <div class="step" *ngIf="valorProgress != 10"> c </div>
+                  <div class="step current" *ngIf="valorProgress === 10">c </div>
+                  <div class="step" *ngIf="valorProgress != 10"> c </div>
+                  <div class="step current" *ngIf="valorProgress === 10">c </div>
+                  <div class="step" *ngIf="valorProgress != 10"> c </div>
+                  <div class="step current" *ngIf="valorProgress === 10">c </div>
+                  <div class="step" *ngIf="valorProgress != 10"> c </div>
+                  <div class="step current" *ngIf="valorProgress === 1">c </div>
+                  <div class="step" *ngIf="valorProgress != 1"> c </div>
+                  <div class="step current" *ngIf="valorProgress === 2">c </div>
+                  <div class="step" *ngIf="valorProgress != 2"> c </div>
+                  <div class="step current" *ngIf="valorProgress === 3">c </div>
+                  <div class="step" *ngIf="valorProgress != 3"> c </div>
+                  <div class="step current" *ngIf="valorProgress === 4">c </div>
+                  <div class="step" *ngIf="valorProgress != 4"> c </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class=" col-12 col-lg-1"></div>
+                <div class=" col-12 col-lg-2" style="padding-left: 35px;">
+                  <p class="vertical"> NIVEL <b>1</b> </p>
+                </div>
+                <div class=" col-12 col-lg-2" style="padding-left: 60px;">
+                  <p class="vertical"> NIVEL <b>2</b> </p>
+                </div>
+                <div class=" col-12 col-lg-3" style="padding-left: 95px;">
+                  <p class="vertical"> NIVEL <b>3</b> </p>
+                </div>
+                <div class=" col-12 col-lg-3" style="padding-left: 80px;">
+                  <p class="vertical"> NIVEL <b>4</b> </p>
+                </div>
+                <div class=" col-12 col-lg-1" style="padding-left: 23px;">
+                  <p class="vertical"> NIVEL <b>5</b> </p>
+                </div>
+              </div>
+
+            </div>
+
+
+
+
+          </div>
+
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+
+  <div class="card-row">
+    <div class="col-12 col-lg-12">
+      <nb-card size="tiny" class="colorCard">
+        <nb-card-body>
+          <p style="color: #9fffd5;">MIS INTERESES</p>
+          <div *ngFor="let item of interest">
+            <button type="button" nbButton size="small" class="p-button p-mr-2" (click)="deleteInterest(item.id)"
+              nbTooltipStatus="primary" nbTooltip="Eliminar" nbTooltipPlacement="top"
+              style="float:left; margin: 0rem 0 1rem 0; background-color: #9fffd5; color:#5b5aa7;">
+              {{item.interest_list.name }}
+            </button>
+          </div>
+          <div *ngIf="bolShow2">
+            <button type="button" nbButton size="small" class="p-button p-mr-2"
+              style="float:left; margin: 0rem 0 1rem 0; background-color: #9fffd5; color:#5b5aa7;"
+              (click)="activeDivInteres()">
+              <nb-icon icon="plus-outline"></nb-icon>
+            </button>
+          </div>
+          <div *ngIf="bolShow">
+            <form [formGroup]="formInterest" aria-labelledby="title">
+              <div class="form-group col-12">
+
+                <nb-select placeholder="Select Showcase" formControlName="interestId" size="medium"
+                  style="width: 200px; float: none;" class="select-pyme">
+                  <nb-option value="">Seleccione</nb-option>
+                  <nb-option *ngFor="let item of interestList" [value]="item.id">{{ item.name }}
+                  </nb-option>
+                </nb-select>
+                <button type="button" nbButton size="small" class="p-button p-mr-2"
+                  style="float:none; margin: 0rem 0 1rem 0; background-color: #9fffd5; color:#5b5aa7;" (click)="save()">
+                  <nb-icon icon="plus-outline"></nb-icon>
+                </button>
+
+                <!-- <input nbInput formControlName="name" placeholder="Ingrese nuevo interes" id="name" style="color: #807ee8;">-->
+              </div>
+            </form>
+
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+
+  </div>
+
+  <div class="card-row">
+    <div class="col-12 col-lg-12">
+      <nb-card size="tiny" class="colorCard">
+        <nb-card-body>
+          <p style="color: #9fffd5;">OTROS TALENTOS</p>
+          <div *ngFor="let item of talents">
+            <button type="button" nbButton size="small" class="p-button p-mr-2" (click)="deleteTalent(item.id)"
+              nbTooltipStatus="primary" nbTooltip="Eliminar" nbTooltipPlacement="top"
+              style="float:left; margin: 0rem 0 1rem 0; background-color: #9fffd5; color:#5b5aa7;">
+              {{item.talent_list.name }}
+            </button>
+          </div>
+
+          <div *ngIf="bolShowTalent2">
+            <button type="button" nbButton size="small" class="p-button p-mr-2"
+              style="float:left; margin: 0rem 0 1rem 0; background-color: #9fffd5; color:#5b5aa7;"
+              (click)="activeDiv()">
+              <nb-icon icon="plus-outline"></nb-icon>
+            </button>
+          </div>
+          <div *ngIf="bolShowTalent">
+            <form [formGroup]="formTalent" aria-labelledby="title">
+              <div class="form-group col-12">
+
+                <nb-select placeholder="Seleccione" formControlName="talentId" size="medium"
+                  style="width: 200px; float: none;" class="select-talent">
+                  <nb-option value="">Seleccione</nb-option>
+                  <nb-option *ngFor="let item of talentList" [value]="item.id">{{ item.name }}
+                  </nb-option>
+                </nb-select>
+                <button type="button" nbButton size="small" class="p-button p-mr-2"
+                  style="float:none; margin: 0rem 0 1rem 0; background-color: #9fffd5; color:#5b5aa7;"
+                  (click)="saveTalents()">
+                  <nb-icon icon="plus-outline"></nb-icon>
+                </button>
+
+                <!-- <input nbInput formControlName="name" placeholder="Ingrese nuevo interes" id="name" style="color: #807ee8;">-->
+              </div>
+            </form>
+
+          </div>
+
+        </nb-card-body>
+      </nb-card>
+      <!-- <nb-card size="small">
+        <nb-card-body>
+
+          <input #autoInput
+            nbInput
+            type="text"
+            (input)="onChange()"
+            placeholder="Enter value"
+            [nbAutocomplete]="auto" />
+
+          <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+
+            <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+              {{ option }}
+            </nb-option>
+
+          </nb-autocomplete>
+
+        </nb-card-body>
+      </nb-card> -->
+
+    </div>
+
+  </div>
+  <p-dialog header="Detalles del logro" [(visible)]="displayDetail" [modal]="true" [closable]="false"
+    [draggable]="false" [resizable]="false">
+    <i [class]="dataAchievemet.icon"> </i>
+    <h6>Fecha de creación: </h6>
+    <div class="header-title">{{dataAchievemet.creation_time | date: "dd/MM/yyyy"}}</div>
+    <h6>Descripción: </h6>
+    <div class="header-title">{{dataAchievemet.description}}</div>
+
+    <p-footer>
+      <button nbButton status="primary" class="p-button  p-mr-2 p-mb-2" (click)="displayDetail=false">Aceptar
+      </button>
+    </p-footer>
+  </p-dialog>
+</div>

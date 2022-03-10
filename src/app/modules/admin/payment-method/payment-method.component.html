@@ -1,0 +1,15 @@
+<button nbButton size="small" class="p-mr-2" (click)="onCreate()">
+  <nb-icon icon="plus-outline" class="icon"></nb-icon>Nuevo método de pago
+</button>
+<!--Crear-->
+<ngx-payment-method-form *ngIf="paymentMethod && displayCreate" (closeModal)="onClose()" (success)="onSuccess()"
+  [displayCreate]="displayCreate" [paymentMethod]="paymentMethod"></ngx-payment-method-form>
+<ngx-payment-method-form *ngIf="!paymentMethod && displayCreate" (closeModal)="onClose()" (success)="onSuccess()"
+  [displayCreate]="displayCreate">
+</ngx-payment-method-form>
+
+<!--Lista-->
+<div style="margin-top: 1rem;">
+  <ngx-payment-method-list (updateEvent)="onUpdate($event)">
+  </ngx-payment-method-list>
+</div>

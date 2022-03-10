@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-12">
+        <h6>Descipción</h6>
+        <p>{{reward.description}}</p>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <h6>Path</h6>
+        <p>{{reward.path}}</p>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <h6>Monto</h6>
+        <p>{{reward.amount}} DIVER</p>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <h6>Especial</h6>
+        <p>
+            <span *ngIf="!reward.specialReward" class="badge badge-success">No especial</span>
+            <span *ngIf="reward.specialReward" class="badge badge-danger">Especial</span>
+        </p>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <h6>Repetitiva</h6>
+        <p>
+            <span *ngIf="!reward.ever">Única</span>
+            <span *ngIf="reward.ever">Se repetite</span>
+        </p>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4">
+        <h6>Activa</h6>
+        <p>
+            <span *ngIf="reward.active" class="badge badge-success">Activa</span>
+            <span *ngIf="!reward.active" class="badge badge-danger">Inactiva</span>
+        </p>
+    </div>
+</div>

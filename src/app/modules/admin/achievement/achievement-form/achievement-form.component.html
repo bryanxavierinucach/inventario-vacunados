@@ -1,0 +1,68 @@
+<p-dialog [header]="(achievement?'Actualizar ':'Nuevo') +' Logro'" [(visible)]="displayCreate" [modal]="true"
+  [closable]="false" [draggable]="false" [resizable]="false">
+
+  <div class="modal-create">
+
+    <form [formGroup]="formAchievement" (ngSubmit)="save()" aria-labelledby="title">
+      <div class="row">
+        <div class="form-group col-12">
+          <label class="label-basic" for="input-description">Descripción <span class="text-danger">*</span></label>
+          <input nbInput fullWidth formControlName="description" placeholder="Ingrese descripción del logro"
+            id="input-description">
+          <div *ngIf="formAchievement.controls['description'].invalid && (formAchievement.controls['description'].dirty ||
+formAchievement.controls['description'].touched)" class="text-danger">
+            <div *ngIf="formAchievement.controls['description'].errors.required">
+              Descripción es obligatorio.
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-12">
+          <label class="label-basic" for="input-icon">Icono<span class="text-danger">*</span></label>
+          <input nbInput fullWidth formControlName="icon" placeholder="Ingrese icono, desde Font Awesome"
+            id="input-icon">
+          <div *ngIf="formAchievement.controls['icon'].invalid && (formAchievement.controls['icon'].dirty ||
+formAchievement.controls['icon'].touched)" class="text-danger">
+            <div *ngIf="formAchievement.controls['icon'].errors.required">
+              Icono es obligatorio.
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-12">
+          <label class="label-basic" for="input-picture">Imagen<span class="text-danger">*</span></label>
+          <p-carousel [value]="achievementImages" [numVisible]="3" [numScroll]="3"
+            [responsiveOptions]="responsiveOptions">
+            <ng-template let-image pTemplate="item">
+              <div class="achievement-item">
+                <div class="achievement-item-content">
+                  <div [class]="image.isSelect?'achievement-item-select':null">
+                    <img [src]="image.image" class="achievement-image" (click)="onSelectImage(image)">
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </p-carousel>
+          <div *ngIf="formAchievement.controls['picture'].invalid && (formAchievement.controls['picture'].dirty ||
+formAchievement.controls['picture'].touched)" class="text-danger">
+            <div *ngIf="formAchievement.controls['picture'].errors.required">
+              Imagen es obligatorio.
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <p-footer>
+    <div class="detail-action p-grid p-jc-end">
+
+      <button nbButton outline type="button" class=" p-mr-2 p-mb-2 button-outline" [disabled]="loading"
+        (click)="onClose()">
+        Cancelar
+      </button>
+
+      <button nbButton (click)="save()" status="primary" class=" p-mr-2 p-mb-2 button-outline"
+        [disabled]="loading || formAchievement.invalid">
+        {{achievement?(loading?'Actualizando':'Actualizar'):(loading?'Guardando':'Guardar')}}
+      </button>
+    </div>
+  </p-footer>
+</p-dialog>

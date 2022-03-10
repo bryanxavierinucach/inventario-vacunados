@@ -1,0 +1,40 @@
+@import './../../../../@theme/styles/data-view-content.scss';
+
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+
+.code {
+    float: left;
+    width: 40%;
+    padding: 0 10px;
+}
+
+.description {
+    float: left;
+    width: 60%;
+    padding: 0 10px;
+}
+
+
+@include media-breakpoint-down(lg) {
+    .code {
+        width: 50%;
+    }
+
+    .description {
+        width: 50%;
+    }
+}
+
+@include media-breakpoint-down(md) {
+    .code {
+        width: 100%;
+    }
+
+    .description {
+        margin-top: 1rem;
+        width: 100%;
+    }
+}
+

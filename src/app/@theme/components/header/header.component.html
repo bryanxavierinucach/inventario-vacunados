@@ -1,0 +1,23 @@
+<div>
+  <div style="padding-bottom: 0.5rem;">
+    <a (click)="toggle()" href="#" class="sidebar-toggle">
+      <nb-icon icon="menu-2-outline" style="color: rgb(112, 121, 121);"></nb-icon>
+    </a>
+    <a *ngIf="!toogleSidebar" href="#" (click)="navigateHome()" class="logo">
+      <img src="../../../../assets/images/logo-app.png" alt="App" height="40px" /></a>
+
+  </div>
+</div>
+
+<div class="header-container">
+  <nb-actions class="actions" size="small">
+    <nb-action icon="bell-outline"
+               badgeText="1"
+               badgeStatus="danger">
+    </nb-action>
+    <nb-action icon="person-outline" style="color: aqua;" (click)="onClickProfile()" status="primary">
+    </nb-action>
+    <nb-action icon="settings-2-outline" class="option" [nbContextMenu]="userMenu" status="primary">
+    </nb-action>
+  </nb-actions>
+</div>

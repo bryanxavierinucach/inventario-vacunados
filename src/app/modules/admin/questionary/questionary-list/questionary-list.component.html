@@ -1,0 +1,98 @@
+<br>
+<br>
+<b>Cuestionarios</b>
+<br>
+<br>
+
+<p-dataView #dv [loading]="!isLoaded" [value]="questionaries" filterBy="name" [sortField]="sortField"
+    [sortOrder]="sortOrder" layout="list">
+    <ng-template pTemplate="header" class="header-data">
+        <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+            <nb-select  class="sort" placeholder="Ordenar por título" (selectedChange)="onSortChange($event)">
+                <nb-option *ngFor="let item of sortOptions" [value]="item.value">{{ item.label }}</nb-option>
+            </nb-select>
+            <!--Buscador-->
+            <div class="search">
+                <nb-form-field>
+                    <nb-icon nbPrefix icon="search-outline" pack="eva" class="icon-basic-900"></nb-icon>
+                    <input type="text" nbInput placeholder="Buscar por título" nbTooltip="Presione enter para buscar"
+                        (keydown.enter)="onSearch($event)">
+                </nb-form-field>
+        </div>
+            <!--End buscador-->
+            <!-- <p-dataViewLayoutOptions class="test"></p-dataViewLayoutOptions> -->
+        </div>
+    </ng-template>
+    <ng-template let-item pTemplate="listItem">
+        <div class="p-col-12">
+            <div class="item-list-item list">
+                <div class="item-list-detail">
+                    <div class="p-grid row">
+                        <div class="title">
+                            <div class="header-title">Título</div>
+                            <div class="item-list-title"  [nbTooltip]="item.questionaryTitle">
+                                {{item.questionaryTitle}}
+                            </div>
+                        </div>
+                        <div class="description">
+                            <div class="header-title">Objectivo</div>
+                            <div class="item-list-title" [nbTooltip]="item.objective">
+                                {{item.objective}}
+                            </div>
+                        </div>
+                        <div class="type">
+                            <div class="header-title">Tipo</div>
+                            <div class="item-list-title">
+                                <div *ngIf="item.type===questionaryType.DIAGNOSIS">
+                                    {{TYPE_DIAGNOSIS_SHOW}}
+                                </div>
+                                <div *ngIf="item.type===questionaryType.OPPORTUNITY">
+                                    {{TYPE_OPPORTUNITY_SHOW}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="directed">
+                            <div class="header-title">Dirigido a</div>
+                            <div class="item-list-title">
+                                <div *ngIf="item.directed===questionaryDirected.TALENT">
+                                    {{DIRECTED_TALENT_SHOW}}
+                                </div>
+                                <div *ngIf="item.directed===questionaryDirected.PYME">
+                                    {{DIRECTED_PYME_SHOW}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-list-action">
+                    <div>
+                        <button type="button" nbButton nbTooltip="Detalles" nbTooltipPlacement="top" size="small"
+                            status="basic" class="p-button p-mr-2" [routerLink]="[item.id, 'view']">
+                            <nb-icon icon="eye-outline" class="icon"></nb-icon>
+                        </button> 
+                        <button type="button" nbButton nbTooltip="Editar" nbTooltipPlacement="top" size="small"
+                            status="success" [routerLink]="[item.id, 'edit']" class="p-button p-mr-2">
+                            <nb-icon icon="edit-2-outline" class="icon"></nb-icon>
+                        </button>
+                        <button type="button" nbButton nbTooltip="Eliminar" nbTooltipPlacement="top" size="small"
+                            status="danger" (click)="onConfirmDelete(item)" class="p-button">
+                            <nb-icon icon="trash-outline" class="icon"></nb-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-dataView>
+<p-paginator [rows]="limitTable" [totalRecords]="totalRecords" (onPageChange)="onPaginate($event)"></p-paginator>
+
+<p-confirmDialog #cddelete key="cddelete" [baseZIndex]="10000" [closable]="false">
+    <p-footer>
+        <button nbButton outline 
+            class="p-button  p-mr-2 p-mb-2 button-outline" (click)="cddelete.reject()">Cancelar
+        </button>
+        <button nbButton status="danger" class="p-button  p-mr-2 p-mb-2"
+            (click)="cddelete.accept()">Eliminar
+        </button>
+    </p-footer>
+</p-confirmDialog>

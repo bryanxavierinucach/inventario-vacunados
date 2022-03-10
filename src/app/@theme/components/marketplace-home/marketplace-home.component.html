@@ -1,0 +1,31 @@
+
+<nb-layout>
+  <nb-layout-header style="background-color: black;">
+    <div class="logo-black col-12 ">
+      <a href="/">
+        <img class="back" src="../../../../assets/images/logo-app.png" alt="App" height="40px" /></a>
+    </div>
+  </nb-layout-header>
+
+  <nb-layout-column class="fondo">
+    <div class="market-public">
+      <div style="padding-left:2%; ">
+        <h1 style=" color: #9fffd5; margin: 0;">MARKETPLACE</h1>
+        <h6 style="color: white; margin: 0 0 2% 0;">LISTADO MARKETPLACE DE OPORTUNIDADES, PARA PODER
+          <br> APLICAR A CADA UNA DE LAS OPORTUNIDADES NECESITA
+        </h6>
+        <button style="background-color: transparent; color: #9fffd5; font-weight: 900; border: solid;" class="" nbButton shape="round" size="tiny"
+          status="primary" [routerLink]="['/auth/register']">REGISTRARSE</button>
+      </div>
+
+      <div *ngIf="opportunities?.length >=0">
+        <ngx-opportunity-list-status [opportunities]="opportunities" [sortOptions]="sortOptions" [sortField]="sortField"
+          [sortOrder]="sortOrder" [totalRecords]="totalRecords" [limitTable]="limitTable" [status]="status"
+          [rolPublic]="rolPublic" (onSortChange)="onSortChange($event)" (onSearch)="onSearch($event)"
+          (onPaginate)="onPaginate($event)">
+        </ngx-opportunity-list-status>
+      </div>
+
+    </div>
+  </nb-layout-column>
+</nb-layout>
