@@ -3,8 +3,6 @@ import { Injectable, NgModule } from '@angular/core';
 import {
 } from '@nebular/auth';
 import { AuthService, GuardService } from './modules/auth/services';
-import { HomeComponent } from './@theme/components/home/home.component';
-import { MarketplaceHomeComponent } from './@theme/components/marketplace-home/marketplace-home.component';
 import { EMPTY } from 'rxjs';
 import { MENU_ITEMS_ADMIN, MENU_ITEMS_PYME, MENU_ITEMS_TALENT } from './modules/pages-menu';
 import { Page404Component } from './@theme/components/page404/page404.component';
@@ -40,18 +38,8 @@ export class MenuResolve implements Resolve<any> {
 
 export const routes: Routes = [
   {
-    path: '',
-    component: HomeComponent,
-    pathMatch: 'full',
-  },
-  {
     path: '404',
     component: Page404Component,
-    pathMatch: 'full',
-  },
-  {
-    path: 'market',
-    component: MarketplaceHomeComponent,
     pathMatch: 'full',
   },
   {

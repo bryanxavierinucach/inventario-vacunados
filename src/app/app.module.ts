@@ -28,8 +28,6 @@ import {
 import { AuthModule } from './modules/auth/auth.module';
 import localeEs from '@angular/common/locales/es-CL';
 import { CommonModule, registerLocaleData } from '@angular/common';
-import { HomeComponent } from './@theme/components/home/home.component';
-import { MarketplaceHomeComponent } from './@theme/components/marketplace-home/marketplace-home.component';
 import { Page404Component } from './@theme/components/page404/page404.component';
 import { HeaderService } from './@theme/components/header/header.service';
 import { PagesModule } from './modules/pages.module';
@@ -45,7 +43,7 @@ import { DialogModule } from 'primeng/dialog';
 registerLocaleData(localeEs);
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, MarketplaceHomeComponent, Page404Component ],
+  declarations: [AppComponent, Page404Component ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
