@@ -4,6 +4,7 @@ export interface IUser {
     id?: string;
     user?: string;
     username?: string;
+    cedula?: string;
     firstName?: string;
     lastName?: string;
     email?: string;

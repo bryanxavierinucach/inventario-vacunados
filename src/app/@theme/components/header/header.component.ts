@@ -42,7 +42,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.getAccount();
     this.menuService.onItemClick().subscribe((event) => {
       if (this.noneSidebar) this.toggle();
       this.menuItemSelection(event.item.title);
@@ -128,27 +127,27 @@ onClickProfile() {
     }
   }
 
-  getAccount() {
-    const token: any = this.jwtTokenService.decodeToken(localStorage.getItem('access_token'));
-    this.nameUser = token.name;
-    const userId = this.authService.getUserIdLogin();
-    this.userService.getById(userId).subscribe(res => {
-      this.user = res as IUser;
-      if (this.user.role === ROLE_ADMIN) {
-        this.userMenu = [
-          { title: 'Cambiar Contraseña', icon: 'lock-outline' },
-          { title: 'Cerrar sesión', icon: 'unlock-outline' }];
-      } else {
-        this.userMenu = [{ title: 'Perfil', icon: 'person-outline' },
-        { title: 'Cambiar Contraseña', icon: 'lock-outline' },
-        { title: 'Cerrar sesión', icon: 'unlock-outline' }];
-      }
-      if (this.user.role === ROLE_PYME) this.roleShow = ROLE_PYME_SHOW;
-      if (this.user.role === ROLE_USER) this.roleShow = ROLE_USERS_SHOW;
-      if (this.user.role === ROLE_ADMIN) this.roleShow = ROLE_ADMIN_SHOW;
-      this.roleShow += ' - ' + this.user.user;
-    });
-  }
+  // getAccount() {
+  //   const token: any = this.jwtTokenService.decodeToken(localStorage.getItem('access_token'));
+  //   this.nameUser = token.name;
+  //   const userId = this.authService.getUserIdLogin();
+  //   this.userService.getById(userId).subscribe(res => {
+  //     this.user = res as IUser;
+  //     if (this.user.role === ROLE_ADMIN) {
+  //       this.userMenu = [
+  //         { title: 'Cambiar Contraseña', icon: 'lock-outline' },
+  //         { title: 'Cerrar sesión', icon: 'unlock-outline' }];
+  //     } else {
+  //       this.userMenu = [{ title: 'Perfil', icon: 'person-outline' },
+  //       { title: 'Cambiar Contraseña', icon: 'lock-outline' },
+  //       { title: 'Cerrar sesión', icon: 'unlock-outline' }];
+  //     }
+  //     if (this.user.role === ROLE_PYME) this.roleShow = ROLE_PYME_SHOW;
+  //     if (this.user.role === ROLE_USER) this.roleShow = ROLE_USERS_SHOW;
+  //     if (this.user.role === ROLE_ADMIN) this.roleShow = ROLE_ADMIN_SHOW;
+  //     this.roleShow += ' - ' + this.user.user;
+  //   });
+  // }
 
   toggle(): boolean {
     this.toogleSidebar = !this.toogleSidebar;

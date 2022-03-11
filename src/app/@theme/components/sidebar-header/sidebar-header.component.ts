@@ -120,8 +120,10 @@ export class SiderbarHeaderComponent implements OnInit, OnDestroy {
     const token: any = this.jwtTokenService.decodeToken(localStorage.getItem('access_token'));
     this.nameUser = token.name;
     const userId = this.authService.getUserIdLogin();
+    console.log(userId);
     this.userService.getById(userId).subscribe(res => {
       this.user = res as IUser;
+      console.log(this.user);
       if (this.user.role === ROLE_ADMIN) {
         this.userMenu = [
           { title: 'Cambiar Contraseña', icon: 'lock-outline' },
@@ -131,6 +133,7 @@ export class SiderbarHeaderComponent implements OnInit, OnDestroy {
         { title: 'Cambiar Contraseña', icon: 'lock-outline' },
         { title: 'Cerrar sesión', icon: 'unlock-outline' }];
       }
+      console.log(this.user.role);
       if (this.user.role === ROLE_PYME) this.roleShow = ROLE_PYME_SHOW;
       if (this.user.role === ROLE_USER) this.roleShow = ROLE_USERS_SHOW;
       if (this.user.role === ROLE_ADMIN) this.roleShow = ROLE_ADMIN_SHOW;
