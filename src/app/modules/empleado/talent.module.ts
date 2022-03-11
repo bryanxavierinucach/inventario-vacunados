@@ -24,11 +24,10 @@ import { JwtTokenService } from '../auth/services/jwt-token.service';
 import { ToastService } from '../../@core/services/toast.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
-import { DashboardTalentComponent } from './dashboard-talent/dashboard-talent.component';
 
 
 @NgModule({
-  declarations: [DashboardTalentComponent],
+  declarations: [],
   imports: [
     CommonModule,
     TalentRoutingModule,

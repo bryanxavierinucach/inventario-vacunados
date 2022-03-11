@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { JwtTokenService } from 'app/modules/auth/services';
 import { TalentService } from '../services/talent.service';
 import { LoadDataComponent } from 'app/shared/utils/classes/load-data.component';
-import { UserAchievementService } from 'app/modules/admin/services/user-achievement.service';
 import { ToastService } from 'app/@core/services/toast.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Observable, of } from 'rxjs';
@@ -51,7 +50,6 @@ export class ProfileTalentComponent extends LoadDataComponent implements OnInit 
     private service: TalentService,
     private router: Router,
     private toast: ToastService,
-    private userAchievementService: UserAchievementService,
     private formBuilder: FormBuilder, public toastService: ToastService
   ) {
     super();
@@ -61,7 +59,6 @@ export class ProfileTalentComponent extends LoadDataComponent implements OnInit 
     const token: any = this.jwtTokenService.decodeToken(localStorage.getItem('access_token'));
     this.user = token.name;
     this.idkey = token.sub;
-    this.loadDataAchievements();
     this.getTalenTById(this.idkey);
     this.formInterest = this.formBuilder.group({
       name: new FormControl(''),
@@ -93,23 +90,12 @@ export class ProfileTalentComponent extends LoadDataComponent implements OnInit 
     });
   }
 
-  loadDataAchievements() {
-    this.userAchievementService.getAllByUserId(this.idkey, this.limitTable,
-      this.page, this.q, this.FIELD_SEARCH, this.orderBy, this.orderDirection).subscribe(res => {
-        this.limitTable = res['limit'];
-        this.totalRecords = res['total'];
-        this.achievementUser = res['data'];
-        this.isLoaded = true;
-      });
-    this.isLoaded = false;
-  }
   onDetail(data: any) {
     this.dataAchievemet = data.achievement;
     this.displayDetail = true;
   }
   onSuccess() {
     this.displayProfileUser = false;
-    this.loadDataAchievements();
     this.getTalenTById(this.idkey);
   }
 

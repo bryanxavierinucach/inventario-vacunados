@@ -24,13 +24,6 @@ export class AuthService {
       datos, { headers: httpHeaders });
   }
 
-
-  public loginSocial(data: any) {
-    return this.http.post(
-      `${config.api.remote}/${config.oauthSocial.token}`,
-      data);
-  }
-
   public createUserSocial(data: any) {
     return this.http.post(
       `${config.api.url}${config.user.mainEndpoint}${config.user.social}`,

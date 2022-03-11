@@ -4,11 +4,7 @@ import { Router } from '@angular/router';
 import { ToastService } from 'app/@core/services/toast.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { config } from 'app/config';
-import { LOCAL_STORAGE_SOCIAL } from 'app/shared/constants/local-storage.constants';
-import { ISocial } from 'app/shared/models/social.model';
 import { ROLE_ADMIN, ROLE_PYME, ROLE_TALENT } from 'app/shared/constants/roles.constants';
-import { WalletService } from '../../services/wallet.service';
 import { IUser } from 'app/shared/models/user.model';
 import { ModalSizeComponent } from 'app/shared/utils/classes/modal-size.component';
 
@@ -42,7 +38,7 @@ export class RegisterFormComponent extends ModalSizeComponent implements OnInit 
     private router: Router,
     private toast: ToastService,
     private fb: FormBuilder,
-    private sanitizer: DomSanitizer, private walletService: WalletService) {
+    private sanitizer: DomSanitizer) {
       super();
     }
 
@@ -215,61 +211,6 @@ export class RegisterFormComponent extends ModalSizeComponent implements OnInit 
 
   onClose() {
     this.validatedUser = false;
-  }
-
-  onOpenLinkedin() {
-    window.open(`${config.oauthSocial.mainEndpoint}${config.oauthSocial.linkedin}`, 'Linkedin', 'width=530,height=700,menubar=no');
-  }
-
-  onOpenGoogle() {
-    window.open(`${config.oauthSocial.mainEndpoint}${config.oauthSocial.google}`, 'Google', 'width=530,height=700,menubar=no');
-  }
-
-  onOpenApple() {
-    window.open(`${config.oauthSocial.mainEndpoint}${config.oauthSocial.apple}`, 'Apple', 'width=530,height=700,menubar=no');
-  }
-
-
-  @HostListener('window:storage', ['$event'])
-  onStorageChange(ev: StorageEvent) {
-    if (ev.key === LOCAL_STORAGE_SOCIAL) {
-      const social = JSON.parse(ev.newValue) as ISocial;
-      const data = {
-        ...social,
-        redirectUri: config.oauthSocial.redirectUri,
-      };
-      this.loading = true;
-      this.authService.loginSocial(data).subscribe((res: any) => {
-        localStorage.clear();
-        localStorage.setItem('access_token', res.access_token);
-        localStorage.setItem('refresh_token', res.refresh_token);
-        const isPyme = this.authService.isExistRole(ROLE_PYME);
-        const isTalent = this.authService.isExistRole(ROLE_TALENT);
-        if (isPyme || isTalent) {
-          this.saveAndValidate(res);
-        } else {
-          this.loading = false;
-          this.noRole = true;
-        }
-      }, (err) => {
-        this.loading = false;
-      });
-    }
-  }
-  updateRole() {
-    const userId = this.authService.getUserIdLogin();
-    this.formRole.patchValue({
-      userId,
-    });
-    this.loading = true;
-    this.authService.createUserSocial(this.formRole.value).subscribe(res => {
-      this.loading = false;
-      this.onOpenLinkedin();
-    }, (err) => {
-      this.loading = false;
-      this.toast.showWarning('No se puedo continuar', 'Intenta más tarde');
-      this.noRole = false;
-    });
   }
 
 

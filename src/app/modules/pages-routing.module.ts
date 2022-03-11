@@ -10,7 +10,7 @@ const routes: Routes = [
     component: PagesComponent,
     children: [
       {
-        path: 'profile',
+        path: 'talent/profile',
         loadChildren: () =>
           import('../modules/auth/profile/profile.module').then(m => m.ProfileModule),
       },
@@ -20,13 +20,6 @@ const routes: Routes = [
           import('../modules/auth/register/change-password/change-password.module').then(m => m.ChangePasswordModule),
       },
       // Admin module
-      {
-        path: 'admin/dashboard',
-        loadChildren: () =>
-          import('../modules/admin/dashboard-admin/dashboard-admin.module').then(m => m.DashboardAdminModule),
-        canActivateChild: [GuardService],
-        data: { rol: ['admin']},
-      },
       {
         path: 'admin/user',
         loadChildren: () =>

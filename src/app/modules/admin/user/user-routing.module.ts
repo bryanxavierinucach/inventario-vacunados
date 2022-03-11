@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserComponent } from './user.component';
-import { SectionAnswerReportResolve } from 'app/shared/resolves/section-answer-report.resolve';
 import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [

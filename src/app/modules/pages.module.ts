@@ -18,7 +18,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
-import { DashboardComponent } from 'app/shared/components/dashboard/dashboard.component';
 import { CoinNotationPipe } from 'app/shared/pipes/coin-notation.pipe';
 import { PaginatorModule } from 'primeng/paginator';
 import { SafeHtmlPipe } from 'app/shared/pipes/safe-html.pipe';
@@ -56,7 +55,6 @@ const SHARED_MODULES = [
 ];
 
 const SHARED_COMPONENTS = [
-  DashboardComponent,
   CoinNotationPipe,
   SafeHtmlPipe,
   CoinNotationPipe,

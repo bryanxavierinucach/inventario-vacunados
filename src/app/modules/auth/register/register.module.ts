@@ -19,7 +19,6 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
 import { authInterceptorProviders, AuthService, GuardService, JwtTokenService } from '../services';
 import { LoginForm } from '../models/login.form';
-import { TalentInformationFormComponent } from './talent-information-form/talent-information-form.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { DataViewModule } from 'primeng/dataview';
 import { CardModule } from 'primeng/card';
@@ -28,13 +27,11 @@ import { PaginatorModule } from 'primeng/paginator';
 import { SidebarModule } from 'primeng/sidebar';
 import { CarouselModule } from 'primeng/carousel';
 import { TalentService } from 'app/modules/empleado/services/talent.service';
-import { SocialRedirectUriComponent } from './social-redirect-uri/social-redirect-uri.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
-  declarations: [RegisterFormComponent, TalentInformationFormComponent,
-    SocialRedirectUriComponent,
+  declarations: [RegisterFormComponent,
     ChangePasswordComponent],
 
   imports: [

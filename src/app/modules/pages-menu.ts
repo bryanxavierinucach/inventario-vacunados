@@ -22,6 +22,6 @@ export const MENU_ITEMS_TALENT: NbMenuItem[] = [
   {
     title: 'Información',
     icon: 'home-outline',
-    link: '/app/talent/dashboard',
+    link: '/app/talent/profile',
   },
 ];
