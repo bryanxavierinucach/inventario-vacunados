@@ -26,10 +26,10 @@ export const config = {
     talent: 'talent/',
     pyme: 'pyme/',
   },
-  profile: {
-    mainEndpoint: 'profile/',
+  empleado: {
+    mainEndpoint: 'empleado/',
     countries: 'countries/',
-    profileAll: 'all/',
+    empleadoAll: 'all/',
     users: 'user/',
     category: 'category/',
     talent: 'talent/',

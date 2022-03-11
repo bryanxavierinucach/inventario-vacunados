@@ -13,7 +13,7 @@ export class KeyloakTalentService {
   constructor(protected http: HttpClient) { }
 
   public getAll() {
-    const query = `${BASE_URL}${config.keyloak.talent}`;
+    const query = `${BASE_URL}${config.empleado.users}`;
     return this.http.get(query);
   }
 }

@@ -131,7 +131,6 @@ export class SiderbarHeaderComponent implements OnInit, OnDestroy {
         { title: 'Cambiar Contraseña', icon: 'lock-outline' },
         { title: 'Cerrar sesión', icon: 'unlock-outline' }];
       }
-      console.log(this.user.role);
       if (this.user.role === ROLE_PYME) this.roleShow = ROLE_PYME_SHOW;
       if (this.user.role === ROLE_USER) this.roleShow = ROLE_USERS_SHOW;
       if (this.user.role === ROLE_ADMIN) this.roleShow = ROLE_ADMIN_SHOW;

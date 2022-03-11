@@ -65,28 +65,13 @@ export class ProfileTalentComponent extends LoadDataComponent implements OnInit 
       userId: this.idkey,
       interestId: new FormControl(''),
     });
-    this.formTalent = this.formBuilder.group({
-      name: new FormControl(''),
-      userId: this.idkey,
-      talentId: new FormControl(''),
-    });
-    this.getTalent();
-    this.getTalentList();
   }
 
   // ----------------- FUNCIONES PRINCIPALES -------------------//
   getTalenTById(idKeycloak) {
     this.service.getById(idKeycloak).subscribe(res => {
       this.profile = res['data'][0];
-      if (this.profile === undefined) {
-        this.toast.showWarning('Atención', 'Se debe agregar información para una mejor experiencia de usuario');
-        this.loading = true;
-        this.router.navigate(['/auth/register/talent/' + idKeycloak]);
-      }
-      const json = res['data'][0].user.avatar;
-      this.base64imagen = 'data:image/jpg;base64,' + json;
       this.email = res['data'][0].user.email;
-
     });
   }
 
@@ -123,47 +108,10 @@ export class ProfileTalentComponent extends LoadDataComponent implements OnInit 
 
 
   // ----------------- FUNCIONES TALENTOS -------------------//
-
-  saveTalents() {
-    if (this.formTalent.valid) {
-      this.loading = true;
-      this.service.postTalent(this.formTalent.value).subscribe(res => {
-        this.bolShowTalent = false;
-        this.bolShowTalent2 = true;
-        this.getTalent();
-      },
-        (err) => {
-          this.loading = false;
-          if (err.error.message)
-            this.toastService.showWarning('Atención', err.error.message);
-          else this.toastService.showWarning('Atención', 'No se pudo guardar');
-        },
-      );
-    }
-  }
-
-  getTalent() {
-    this.service.getTalentById(this.idkey).subscribe((resa: any) => {
-      this.talents = resa;
-    });
-  }
-  getTalentList() {
-    this.service.getTalentsList().subscribe((resp: any) => {
-      this.talentList = resp;
-    });
-  }
   activeSpamTalent() {
     this.bolShowTalent = false;
     this.bolShowTalent2 = true;
   }
-
-  deleteTalent(id) {
-    this.loading = true;
-    this.service.deleteTalent(id).subscribe(res => {
-      this.getTalent();
-    });
-  }
-
   activeDiv(): void {
     this.bolShowTalent = true;
     this.bolShowTalent2 = false;
