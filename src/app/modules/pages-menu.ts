@@ -2,47 +2,12 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS_ADMIN: NbMenuItem[] = [
 
-  {
-    title: 'Dashboard',
-    icon: 'home-outline',
-    link: '/app/admin/dashboard',
-  },
-  {
-    title: 'Cuestionario',
-    icon: 'book-open-outline',
-    link: '/app/admin/questionary',
-  },
-  {
-    title: 'Recompensa',
-    icon: 'gift-outline',
-    link: '/app/admin/reward',
 
-  },
-  {
-    title: 'Logros',
-    icon: 'award-outline',
-    link: '/app/admin/achievement',
-  },
-  // {
-  //   title: 'Logros Usuario',
-  //   icon: 'award-outline',
-  //   link: '/app/admin/achievement/UserAchievement',
-  // },
-  {
-    title: 'Método Pago',
-    icon: 'credit-card-outline',
-    link: '/app/admin/paymentMethod',
-  },
   {
     title: 'Usuarios',
     icon: 'people-outline',
     link: '/app/admin/user',
-  },
-  {
-    title: 'Plantilla Email',
-    icon: 'email-outline',
-    link: '/app/admin/templateemail',
-  },
+  }
 ];
 
 export const MENU_ITEMS_PYME: NbMenuItem[] = [

@@ -4,7 +4,6 @@ import { TITLE_ACHIEVEMENT_USER } from 'app/shared/constants/title-pages.contant
 import { IUserAchievement } from 'app/shared/models/userAchievement.model';
 import { ModalSizeComponent } from 'app/shared/utils/classes/modal-size.component';
 import { Location } from '@angular/common';
-import { UserAchieveListComponent } from './user-achieve-list/user-achieve-list.component';
 @Component({
   selector: 'ngx-user',
   templateUrl: './user.component.html',
@@ -13,7 +12,6 @@ import { UserAchieveListComponent } from './user-achieve-list/user-achieve-list.
 export class UserComponent extends ModalSizeComponent implements OnInit {
   displayCreate: boolean;
  userAchievement: IUserAchievement;
-  @ViewChild(UserAchieveListComponent) achievementList;
   constructor(private headerService: HeaderService, private location: Location) {
     super();
   }
@@ -33,7 +31,6 @@ export class UserComponent extends ModalSizeComponent implements OnInit {
   onSuccess() {
     this.userAchievement = null;
     this.displayCreate = false;
-    this.achievementList.loadDataAchieveUser();
   }
 
   onClose() {

@@ -8,16 +8,12 @@ import { PagesModule } from 'app/modules/pages.module';
 import { PaginatorModule } from 'primeng/paginator';
 import { DialogModule } from 'primeng/dialog';
 import { NbUserModule } from '@nebular/theme';
-import { UserAchieveListComponent } from './user-achieve-list/user-achieve-list.component';
-import { UserAchieveFormComponent } from './user-achieve-form/user-achieve-form.component';
-import { DiagnosisUserComponent } from './diagnosis-user/diagnosis-user.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { UsersComponent } from './users/users.component';
 
 
 @NgModule({
-  declarations: [UserComponent, UserListComponent, UserAchieveListComponent,
-    UserAchieveFormComponent, DiagnosisUserComponent, UserFormComponent, UsersComponent],
+  declarations: [UserComponent, UserListComponent, UserFormComponent, UsersComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

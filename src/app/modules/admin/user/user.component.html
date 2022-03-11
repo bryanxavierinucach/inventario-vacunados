@@ -12,9 +12,3 @@
 
   <ngx-user-achieve-form *ngIf="!userAchievement && displayCreate" (closeModal)="onClose()" (success)="onSuccess()" [displayCreate]="displayCreate">
   </ngx-user-achieve-form>
-
-<!--Lista-->
-<div style="margin-top: 1rem;">
-  <ngx-user-achieve-list (updateEvent)="onUpdate($event)">
-  </ngx-user-achieve-list>
-</div>

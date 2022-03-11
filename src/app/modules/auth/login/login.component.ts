@@ -203,7 +203,7 @@ export class LoginComponent extends ModalSizeComponent implements OnInit {
     const isPyme = this.authService.isExistRole(ROLE_PYME);
     const isTalent = this.authService.isExistRole(ROLE_TALENT);
     if (isAdmin)
-      this.router.navigate(['/app/admin/dashboard']);
+      this.router.navigate(['/app/admin/user']);
     if (isTalent)
       this.router.navigate(['/app/talent/dashboard']);
     if (isPyme)
