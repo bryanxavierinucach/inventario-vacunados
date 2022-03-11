@@ -23,7 +23,6 @@ import { DataViewModule } from 'primeng/dataview';
 import { PaginatorModule } from 'primeng/paginator';
 import { SidebarModule } from 'primeng/sidebar';
 import { CarouselModule } from 'primeng/carousel';
-import { WalletModule } from '../wallet-form/wallet.module';
 import { RegisterRoutingModule } from '../register/register-routing.module';
 import { AuthRoutingModule } from '../auth-routing.module';
 
@@ -35,8 +34,6 @@ import { AuthRoutingModule } from '../auth-routing.module';
     NbCardModule,
     CardModule,
     NbUserModule,
-
-    WalletModule,
     RegisterRoutingModule,
     CommonModule,
     ReactiveFormsModule,

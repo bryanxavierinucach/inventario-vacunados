@@ -20,7 +20,6 @@ import { GuardService, JwtTokenService } from './services';
 import { LoginForm } from './models/login.form';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { DialogModule } from 'primeng/dialog';
-import { WalletModule } from './wallet-form/wallet.module';
 import { ResetPasswordComponent } from './register/reset-password/reset-password.component';
 
 @NgModule({
@@ -28,7 +27,6 @@ import { ResetPasswordComponent } from './register/reset-password/reset-password
     LoginComponent, ResetPasswordComponent,
   ],
   imports: [
-    WalletModule,
     CommonModule,
     ReactiveFormsModule,
     AuthRoutingModule,

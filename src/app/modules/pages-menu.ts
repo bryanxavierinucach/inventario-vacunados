@@ -4,7 +4,7 @@ export const MENU_ITEMS_ADMIN: NbMenuItem[] = [
 
 
   {
-    title: 'Usuarios',
+    title: 'Empleados',
     icon: 'people-outline',
     link: '/app/admin/user',
   }

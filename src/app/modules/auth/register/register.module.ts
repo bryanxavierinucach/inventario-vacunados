@@ -29,7 +29,6 @@ import { SidebarModule } from 'primeng/sidebar';
 import { CarouselModule } from 'primeng/carousel';
 import { TalentService } from 'app/modules/talent/services/talent.service';
 import { SocialRedirectUriComponent } from './social-redirect-uri/social-redirect-uri.component';
-import { WalletModule } from '../wallet-form/wallet.module';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 
@@ -39,7 +38,6 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     ChangePasswordComponent],
 
   imports: [
-    WalletModule,
     CommonModule,
     RegisterRoutingModule,
     CommonModule,

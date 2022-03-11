@@ -7,25 +7,9 @@
 
           <div class="modal-complete" *ngIf="!user">
             <div class="row">
-              <div class="form-group col-12 col-md-3">
-                <div class="personal-image" style="margin-left: 1rem;">
-                  <label class="label">
-                    <input type="file" class="file-upload" accept="image/png, image/jpeg" (change)="cambiarImg($event)"
-                      formControlName="avatar" />
-                    <figure class="personal-figure">
-                      <img [src]="viewImage? viewImage : avatarUser " class="personal-avatar" alt="avatar">
-                      <figcaption class="personal-figcaption">
-                        <img
-                          src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png">
-                      </figcaption>
-                    </figure>
-                  </label>
-                </div>
-                <label for="">Subir imagen</label>
-              </div>
 
-              <div class="form-group col-12 col-md-4">
-                <label class="label-basic" for="input-namuser">Username<span class="text-danger">*</span></label>
+              <div class="form-group col-12 col-md-6">
+                <label class="label-basic" for="input-namuser">Cedula<span class="text-danger">*</span></label>
                 <input nbInput fullWidth formControlName="username" placeholder="Ingrese el nombre de usuario">
                 <div *ngIf="formUser.controls['username'].invalid && (formUser.controls['username'].dirty ||
           formUser.controls['username'].touched)" class="text-danger">
@@ -36,7 +20,7 @@
               </div>
 
 
-              <div class="form-group col-12 col-md-4">
+              <div class="form-group col-12 col-md-6">
                 <label class="label-basic" for="input-email">Email<span class="text-danger">*</span></label>
                 <input nbInput fullWidth formControlName="email" placeholder="Ingrese el email">
                 <div *ngIf="formUser.controls['email'].invalid && (formUser.controls['email'].dirty
@@ -89,52 +73,14 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group col-12 col-md-6">
-                <label class="label-basic" for="input-walletAddress">Wallet</label>
-                <input nbInput fullWidth formControlName="walletAddress" placeholder="Ingrese la wallet">
-              </div>
-
-              <div class="form-group col-12 col-md-6">
-                <label class="label-basic" for="input-role">Rol<span class="text-danger">*</span></label>
-                <div>
-                  <nb-radio-group formControlName="role">
-                    <nb-radio value="users">Talento</nb-radio>
-                    <nb-radio value="pyme">Pyme</nb-radio>
-                  </nb-radio-group>
-                </div>
-                <br>
-                <div *ngIf="formUser.controls['role'].invalid && (formUser.controls['role'].dirty
-          || formUser.controls['role'].touched)" class="text-danger">
-                  <div *ngIf="formUser.controls['role'].errors.required">
-                    Rol es obligatorio.
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
 
-          <div class="modal-complete" *ngIf="user">
+          <div *ngIf="user">
             <div class="row">
-              <div class="form-group col-12 col-md-3">
-                <div class="personal-image" style="margin-left: 1rem;">
-                  <label class="label">
-                    <input type="file" class="file-upload" accept="image/png, image/jpeg" (change)="cambiarImg($event)"
-                      formControlName="avatar" />
-                    <figure class="personal-figure">
-                      <img [src]="viewImage? viewImage : avatarUser " class="personal-avatar" alt="avatar">
-                      <figcaption class="personal-figcaption">
-                        <img
-                          src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png">
-                      </figcaption>
-                    </figure>
-                  </label>
-                  <br>
-                  <label for="">Subir imagen</label>
-                </div>
-              </div>
-              <div class="form-group col-12 col-md-4">
-                <label class="label-basic" for="input-firstName">Nombre<span class="text-danger">*</span></label>
+              <div class="form-group col-12 col-md-6">
+                <label class="label-basic" for="input-firstName">Nombres<span class="text-danger">*</span></label>
                 <input nbInput fullWidth formControlName="firstName" placeholder="Ingrese el nombre">
                 <div *ngIf="formUser.controls['firstName'].invalid && (formUser.controls['firstName'].dirty ||
           formUser.controls['firstName'].touched)" class="text-danger">
@@ -143,8 +89,8 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group col-12 col-md-4">
-                <label class="label-basic" for="input-lastName">Apellido<span class="text-danger">*</span></label>
+              <div class="form-group col-12 col-md-6">
+                <label class="label-basic" for="input-lastName">Apellidos<span class="text-danger">*</span></label>
                 <input nbInput fullWidth formControlName="lastName" placeholder="Ingrese el apellido">
                 <div *ngIf="formUser.controls['lastName'].invalid && (formUser.controls['lastName'].dirty ||
           formUser.controls['lastName'].touched)" class="text-danger">

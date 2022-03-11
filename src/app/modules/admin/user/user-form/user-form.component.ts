@@ -48,7 +48,6 @@ export class UserFormComponent implements OnInit {
       lastName: [this.user?.lastName, [Validators.maxLength(50), Validators.required]],
       email: [this.user?.email, [Validators.required, Validators.maxLength(50), Validators.email]],
       password: [this.user?.password, Validators.required],
-      role: [this.user?.role, Validators.required],
       userType: (0),
       walletAddress: [this.user?.walletAddress],
       maturity: [this.user?.maturity],
@@ -99,12 +98,11 @@ export class UserFormComponent implements OnInit {
         this.files.forEach(element => {
           formularioDeDatos.append('avatar', element);
         });
-        formularioDeDatos.append('username', this.formUser.value.username);
+        formularioDeDatos.append('cedula', this.formUser.value.username);
         formularioDeDatos.append('firstName', this.formUser.value.firstName);
         formularioDeDatos.append('lastName', this.formUser.value.lastName);
         formularioDeDatos.append('email', this.formUser.value.email);
         formularioDeDatos.append('password', this.formUser.value.password);
-        formularioDeDatos.append('role', this.formUser.value.role);
         if (formularioDeDatos != null) {
           this.authService.register(formularioDeDatos).subscribe(res => {
             this.loading = false;

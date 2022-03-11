@@ -96,16 +96,11 @@ export class UserListComponent extends LoadDataComponent implements OnInit {
     this.userService.getUserKeycloak(id).subscribe((res: any) => {
       const data = {
         id : dataAll.id,
-        avatar: dataAll.avatar,
         firstName: res.firstName,
         lastName: res.lastName,
         email: res.email,
         username: res.username,
         password: 'xxxxxxxxx',
-        role: dataAll.role,
-        userType: dataAll.userType,
-        walletAddress: dataAll.walletAddress,
-        maturity: dataAll.maturity,
       };
       this.updateEvent.emit(data);
     });
