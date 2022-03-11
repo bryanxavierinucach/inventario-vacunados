@@ -36,23 +36,9 @@ const routes: Routes = [
       },
       // TALENT
       {
-        path: 'talent/diagnosis',
-        loadChildren: () =>
-          import('../modules/talent/diagnosis/diagnosis.module').then(m => m.DiagnosisModule),
-        canActivateChild: [GuardService],
-        data: { rol: ['users'] },
-      },
-      {
         path: 'talent',
         loadChildren: () =>
-          import('../modules/talent/talent.module').then(m => m.TalentModule),
-        canActivateChild: [GuardService],
-        data: { rol: ['users'] },
-      },
-      {
-        path: 'talent/marketplace',
-        loadChildren: () =>
-          import('./talent/marketplace-talent/marketplace-talent.module').then(m => m.MarketplaceTalentModule),
+          import('./empleado/talent.module').then(m => m.TalentModule),
         canActivateChild: [GuardService],
         data: { rol: ['users'] },
       },

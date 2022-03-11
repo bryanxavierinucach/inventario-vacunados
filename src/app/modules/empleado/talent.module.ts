@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { TalentRoutingModule } from './talent-routing.module';
-import { TalentComponent } from './talent.component';
 import { PagesModule } from '../pages.module';
 import {
   NbActionsModule, NbAlertModule, NbBadgeModule, NbButtonModule,
@@ -24,17 +23,12 @@ import { TalentService } from './services/talent.service';
 import { JwtTokenService } from '../auth/services/jwt-token.service';
 import { ToastService } from '../../@core/services/toast.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { MarketplaceTalentComponent } from './marketplace-talent/marketplace-talent.component';
 import { DialogModule } from 'primeng/dialog';
-import { OpportunityListCompletedComponent } from './marketplace-talent/opportunity-list-completed/opportunity-list-completed.component';
-import { OpportunityRateComponent } from './marketplace-talent/opportunity-rate/opportunity-rate.component';
 import { DashboardTalentComponent } from './dashboard-talent/dashboard-talent.component';
-import { DashboardComponent } from 'app/shared/components/dashboard/dashboard.component';
-import { OpportunityListProposalComponent } from './opportunity-list-proposal/opportunity-list-proposal.component';
 
 
 @NgModule({
-  declarations: [DashboardTalentComponent, OpportunityListProposalComponent],
+  declarations: [DashboardTalentComponent],
   imports: [
     CommonModule,
     TalentRoutingModule,

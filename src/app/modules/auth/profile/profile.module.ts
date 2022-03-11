@@ -9,7 +9,7 @@ import { NbActionsModule, NbAlertModule, NbAutocompleteModule, NbBadgeModule, Nb
   NbSelectModule, NbSidebarModule, NbSpinnerModule, NbTableModule,
   NbToastrModule, NbTooltipModule, NbUserModule } from '@nebular/theme';
 import { CardModule } from 'primeng/card';
-import { ProfileTalentComponent } from 'app/modules/talent/profile-talent/profile-talent.component';
+import { ProfileTalentComponent } from 'app/modules/empleado/profile-talent/profile-talent.component';
 import { TooltipModule } from 'primeng/tooltip';
 import { DialogModule } from 'primeng/dialog';
 import { NbEvaIconsModule } from '@nebular/eva-icons';

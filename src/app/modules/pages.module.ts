@@ -17,20 +17,11 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { DiagnosisTodoFormComponent } from 'app/shared/components/diagnosis/diagnosis-todo-form/diagnosis-todo-form.component';
-import { DiagnosisTodoListComponent } from 'app/shared/components/diagnosis/diagnosis-todo-list/diagnosis-todo-list.component';
-import { DiagnosisTodoFormQuestionComponent } from 'app/shared/components/diagnosis/diagnosis-todo-form-question/diagnosis-todo-form-question.component';
-import { DiagnosisDoneComponent } from 'app/shared/components/diagnosis/diagnosis-done/diagnosis-done.component';
-import { DiagnosisDoneListComponent } from 'app/shared/components/diagnosis/diagnosis-done-list/diagnosis-done-list.component';
-import { DiagnosisDoneReportComponent } from 'app/shared/components/diagnosis/diagnosis-done-report/diagnosis-done-report.component';
-import { OpportunityListStatusComponent } from 'app/shared/components/marketplace/opportunity-list-status/opportunity-list-status.component';
-import { OpportunityProposalUserComponent } from 'app/shared/components/marketplace/opportunity-proposal-user/opportunity-proposal-user.component';
 import { DialogModule } from 'primeng/dialog';
 import { DashboardComponent } from 'app/shared/components/dashboard/dashboard.component';
 import { CoinNotationPipe } from 'app/shared/pipes/coin-notation.pipe';
 import { PaginatorModule } from 'primeng/paginator';
 import { SafeHtmlPipe } from 'app/shared/pipes/safe-html.pipe';
-import { AchievementFormAssignComponent } from 'app/shared/components/achievement-form-assign/achievement-form-assign.component';
 
 
 const NB_MODULES = [
@@ -65,14 +56,10 @@ const SHARED_MODULES = [
 ];
 
 const SHARED_COMPONENTS = [
-  DiagnosisTodoFormComponent, DiagnosisTodoListComponent,
-  DiagnosisTodoFormQuestionComponent,
-  DiagnosisDoneComponent, DiagnosisDoneListComponent, DiagnosisDoneReportComponent,
-  OpportunityListStatusComponent, OpportunityProposalUserComponent, DashboardComponent,
+  DashboardComponent,
   CoinNotationPipe,
   SafeHtmlPipe,
   CoinNotationPipe,
-  AchievementFormAssignComponent,
 ];
 
 const MAT_MODULES = [

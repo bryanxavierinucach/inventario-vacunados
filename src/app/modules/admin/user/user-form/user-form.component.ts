@@ -23,9 +23,6 @@ export class UserFormComponent implements OnInit {
   idUserkey: string;
   @Input() user: IUser;
   @Input() displayCreate: boolean;
-
-  avatarUser;
-  imgUser = 'https://img2.freepng.es/20180402/vgw/kisspng-user-computer-icons-clip-art-administrator-5ac2ab0773a345.3567458115227072074737.jpg';
   @Output() success = new EventEmitter<void>();
   @Output() closeModal = new EventEmitter<void>();
   constructor(private userService: AuthService,
@@ -37,21 +34,14 @@ export class UserFormComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.avatarUser = 'data:image/jpg;base64,' + this.user?.avatar;
-    if (this.user?.avatar === null || this.user?.avatar === undefined) {
-      this.avatarUser = this.imgUser ;
-    }
+
     this.idUserkey = this.user?.id;
     this.formUser = this.formBuilder.group({
-      username: [this.user?.username, Validators.required],
+      username: [this.user?.username, [Validators.maxLength(10), Validators.required]],
       firstName: [this.user?.firstName, [Validators.maxLength(50), Validators.required]],
       lastName: [this.user?.lastName, [Validators.maxLength(50), Validators.required]],
       email: [this.user?.email, [Validators.required, Validators.maxLength(50), Validators.email]],
-      password: [this.user?.password, Validators.required],
-      userType: (0),
-      walletAddress: [this.user?.walletAddress],
-      maturity: [this.user?.maturity],
-      avatar: new FormControl(''),
+      password: [this.user?.password, Validators.required]
     });
   }
 
@@ -95,9 +85,6 @@ export class UserFormComponent implements OnInit {
       if (!this.user) {
 
         const formularioDeDatos = new FormData();
-        this.files.forEach(element => {
-          formularioDeDatos.append('avatar', element);
-        });
         formularioDeDatos.append('cedula', this.formUser.value.username);
         formularioDeDatos.append('firstName', this.formUser.value.firstName);
         formularioDeDatos.append('lastName', this.formUser.value.lastName);
@@ -119,14 +106,10 @@ export class UserFormComponent implements OnInit {
 
       } else {
         const formularioData = new FormData();
-        if (this.files) {
-          this.files.forEach(element => {
-            formularioData.append('avatar', element);
-          });
-        }
-        formularioData.append('avatar', this.user?.avatar);
+        formularioData.append('cedula', this.formUser.value.username);
         formularioData.append('firstName', this.formUser.value.firstName);
         formularioData.append('lastName', this.formUser.value.lastName);
+        formularioData.append('email', this.formUser.value.email);
         if (formularioData != null)
           this.userService.updateUserKeycloak(formularioData, this.user.id).subscribe(res => {
             this.loading = false;

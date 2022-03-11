@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SelectItemGroup } from 'primeng/api';
 import { JwtTokenService } from '../../services';
-import { TalentService } from 'app/modules/talent/services/talent.service';
+import { TalentService } from 'app/modules/empleado/services/talent.service';
 import { SearchCountryField, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
 
 @Component({

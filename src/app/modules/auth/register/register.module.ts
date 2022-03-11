@@ -27,7 +27,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { PaginatorModule } from 'primeng/paginator';
 import { SidebarModule } from 'primeng/sidebar';
 import { CarouselModule } from 'primeng/carousel';
-import { TalentService } from 'app/modules/talent/services/talent.service';
+import { TalentService } from 'app/modules/empleado/services/talent.service';
 import { SocialRedirectUriComponent } from './social-redirect-uri/social-redirect-uri.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { ChangePasswordComponent } from './change-password/change-password.component';

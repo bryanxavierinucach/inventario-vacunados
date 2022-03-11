@@ -26,7 +26,7 @@
               <h1 id="title" class="title col-12">¡TE ESTABAMOS <br /> ESPERANDO!</h1>
               <div *ngIf="!noRole">
 
-                <p class="text-color mt-3"><b> Acceder con tu nombre de usuario o con tu correo electrónico</b></p>
+                <p class="text-color mt-3"><b> Acceder con tu cédula o con tu correo electrónico</b></p>
                 <div class="">
                   <form [formGroup]="formData" (ngSubmit)="login()" aria-labelledby="title">
                     <div class="row">
@@ -39,7 +39,7 @@
                           <div *ngIf="formData.controls['username'].invalid && (formData.controls['username'].dirty ||
       formData.controls['username'].touched)" class="text-danger">
                             <div *ngIf="formData.controls['username'].errors.required">
-                              Usuario o correo electrónico es obligatorio.
+                              Cédula o correo electrónico es obligatorio.
                             </div>
                           </div>
                         </div>
@@ -146,10 +146,5 @@ formEmail.controls['email'].touched)" class="text-danger">
         </div>
       </p-footer>
     </p-dialog>
-
-    <!--Wallet-->
-    <!-- [style]="this.isLessThanSm?MODAL_SM:MODAL_2"> -->
-    <!-- <ngx-wallet-form (closeModal)="onCloseWallet()" (success)="onSuccessWallet()" [displayWallet]="displayWallet">
-    </ngx-wallet-form> -->
   </nb-layout-column>
 </nb-layout>
