@@ -20,7 +20,6 @@ import { DialogModule } from 'primeng/dialog';
 import { authInterceptorProviders, AuthService, GuardService, JwtTokenService } from '../services';
 import { LoginForm } from '../models/login.form';
 import { TalentInformationFormComponent } from './talent-information-form/talent-information-form.component';
-import { PymeInformationFormComponent } from './pyme-information-form/pyme-information-form.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { DataViewModule } from 'primeng/dataview';
 import { CardModule } from 'primeng/card';
@@ -35,7 +34,7 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
-  declarations: [RegisterFormComponent, TalentInformationFormComponent, PymeInformationFormComponent,
+  declarations: [RegisterFormComponent, TalentInformationFormComponent,
     SocialRedirectUriComponent,
     ChangePasswordComponent],
 

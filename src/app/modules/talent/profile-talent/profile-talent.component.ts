@@ -5,8 +5,7 @@ import { TalentService } from '../services/talent.service';
 import { LoadDataComponent } from 'app/shared/utils/classes/load-data.component';
 import { UserAchievementService } from 'app/modules/admin/services/user-achievement.service';
 import { ToastService } from 'app/@core/services/toast.service';
-import { FormGroup, FormBuilder, Validators, FormControl, ControlContainer } from '@angular/forms';
-import { PymeService } from '../../pyme/services/pyme.service';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -53,8 +52,7 @@ export class ProfileTalentComponent extends LoadDataComponent implements OnInit 
     private router: Router,
     private toast: ToastService,
     private userAchievementService: UserAchievementService,
-    private formBuilder: FormBuilder, public toastService: ToastService,
-    private servicePyme: PymeService,
+    private formBuilder: FormBuilder, public toastService: ToastService
   ) {
     super();
   }
@@ -65,7 +63,6 @@ export class ProfileTalentComponent extends LoadDataComponent implements OnInit 
     this.idkey = token.sub;
     this.loadDataAchievements();
     this.getTalenTById(this.idkey);
-    this.getInterest();
     this.formInterest = this.formBuilder.group({
       name: new FormControl(''),
       userId: this.idkey,
@@ -76,7 +73,6 @@ export class ProfileTalentComponent extends LoadDataComponent implements OnInit 
       userId: this.idkey,
       talentId: new FormControl(''),
     });
-    this.getInterestList();
     this.getTalent();
     this.getTalentList();
   }
@@ -125,42 +121,6 @@ export class ProfileTalentComponent extends LoadDataComponent implements OnInit 
     this.displayProfileUser = false;
   }
   // ----------------- FUNCIONES INTERESES -------------------//
-
-  save() {
-    if (this.formInterest.valid) {
-      this.loading = true;
-      this.servicePyme.postInterest(this.formInterest.value).subscribe(res => {
-        this.bolShow = false;
-        this.bolShow2 = true;
-        this.getInterest();
-      },
-        (err) => {
-          this.loading = false;
-          if (err.error.message)
-            this.toastService.showWarning('Atención', err.error.message);
-          else this.toastService.showWarning('Atención', 'No se pudo ingresar');
-        },
-      );
-    }
-  }
-  getInterest() {
-    this.servicePyme.getInterestById(this.idkey).subscribe((resa: any) => {
-      this.interest = resa;
-    });
-  }
-  getInterestList() {
-    this.servicePyme.getInterestList().subscribe((resp: any) => {
-
-      this.interestList = resp;
-      let length;
-      for (let index = 0; index < this.interestList.length; index++) {
-        this.options = [this.interestList[index].name];
-        this.options2 = this.interestList[index].name;
-        this.filteredOptions$ = of(this.options);
-        length = this.numbers.push(10);
-      }
-    });
-  }
   activeSpam() {
     this.bolShow = false;
     this.bolShow2 = true;
@@ -175,12 +135,6 @@ export class ProfileTalentComponent extends LoadDataComponent implements OnInit 
     }.bind(this), 10000);
   }
 
-  deleteInterest(id) {
-    this.loading = true;
-    this.servicePyme.deleteInterest(id).subscribe(res => {
-      this.getInterest();
-    });
-  }
 
   // ----------------- FUNCIONES TALENTOS -------------------//
 

@@ -10,13 +10,11 @@ import { ToastService } from 'app/@core/services/toast.service';
 import { QuestionaryMakeComponent } from 'app/shared/utils/classes/questionary-make.component';
 import { FeedbackService } from 'app/shared/services/feedback.service';
 import { QuestionaryService } from 'app/shared/services/questionary.service';
-import { QuestionControlService } from 'app/modules/pyme/services/question-control.service';
 
 @Component({
   selector: 'ngx-opportunity-rate',
   templateUrl: './opportunity-rate.component.html',
   styleUrls: ['./opportunity-rate.component.scss'],
-  providers: [QuestionControlService],
 })
 export class OpportunityRateComponent extends QuestionaryMakeComponent implements OnInit {
 
@@ -26,11 +24,10 @@ export class OpportunityRateComponent extends QuestionaryMakeComponent implement
 
   constructor(private headerService: HeaderService, private activatedRoute: ActivatedRoute,
     private location: Location, public sectionService: SectionService,
-    public sectionAnswerService: SectionAnswerService, public questionControlService: QuestionControlService,
+    public sectionAnswerService: SectionAnswerService,
     public toastService: ToastService, public feedbackService: FeedbackService,
     public questionaryService: QuestionaryService) {
-    super(sectionService, feedbackService, sectionAnswerService, questionControlService,
-      toastService, questionaryService,
+    super(sectionService, feedbackService, sectionAnswerService, toastService, questionaryService,
     );
   }
 

@@ -9,7 +9,6 @@ import { NbActionsModule, NbAlertModule, NbAutocompleteModule, NbBadgeModule, Nb
   NbSelectModule, NbSidebarModule, NbSpinnerModule, NbTableModule,
   NbToastrModule, NbTooltipModule, NbUserModule } from '@nebular/theme';
 import { CardModule } from 'primeng/card';
-import { ProfilePymeComponent } from 'app/modules/pyme/profile-pyme/profile-pyme.component';
 import { ProfileTalentComponent } from 'app/modules/talent/profile-talent/profile-talent.component';
 import { TooltipModule } from 'primeng/tooltip';
 import { DialogModule } from 'primeng/dialog';
@@ -29,7 +28,7 @@ import { RegisterRoutingModule } from '../register/register-routing.module';
 import { AuthRoutingModule } from '../auth-routing.module';
 
 @NgModule({
-  declarations: [ProfileUserComponent, ProfilePymeComponent, ProfileTalentComponent, ProfileFormPymeComponent],
+  declarations: [ProfileUserComponent, ProfileTalentComponent, ProfileFormPymeComponent],
   imports: [
     CommonModule,
     ProfileRoutingModule,

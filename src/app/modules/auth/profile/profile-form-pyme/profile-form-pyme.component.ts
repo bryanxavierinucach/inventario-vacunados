@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SelectItemGroup } from 'primeng/api';
 import { JwtTokenService } from '../../services';
-import { PymeService } from 'app/modules/pyme/services/pyme.service';
 import { SearchCountryField, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -53,17 +52,13 @@ export class ProfileFormPymeComponent implements OnInit {
     { name: 'Organizaciones y órganos extraterritoriales ' },
   ];
   public userId: string;
-  constructor(private pymeService: PymeService,
-    private router: Router,
+  constructor(
     private toast: ToastService,
-    private _activatedRoute: ActivatedRoute,
-    private jwtTokenService: JwtTokenService,
     private fb: FormBuilder,
     private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.initRegForm();
-    this.getAllCountries();
   }
   initRegForm() {
     this.avatarUser = 'data:image/jpg;base64,' + this.dataProfile?.user.avatar;
@@ -138,25 +133,7 @@ export class ProfileFormPymeComponent implements OnInit {
     if (formularioData != null)
       this.loading = true;
 
-      this.pymeService.updateProfile(formularioData, this.dataProfile?.user.id).subscribe(res => {
-        this.toast.showSuccess('Exitoso', res['message']);
-        this.loading = true;
-        this.success.emit();
-        window.location.reload();
-      }, (err => {
-        this.loading = false;
-        if (err.error.message)
-          this.toast.showWarning('Atención', err.error.message);
-        else
-          this.toast.showWarning('Atención', 'No se pudo actualizar');
-      }));
 
-  }
-  getAllCountries() {
-    this.pymeService.getCountries().subscribe(res => {
-      this.pais = res;
-
-    });
   }
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.Ecuador, CountryISO.Chile];

@@ -1,6 +1,5 @@
 import { ToastService } from 'app/@core/services/toast.service';
 import { SectionService } from 'app/modules/admin/services/section.service';
-import { QuestionControlService } from 'app/modules/pyme/services/question-control.service';
 import { QuestionaryDirected } from 'app/shared/enums/questionary-directed.enum';
 import { QuestionaryType } from 'app/shared/enums/questionary-type.enum';
 import { IFeedback } from 'app/shared/models/feedback.model';
@@ -25,7 +24,7 @@ export abstract class QuestionaryMakeComponent {
     loadingFeedback: boolean;
 
     constructor(public sectionService: SectionService, public feedbackService: FeedbackService,
-        public sectionAnswerService: SectionAnswerService, public questionControlService: QuestionControlService,
+        public sectionAnswerService: SectionAnswerService,
         public toastService: ToastService, public questionaryService: QuestionaryService) { }
 
     async getSections(id: string) {
@@ -34,18 +33,7 @@ export abstract class QuestionaryMakeComponent {
         this.sectionService.getAllComplete(id).subscribe(res => {
             this.loadingSection = false;
             const sections: ISection[] = res as ISection[];
-            for (let i = 0; i < sections.length; i++) {
-                const section = sections[i];
-                const questionsBuild = this.sectionAnswerService.getQuestionsBuild(section);
-                const form = this.questionControlService.toFormGroup(questionsBuild); // Formulario
-                this.buildSections.push({
-                    index: i, id: section.id, section: section,
-                    questionsBuild: questionsBuild, formGroup: form,
-                });
-                if (i === 0) {
-                    this.showSection = this.buildSections[0];
-                }
-            }
+
 
         }, (err) => {
             this.loadingSection = false;

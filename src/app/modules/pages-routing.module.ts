@@ -28,75 +28,11 @@ const routes: Routes = [
         data: { rol: ['admin']},
       },
       {
-        path: 'admin/questionary',
-        loadChildren: () =>
-          import('../modules/admin/questionary/questionary.module').then(m => m.QuestionaryModule),
-        canActivateChild: [GuardService],
-        data: { rol: ['admin'] },
-      },
-      {
-        path: 'admin/reward',
-        loadChildren: () =>
-          import('../modules/admin/reward/reward.module').then(m => m.RewardModule),
-        canActivateChild: [GuardService],
-        data: { rol: ['admin'] },
-      },
-      {
-        path: 'admin/questionary',
-        loadChildren: () =>
-          import('../modules/admin/questionary/questionary.module').then(m => m.QuestionaryModule),
-        canActivateChild: [GuardService],
-        data: { rol: ['admin'] },
-      },
-      {
-        path: 'admin/achievement',
-        loadChildren: () =>
-          import('./admin/achievement/achievement.module').then(m => m.AchievementModule),
-        canActivateChild: [GuardService],
-        data: { rol: ['admin'] },
-      },
-      {
-        path: 'admin/paymentMethod',
-        loadChildren: () =>
-          import('./admin/payment-method/payment-method.module').then(m => m.PaymentMethodModule),
-        canActivateChild: [GuardService],
-        data: { rol: ['admin'] },
-      },
-      {
         path: 'admin/user',
         loadChildren: () =>
           import('./admin/user/user.module').then(m => m.UserModule),
         canActivateChild: [GuardService],
         data: { rol: ['admin'] },
-      },
-      {
-        path: 'admin/templateemail',
-        loadChildren: () =>
-          import('./admin/template-email/template-email.module').then(m => m.TemplateEmailModule),
-        canActivateChild: [GuardService],
-        data: { rol: ['admin'] },
-      },
-      // PYME
-      {
-        path: 'pyme/diagnosis',
-        loadChildren: () =>
-          import('../modules/pyme/diagnosis/diagnosis.module').then(m => m.DiagnosisModule),
-        canActivateChild: [GuardService],
-        data: { rol: ['pyme'] },
-      },
-      {
-        path: 'pyme/marketplace',
-        loadChildren: () =>
-          import('./pyme/marketplace/marketplace.module').then(m => m.MarketplaceModule),
-        canActivateChild: [GuardService],
-        data: { rol: ['pyme'] },
-      },
-      {
-        path: 'pyme',
-        loadChildren: () =>
-          import('../modules/pyme/pyme.module').then(m => m.PymeModule),
-        canActivateChild: [GuardService],
-        data: { rol: ['pyme'] },
       },
       // TALENT
       {
