@@ -1,3 +1,0 @@
-export enum OpportunityStatus {
-    ACTIVE = 'ACTIVE', EXPIRED = 'EXPIRED', ASSIGNED = 'ASSIGNED', COMPLETED = 'COMPLETED', PROPOSAL = 'PROPOSAL',
-}
