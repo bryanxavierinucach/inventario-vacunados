@@ -1,0 +1,186 @@
+<nb-layout>
+  <nb-layout-header style="background-color: black;">
+    <div class="logo-black col-12 ">
+      <a href="/auth">
+        <img src="../../../../assets/images/logo-app.png" alt="App" height="40px" /></a>
+    </div>
+  </nb-layout-header>
+  <nb-layout-column class="fondo">
+    <div class="row content">
+      <div class="sidebar-primary col-12 col-sm-12 col-md-8 col-xl-6">
+        <div class="arrow-up">
+          <img src="../../../../assets/images/Arrow.png">
+        </div>
+        <div class="center">
+          <div class="container">
+            <div *ngIf="!noRole">
+              <h4 class="divergenti mt-5 text-color mb-4">REGÍSTRATE AQUÍ</h4>
+              <P class="text-color"><b>Elige uno de los siguientes métodos de registro.</b></P>
+              <div class="container-sm">
+                <div class="row">
+                  <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4" nbTooltip="Linkedin">
+                    <button type="button" shape="round" nbButton [disabled]="loading" class="lin"
+                      (click)="onOpenLinkedin()">
+                      <i class="fab fa-linkedin-in mr-2"></i> <span class="d-xs-none ">LinkedIn</span></button>
+                  </div>
+                  <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4" nbTooltip="Google">
+                    <button type="button" shape="round" nbButton [disabled]="loading" class="goo"
+                      (click)="onOpenGoogle()">
+                      <i class="fab fa-google mr-2"></i> <span class="d-xs-none ">Google</span></button>
+                  </div>
+                  <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 " nbTooltip="Apple">
+                    <button type="button" shape="round" nbButton [disabled]="loading" class="app"
+                      (click)="onOpenApple()" style="background-color:  #828285;">
+                      <i class="fab fa-apple mr-2"></i> <span class="d-xs-none ">Apple</span></button>
+                  </div>
+                </div>
+              </div>
+              <p class="text-color mt-3"><b>o registrarte con tu correo electrónico</b></p>
+              <div class="">
+                <form [formGroup]="formData" (ngSubmit)="Register()" aria-labelledby="title">
+                  <div class="">
+                    <div class="row">
+                      <div class=" col-lg-6 col-md-12  col-sm-12 ">
+                        <div class="form-group">
+                          <input nbInput fullWidth formControlName="username" placeholder="Ingrese el nombre de usuario"
+                            class="input-fourth" status="secondary">
+                          <div
+                            *ngIf="formData.controls['username'].invalid && (formData.controls['username'].dirty || formData.controls['username'].touched)"
+                            class="text-danger">
+                            <div *ngIf="formData.controls['username'].errors.required">
+                              Username es obligatorio.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class=" col-lg-6 col-md-12  col-sm-12 ">
+                        <div class="form-group">
+                          <input nbInput fullWidth formControlName="email" placeholder="Ingrese el email"
+                            class="input-fourth" status="secondary" autocomplete="false">
+                          <div
+                            *ngIf="formData.controls['email'].invalid && (formData.controls['email'].dirty ||formData.controls['email'].touched)"
+                            class="text-danger">
+                            <div *ngIf="formData.controls['email'].errors.required">
+                              Correo electrónico es obligatorio.
+                            </div>
+                            <div *ngIf="formData.controls['email'].errors.email">
+                              Ingrese un correo electronico
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6 col-md-12  col-sm-12">
+                        <div class="form-group">
+                          <input nbInput fullWidth formControlName="firstName" placeholder="Ingrese el nombre"
+                            class="input-fourth" status="secondary">
+                          <div
+                            *ngIf="formData.controls['firstName'].invalid && (formData.controls['firstName'].dirty || formData.controls['firstName'].touched)"
+                            class="text-danger">
+                            <div *ngIf="formData.controls['firstName'].errors.required">
+                              Nombre es obligatorio.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-12  col-sm-12">
+                        <div class="form-group">
+                          <input nbInput fullWidth formControlName="lastName" placeholder="Ingrese el apellido"
+                            class="input-fourth" status="secondary">
+                          <div
+                            *ngIf="formData.controls['lastName'].invalid && (formData.controls['lastName'].dirty || formData.controls['lastName'].touched)"
+                            class="text-danger">
+                            <div *ngIf="formData.controls['lastName'].errors.required">
+                              Apellido es obligatorio.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="text-color mb-3"><b>Selecciona tu tipo de perfil</b></p>
+                    <div class="form-group">
+                        <nb-radio-group formControlName="role" status="primary">
+                          <nb-radio class="col-lg-6 col-md-12 col-sm-12 custom-tam pad-1" value="users" style="float:left">
+                            Talento</nb-radio>
+                          <nb-radio class="col-lg-6 col-md-12 col-sm-12 custom-tam pad-2" value="pyme" style="float:left">
+                            Pyme
+                          </nb-radio>
+                        </nb-radio-group>
+                      <br>
+                      <div
+                        *ngIf="formData.controls['role'].invalid && (formData.controls['role'].dirty ||formData.controls['role'].touched)"
+                        class="text-danger">
+                        <div *ngIf="formData.controls['role'].errors.required">
+                          Rol es obligatorio.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mt-5">
+                      <div class="form-group col-12 col-md-12">
+                        <div class="form-group">
+                          <nb-form-field>
+                            <input nbInput type="password" name="password" value="" autocomplete="new-password"
+                              fullWidth formControlName="password" status="secondary"
+                              placeholder="Ingrese su contraseña" [type]="showPassword?'text':'password'"
+                              class="input-fourth">
+                            <button nbSuffix nbButton ghost type="button" (click)="toggleFieldTextType()"
+                              class="button-icon">
+                              <nb-icon class="color-icon" [icon]="showPassword ? 'eye-off-outline' : 'eye-outline'"
+                                pack="eva" [attr.aria-label]="showPassword ? 'hide password' : 'show password'">
+                              </nb-icon>
+                            </button>
+                          </nb-form-field>
+                          <div
+                            *ngIf="formData.controls['password'].invalid && (formData.controls['password'].dirty || formData.controls['password'].touched)"
+                            class="text-danger">
+                            <div *ngIf="formData.controls['password'].errors.required">
+                              Contraseña es obligatorio.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <button shape="round" style="margin-bottom: 7px;" type="submit" nbButton fullWidth status="primary"
+                      [disabled]="!formData.valid || loading">
+                      {{(loading)? 'Registrando...' : 'Registrarte' }}
+                    </button>
+                    <div class="d-flex justify-content-center ">
+                      <a class="forgot-password caption-2 text-register" routerLink="./auth">¿Ya estás registrado?
+                        Iniciar Sesión
+                      </a>
+                    </div>
+                  </div>
+                </form>
+                <div class="logo-black col-12 mt-2">
+                  <a href="#">
+                    <img class="img-style" src="../../../../assets/images/dg-Logo.png" alt="App" /></a>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="noRole">
+              <strong class="text-color">Un paso más, necesitamos que nos digas si eres:</strong>
+              <form [formGroup]="formRole" (ngSubmit)="updateRole()" aria-labelledby="title">
+                <div class="form-group">
+                  <nb-radio-group formControlName="role" status="secondary">
+                    <nb-radio class="col-lg-6 col-md-12 col-sm-12 custom-tam pad-1" value="pyme" style="float:left">Pyme</nb-radio>
+                    <nb-radio class="col-lg-6 col-md-12 col-sm-12 custom-tam pad-2" value="users" style="float:left">Talento</nb-radio>
+                  </nb-radio-group>
+                </div>
+                <button type="submit" nbButton status="secondary" [disabled]="formRole.invalid || loading"
+                  style="width: 100%;">
+                  {{loading?'Guardando...':'Continuar'}}</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Crear sección-->
+    <!-- <p-dialog header="Ingresar dirección" [(visible)]="displayWallet" [modal]="true" [closable]="false"
+      [draggable]="false" [resizable]="false" [style]="MODAL_2">
+      <ngx-wallet-form (closeModal)="onCloseWallet()" (success)="onSuccessWallet()"></ngx-wallet-form>
+    </p-dialog> -->
+  </nb-layout-column>
+</nb-layout>

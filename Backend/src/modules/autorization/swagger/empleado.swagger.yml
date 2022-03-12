@@ -1,0 +1,119 @@
+tags:
+  name: Empleado
+  description: Endpoints para respuestas de empleados
+components:
+  schemas:
+    EmpleadoCreate:
+      type: object
+      properties:
+        userId:
+          type: uuid
+          example: asdqw3-2sacs-12as-csa1-ascas
+        fechaNacimiento:
+          type: date
+          example: 1999-02-01
+        domicilio:
+          type: string
+          example: Calle Juan Mera y Cristobal Colón
+        telefono:
+          type: string
+          example: 09976636366
+        estadoVacunacion:
+          type: boolean
+          example: true
+        tipoVacuna:
+          type: string
+          example: Pfizer
+        fechaVacunacion:
+          type: date
+          example: 1999-02-01
+        nroDocis:
+          type: integer
+          example: 1
+    EmpleadoUpdate:
+      type: object
+      properties:
+        fechaNacimiento:
+          type: date
+          example: 1999-02-01
+        domicilio:
+          type: string
+          example: Calle Juan Mera y Cristobal Colón
+        telefono:
+          type: string
+          example: 09976636366
+        estadoVacunacion:
+          type: boolean
+          example: true
+        tipoVacuna:
+          type: string
+          example: Pfizer
+        fechaVacunacion:
+          type: date
+          example: 1999-02-01
+        nroDocis:
+          type: integer
+          example: 1
+    Empleado:
+      type: object
+      properties:
+        id:
+          type: UUID
+          example: ab068e82-6021-4301-b269-ffc0daf16f8e
+        userId:
+          type: uuid
+          example: asdqw3-2sacs-12as-csa1-ascas
+        fechaNacimiento:
+          type: date
+          example: 1999-02-01
+        domicilio:
+          type: string
+          example: Calle Juan Mera y Cristobal Colón
+        telefono:
+          type: string
+          example: 09976636366
+        estadoVacunacion:
+          type: boolean
+          example: true
+        tipoVacuna:
+          type: string
+          example: Pfizer
+        fechaVacunacion:
+          type: date
+          example: 1999-02-01
+        nroDocis:
+          type: integer
+          example: 1
+    EmpleadoUser:
+      type: object
+      properties:
+        id:
+          type: UUID
+          example: ab068e82-6021-4301-b269-ffc0daf16f8e
+        userId:
+          type: uuid
+          example: asdqw3-2sacs-12as-csa1-ascas
+        fechaNacimiento:
+          type: date
+          example: 2021-04-26T16:03:56.000Z
+        domicilio:
+          type: string
+          example: Ibarra
+        telefono:
+          type: string
+          example: Pesca
+        estadoVacunacion:
+          type: boolean
+          example: true
+        tipoVacuna:
+          type: string
+          example: Pfizer
+        fechaVacunacion:
+          type: date
+          example: 2021-04-26T16:03:56.000Z
+        nroDocis:
+          type: integer
+          example: 1
+        user:
+          type: json
+          example: { "id": "7d66faab-c7a8-4cd3-95b0-6e729ae3c285", "role": "admin/empleado", "cédula": "1002212155", "nombres": "Juan ", "Apellidos": "Mantilla","email": "prueba@email.com","creation_time": "2021-04-26T16:03:56.000Z", "modification_time": "2021-04-26T16:03:56.000Z"}

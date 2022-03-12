@@ -1,0 +1,97 @@
+@import 'themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+:host ::ng-deep {
+  .p-dropdown {
+      width: 14rem;
+      font-weight: normal;
+  }
+
+  .list {
+      border-radius: nb-theme(border-radius);
+      border: 1px solid nb-theme(color-basic-700);
+  }
+
+  .header-data {
+      background-color: #2a343d;
+  }
+
+  .header-title {
+      font-size: 1rem;
+      color: #2a343d;
+      margin-bottom: 0.5rem;
+  }
+
+  .item-list-item {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      width: 100%;
+
+      .item-list-title {
+          color: #2a343d;
+          font-size: 1rem;
+          font-weight: 700;
+          display: -webkit-box;
+          -webkit-line-clamp: 4;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          float: left;
+          width: 100%;
+          overflow-x: hidden;
+          hyphens: auto;
+          word-wrap: break-word;
+      }
+
+      .item-list-detail {
+          flex: 1 1 0;
+          height: 6rem;
+      }
+
+      .item-list-action {
+          display: flex;
+          flex-direction: column;
+      }
+
+      .p-button {
+          margin-bottom: 0.5rem;
+      }
+
+      .icon {
+          color: nb-theme(color-basic-50);
+      }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  :host ::ng-deep .item-list-item {
+      flex-direction: column;
+      align-items: center;
+
+      .item-list-action {
+          display: flex;
+          margin-top: 2rem;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+      }
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .item-list-item {
+      .item-list-detail {
+          height: 12rem;
+      }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .item-list-item {
+      .item-list-detail {
+          height: 100%;
+      }
+  }
+}

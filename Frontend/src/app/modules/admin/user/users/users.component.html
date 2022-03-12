@@ -1,0 +1,16 @@
+<button nbButton size="small" class="p-mr-2" (click)="onCreate()">
+  <nb-icon icon="plus-outline" class="icon"></nb-icon>Nuevo usuario
+</button>
+<!--Crear-->
+<ngx-user-form *ngIf="user && displayCreate" (closeModal)="onClose()" (success)="onSuccess()"
+  [displayCreate]="displayCreate" [user]="user"></ngx-user-form>
+
+<ngx-user-form *ngIf="!user && displayCreate" (closeModal)="onClose()" (success)="onSuccess()"
+  [displayCreate]="displayCreate">
+</ngx-user-form>
+
+<!--Lista-->
+<div style="margin-top: 1rem;">
+  <ngx-user-list (updateEvent)="onUpdate($event)">
+  </ngx-user-list>
+</div>

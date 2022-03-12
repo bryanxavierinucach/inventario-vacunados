@@ -1,0 +1,26 @@
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+@import '../../styles/themes';
+
+.logo {
+    padding-bottom: 3rem;
+    padding-left: 2rem;
+    padding-right: 1rem;
+}
+
+.sidebar-toggle {
+    @include nb-ltr(padding-right, 1.25rem);
+    @include nb-rtl(padding-left, 1.25rem);
+    text-decoration: none;
+    color: nb-theme(text-control-color);
+    nb-icon {
+        font-size: 2rem;
+    }
+}
+
+.text-name {
+    text-align:center;
+    color: nb-theme(color-basic-250);
+    margin: 0 0 15%;
+    font-weight:550 !important;
+}

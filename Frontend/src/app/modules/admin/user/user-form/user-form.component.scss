@@ -1,0 +1,14 @@
+/* Imagen avatar style*/
+@import '~@nebular/theme/styles/global/breakpoints';
+
+.modal-create {
+  width: 40vw;
+}
+
+@include media-breakpoint-down(sm) {
+  .modal-create {
+    width: 70vw;
+  }
+}
+
+
