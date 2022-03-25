@@ -4,7 +4,7 @@
   <p-dialog *ngIf="displayProfileUser" header="Actualizar el perfil" [(visible)]="displayProfileUser" [modal]="true"
     [closable]="false" [draggable]="false" [resizable]="false">
 
-    <ngx-profile-form-pyme [dataProfile]=dataEmpleado2 (closeModal)="onClose()" (success)="onSuccess()">
+    <ngx-profile-form-pyme [dataProfile]=dataEmpleado (closeModal)="onClose()" (success)="onSuccess()">
     </ngx-profile-form-pyme>
   </p-dialog>
   <button nbButton size="small" class="p-mr-2" (click)="onUpdate(dataEmpleado)"

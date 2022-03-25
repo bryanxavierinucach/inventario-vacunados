@@ -63,12 +63,12 @@ export class ProfileFormPymeComponent implements OnInit {
   }
   initRegForm() {
     this.formData = this.fb.group({
-      fechaNacimiento: [this.dataProfile?.fechaNacimiento],
+      //fechaNacimiento: [this.dataProfile?.fechaNacimiento],
       domicilio: [this.dataProfile?.domicilio, Validators.required],
       telefono: [this.dataProfile?.telefono],
       estadoVacunacion: [this.dataProfile?.estadoVacunacion],
       tipoVacuna: [this.dataProfile?.tipoVacuna],
-      fechaVacunacion: [this.dataProfile?.fechaVacunacion],
+      //fechaVacunacion: [this.dataProfile?.fechaVacunacion],
       nroDocis: [this.dataProfile?.nroDocis],
     });
 
@@ -79,18 +79,18 @@ export class ProfileFormPymeComponent implements OnInit {
     const user = decodeToken['sub'];
     const formularioData = new FormData();
     formularioData.append('userId', user);
-    formularioData.append('fechaNacimiento', this.formData.value.fechaNacimiento);
+    //formularioData.append('fechaNacimiento', this.formData.value.fechaNacimiento);
     formularioData.append('domicilio', this.formData.value.domicilio);
     formularioData.append('telefono', this.formData.value.telefono);
     formularioData.append('estadoVacunacion', this.formData.value.estadoVacunacion);
     formularioData.append('tipoVacuna', this.formData.value.tipoVacuna);
-    formularioData.append('fechaVacunacion', this.formData.value.fechaVacunacion);
+    //formularioData.append('fechaVacunacion', this.formData.value.fechaVacunacion);
     formularioData.append('nroDocis', this.formData.value.nroDocis);
-    if (formularioData != null) {
+    console.log(formularioData);
+    if (formularioData !== null) {
       this.talentService.saveEmpleado(formularioData).subscribe(res => {
         this.loading = true;
         this.success.emit();
-        window.location.reload();
       }), (err => {
         this.loading = false;
         if (err.error.message)
@@ -99,6 +99,17 @@ export class ProfileFormPymeComponent implements OnInit {
           this.toast.showWarning('Atención', 'No se pudo actualizar');
       });
 
+    } else {
+      this.talentService.putEmpleado(formularioData, user).subscribe(res => {
+        this.loading = true;
+        this.success.emit();
+      }), (err => {
+        this.loading = false;
+        if (err.error.message)
+          this.toast.showWarning('Atención', err.error.message);
+        else
+          this.toast.showWarning('Atención', 'No se pudo actualizar');
+      });
     }
 
 

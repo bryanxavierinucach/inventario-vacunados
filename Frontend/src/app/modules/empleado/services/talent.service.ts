@@ -17,6 +17,9 @@ export class TalentService {
   public saveEmpleado(data: any) {
     return this.http.post(`http://localhost:3000/api/empleado`, data);
   }
+  public putEmpleado(data: any, id) {
+    return this.http.put(`http://localhost:3000/api/empleado/${id}`, data);
+  }
   public getById(id: string) {
     return this.http.get(`${BASE_URL_user}${id}`);
   }

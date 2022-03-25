@@ -15,7 +15,7 @@ module.exports = (sequelizeConnector) => {
             field: "user_id"
         },
         fechaNacimiento: {
-            type: Sequelize.DATE
+            type: Sequelize.STRING
         },
         domicilio: {
             type: Sequelize.TEXT,
@@ -30,7 +30,7 @@ module.exports = (sequelizeConnector) => {
             type: Sequelize.STRING
         },
         fechaVacunacion: {
-            type: Sequelize.DATE
+            type: Sequelize.STRING
         },
         nroDocis: {
             type: Sequelize.INTEGER

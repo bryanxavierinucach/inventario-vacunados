@@ -30,6 +30,7 @@ export class ProfileTalentComponent extends LoadDataComponent implements OnInit 
   idkey: any;
   loading = true;
   displayProfileUser: boolean;
+  displayProfileUser2: boolean;
   bolShow: boolean;
   bolShow2 = true;
   bolShowTalent = false;
@@ -139,6 +140,7 @@ export class ProfileTalentComponent extends LoadDataComponent implements OnInit 
         console.log(this.dataEmpleado);
 
       } else {
+
         this.toast.showInfo('EDITE INFORMACIÓN ADICIONAL', 'Se necesita obtener su información adicional')
       }
 
@@ -150,6 +152,10 @@ export class ProfileTalentComponent extends LoadDataComponent implements OnInit 
     this.displayDetail = true;
   }
   onSuccess() {
+    const token: any = this.jwtTokenService.decodeToken(localStorage.getItem('access_token'));
+    this.user = token.name;
+    this.idkey = token.sub;
+    this.getTalenTById(this.idkey);
     this.displayProfileUser = false;
   }
 

@@ -61,12 +61,10 @@ module.exports = class EmpleadoService {
     try {
       const {
         userId,
-        fechaNacimiento,
         domicilio,
         telefono,
         estadoVacunacion,
         tipoVacuna,
-        fechaVacunacion,
         nroDocis,
       } = req.body;
       const id = req.params.id;
@@ -75,12 +73,10 @@ module.exports = class EmpleadoService {
       const where = { id };
       const data = {
         userId,
-        fechaNacimiento,
         domicilio,
         telefono,
         estadoVacunacion,
         tipoVacuna,
-        fechaVacunacion,
         nroDocis,
       };
       const result = await dbService.update(Empleado, data, where, 'Empleado');
