@@ -116,29 +116,6 @@ module.exports = class EmpleadoService {
       return res.status(500).send(errorsGen.gen_no_fetch);
     }
   }
-  //   /**
-  //    * Encontrar todos los Empleado por el id del usuario
-  //    * @param {*} req
-  //    * @param {*} res
-  //    * @param {*} where Opcional
-  //    * @param {*} include Opcional
-  //    */
-  //   async findAllByIdUser(req, res) {
-  //     try {
-  //       const id = req.params.id;
-  //       const list = await Interest.findAll({
-  //         where: {
-  //           userId: id,
-  //         },
-  //         include: InterestList,
-  //       });
-  //       res.send(list);
-  //     } catch (error) {
-  //       console.log('Failed to fetch ', error);
-  //       return res.status(500).send(errorsGen.gen_no_fetch);
-  //     }
-  //   }
-
   /**
    * Encontrar intereses
    * @param {*} req
@@ -146,10 +123,6 @@ module.exports = class EmpleadoService {
    */
   async findAllEmpleado(req, res) {
     try {
-      // Verficar si existe el rol de admin
-      const userRoles = keycloakService.getUserIdRoles(req.headers);
-      if (!keycloakService.isExistRole(userRoles.roles, diver_admin))
-        return res.status(401).send(errorsGen.gen_no_auth);
       const list = await Empleado.findAll({});
       res.send(list);
     } catch (error) {
@@ -164,10 +137,6 @@ module.exports = class EmpleadoService {
    * @param {*} res
    */
   findById(req, res) {
-    // Verficar si existe el rol de admin
-    const userRoles = keycloakService.getUserIdRoles(req.headers);
-    if (!keycloakService.isExistRole(userRoles.roles, diver_admin))
-      return res.status(401).send(errorsGen.gen_no_auth);
     Empleado.findByPk(req.params.id).then((data) => {
       res.send(data);
     });

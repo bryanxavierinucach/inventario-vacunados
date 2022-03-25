@@ -77,8 +77,6 @@ export class ProfileFormPymeComponent implements OnInit {
   public Register() {
     const decodeToken = this.authService.decodeToken();
     const user = decodeToken['sub'];
-    console.log(user);
-
     const formularioData = new FormData();
     formularioData.append('userId', user);
     formularioData.append('fechaNacimiento', this.formData.value.fechaNacimiento);
@@ -88,11 +86,11 @@ export class ProfileFormPymeComponent implements OnInit {
     formularioData.append('tipoVacuna', this.formData.value.tipoVacuna);
     formularioData.append('fechaVacunacion', this.formData.value.fechaVacunacion);
     formularioData.append('nroDocis', this.formData.value.nroDocis);
-    if (formularioData != null){
-      this.talentService.saveEmpleado(formularioData).subscribe(res=>{
-        console.log(res);
+    if (formularioData != null) {
+      this.talentService.saveEmpleado(formularioData).subscribe(res => {
         this.loading = true;
-
+        this.success.emit();
+        window.location.reload();
       }), (err => {
         this.loading = false;
         if (err.error.message)

@@ -44,12 +44,12 @@ export class ProfileTalentComponent extends LoadDataComponent implements OnInit 
   dataEmpleado2: any = {
     "id": "",
     "userId": "",
-    "fechaNacimiento": "",
+    "fechaNacimiento": "1999-02-01",
     "domicilio": "",
     "telefono": "",
     "estadoVacunacion": undefined,
     "tipoVacuna": "",
-    "fechaVacunacion": "",
+    "fechaVacunacion": "1999-02-01",
     "nroDocis": undefined,
     "user": {
       "id": "",
@@ -65,12 +65,12 @@ export class ProfileTalentComponent extends LoadDataComponent implements OnInit 
   dataEmpleado3: any = {
     "id": "",
     "userId": "",
-    "fechaNacimiento": "",
+    "fechaNacimiento": "1999-02-01",
     "domicilio": "",
     "telefono": "",
     "estadoVacunacion": null,
     "tipoVacuna": "",
-    "fechaVacunacion": "",
+    "fechaVacunacion": "1999-02-01",
     "nroDocis": null,
     "user": {
       "id": "",
@@ -151,7 +151,6 @@ export class ProfileTalentComponent extends LoadDataComponent implements OnInit 
   }
   onSuccess() {
     this.displayProfileUser = false;
-    this.getTalenTById(this.idkey);
   }
 
   onUpdate(item) {
