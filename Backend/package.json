@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/Divergenti/divergenti-api.git"
   },
-  "author": "Business Blockchain",
+  "author": "Xavier Inuca",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Divergenti/divergenti-api/issues"
