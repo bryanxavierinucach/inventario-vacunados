@@ -1,6 +1,6 @@
 module.exports = {
-    // HOST: "35.232.40.216",
-    HOST: "diver-prod-bdd.c9il6wvzebdr.us-east-2.rds.amazonaws.com",
+    // HOST: "",
+    HOST: "",
     USER: process.env.DB_USER,
     PASSWORD: process.env.DB_PASSWORD,
     DB: "inventario",
